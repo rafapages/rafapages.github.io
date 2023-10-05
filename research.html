@@ -85,7 +85,83 @@
               <h3>Publications</h3>
             </td>
           </tr>
-
+          <!-- Paper -->
+          <tr onmouseout="rgbd_stop()" onmouseover="rgbd_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='rgbd_image'><video  width=100% height=100% muted autoplay loop>
+                <source src="research/rgbd.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video></div>
+                <img src='research/rgbd.jpeg' width="160">
+              </div>
+              <script type="text/javascript">
+                function rgbd_start() {
+                  document.getElementById('facemirror_image').style.opacity = "1";
+                }
+                function rgbd_stop() {
+                  document.getElementById('facemirror_image').style.opacity = "0";
+                }
+                rgbd_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://ieeexplore.ieee.org/abstract/document/10239167" target="_blank">
+                <papertitle>RGB-D-Fusion: Image Conditioned Depth Diffusion of Humanoid Subjects</papertitle>
+              </a>
+              <br>
+              <a>Sascha Kirch</a>,
+              <a>Valeria Olyunina</a>,
+              <a>Jan Ondrej</a>,
+              <strong>Rafael Pagés</strong>,
+              <a>Sergio Martín</a>,
+              <a>Clara Pérez-Molina</a>,
+              <br>
+              <em>IEEE Access, Vol 11</em>, 2023
+              <br>
+              <p>We present RGB-D-Fusion, a multi-modal conditional denoising diffusion probabilistic model to generate high resolution depth maps from low-resolution monocular RGB images of humanoid subjects.
+              </p>
+              </td>
+          </tr>
+          <!-- Paper -->
+          <tr onmouseout="volvideo_stop()" onmouseover="volvideo_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='volvideo_image'><video  width=100% height=100% muted autoplay loop>
+                <source src="research/volvideo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video></div>
+                <img src='research/pagans.jpg' width="160">
+              </div>
+              <script type="text/javascript">
+                function volvideo_start() {
+                  document.getElementById('facemirror_image').style.opacity = "1";
+                }
+                function volvideo_stop() {
+                  document.getElementById('facemirror_image').style.opacity = "0";
+                }
+                volvideo_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://library.imaging.org/lim/articles/3/1/13" target="_blank">
+                <papertitle>Volumetric Video Content Creation for Immersive XR Experiences</papertitle>
+              </a>
+              <br>
+              <a>Aljosa Smolic</a>,
+              <a>Konstantinos Amplianitis</a>,
+              <a>Matthew Moynihan</a>,
+              <a>Neill O'Dwyer</a>,
+              <a>Jan Ondrej</a>,
+              <strong>Rafael Pagés</strong>,
+              <a>Gareth Young</a>,
+              <br>
+              <em>London Imaging Meeting</em>, 2023
+              <br>
+              <p>This paper highlights technology for VV content creation developed by the V-SENSE lab and the startup company Volograms. It further showcases a variety of creative experiments applying VV for immersive storytelling in XR.
+              </p>
+              </td>
+          </tr>
           <!-- Paper -->
           <tr onmouseout="vologan_stop()" onmouseover="vologan_start()">
             <td style="padding:20px;width:25%;vertical-align:middle">
