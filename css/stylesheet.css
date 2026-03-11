@@ -138,6 +138,224 @@ footer {
 	padding-top: 3rem;
 }
 
+/* =============================================================
+   RESEARCH PAGE — REVAMP STYLES
+   ============================================================= */
+
+/* Page header */
+.research-page-header {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 7rem 1.5rem 2.5rem;
+}
+
+.research-page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+.research-page-bio {
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 680px;
+  margin-bottom: 0.75rem;
+}
+
+.research-page-bio a {
+  color: #1772d0;
+  text-decoration: none;
+}
+
+.research-page-bio a:hover {
+  color: #f09228;
+}
+
+.research-page-note {
+  font-size: 0.82rem;
+  color: #aaa;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.paper-highlight-label {
+  background: #ebedff;
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: #555;
+}
+
+/* Section title */
+.research-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Paper list container */
+.paper-list {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+}
+
+/* Individual paper row */
+.paper-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.paper-item.paper-highlight {
+  background: #f5f6ff;
+  margin: 0 -1rem;
+  padding: 1.25rem 1rem;
+  border-radius: 8px;
+  border-bottom: 1px solid transparent;
+}
+
+/* Thumbnail */
+.paper-thumb {
+  flex-shrink: 0;
+  width: 140px;
+}
+
+.paper-thumb-inner {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.paper-thumb-inner > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.paper-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.paper-overlay video,
+.paper-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Paper body */
+.paper-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.paper-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1772d0;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.35rem;
+  line-height: 1.45;
+}
+
+.paper-title:hover {
+  color: #f09228;
+  text-decoration: none;
+}
+
+.paper-authors {
+  font-size: 13px;
+  color: #555;
+  font-weight: 300;
+  margin-bottom: 0.2rem;
+  line-height: 1.4;
+}
+
+.paper-meta {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 0.2rem;
+}
+
+.paper-award {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 0.2rem;
+}
+
+.paper-links {
+  font-size: 13px;
+  margin-bottom: 0.2rem;
+}
+
+.paper-links a {
+  color: #1772d0;
+  text-decoration: none;
+}
+
+.paper-links a:hover {
+  color: #f09228;
+}
+
+.paper-abstract {
+  font-size: 13px;
+  color: #777;
+  font-weight: 300;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* Mobile */
+@media screen and (max-width: 640px) {
+  .research-page-header {
+    padding-top: 5.5rem;
+  }
+
+  .paper-item {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .paper-item.paper-highlight {
+    margin: 0 -0.5rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .paper-thumb {
+    width: 100%;
+  }
+
+  .paper-thumb-inner {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    max-width: 220px;
+  }
+}
+
+/* ── legacy responsive (kept for backward compat) ── */
 @media screen and (max-width: 640px) {
   /* Stack paper image and info vertically */
   td[style*="width:25%"],
