@@ -1,6 +1,10 @@
 
 
 /* CSS Document */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
@@ -452,4 +456,665 @@ footer {
 .col-centered{
     float: none;
     margin: 0 auto;
+}
+
+
+/* =============================================================
+   HOMEPAGE REVAMP
+   ============================================================= */
+
+/* Constrain all section containers to the same width so every
+   section has the same left edge regardless of content type */
+.site-nav .container,
+.content-section .container,
+.press-section .container,
+.research-section .container,
+.contact-section .container,
+.site-footer .container {
+  max-width: 900px;
+}
+
+.hero-section .container {
+  max-width: 1100px;
+}
+
+/* --- Nav ---------------------------------------------------- */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.1rem 0;
+  background: rgba(255, 255, 255, 0);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-nav.scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-name:hover {
+  color: #111;
+  text-decoration: none;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #666;
+  text-decoration: none;
+  margin-left: 2rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #111;
+  text-decoration: none;
+}
+
+@media (max-width: 576px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+
+/* --- Hero --------------------------------------------------- */
+.hero-section {
+  padding-top: 7rem;
+  padding-bottom: 5rem;
+  background: #fff;
+}
+
+.hero-tagline {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #999;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.hero-name {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #111;
+  margin-bottom: 1.25rem;
+}
+
+.hero-bio {
+  font-size: 1.05rem;
+  color: #555;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 460px;
+  margin-bottom: 0;
+}
+
+.hero-bio a {
+  color: #111;
+  font-weight: 400;
+  border-bottom: 1px solid #ccc;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.hero-bio a:hover {
+  border-color: #111;
+  text-decoration: none;
+}
+
+.hero-ctas {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hero-ctas a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #111;
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.hero-ctas a:hover {
+  opacity: 0.45;
+  text-decoration: none;
+}
+
+.hero-video-col {
+  margin-top: 2rem;
+}
+
+.hero-video-wrapper {
+  position: relative;
+  padding-bottom: 120%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f5f5f5;
+}
+
+.hero-video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 991px) {
+  .hero-name {
+    font-size: 2.2rem;
+  }
+  .hero-video-wrapper {
+    padding-bottom: 75%;
+  }
+  .hero-section {
+    padding-top: 5.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-name {
+    font-size: 1.9rem;
+  }
+}
+
+
+/* --- Section commons --------------------------------------- */
+.content-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background: #fff;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111;
+  margin-bottom: 0.4rem;
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+
+
+/* --- Products ---------------------------------------------- */
+.product-row {
+  margin: 0 -0.75rem;
+}
+
+.product-col {
+  padding: 0 0.75rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+}
+
+.product-card {
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.product-card-media {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-media-volu {
+  background: linear-gradient(135deg, #dceeff 0%, #c5d9ff 100%);
+}
+
+.product-media-messages {
+  background: linear-gradient(135deg, #ece8ff 0%, #ddd5ff 100%);
+}
+
+.product-media-studio {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e4e4e4 100%);
+}
+
+.product-initial {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: rgba(0, 0, 0, 0.18);
+}
+
+.product-card-body {
+  padding: 1.25rem;
+  height: auto;
+  flex: 1;
+}
+
+.product-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.product-name a {
+  color: #111;
+  text-decoration: none;
+}
+
+.product-name a:hover {
+  color: #2d68f6;
+  text-decoration: none;
+}
+
+.product-tags {
+  margin-bottom: 0.75rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: #999;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  padding: 1px 8px;
+  margin-right: 4px;
+  letter-spacing: 0.02em;
+}
+
+.product-desc {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+
+/* --- Press -------------------------------------------------- */
+.press-section {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  background: #fafafa;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.press-label {
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: #bbb;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.press-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 3rem;
+}
+
+.press-item {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #c0c0c0;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+
+.press-item:hover {
+  color: #444;
+  text-decoration: none;
+}
+
+
+/* --- Talks -------------------------------------------------- */
+.talks-row {
+  margin: 0 -0.75rem;
+}
+
+.talk-col {
+  padding: 0 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.talk-card {
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.talk-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  background: #f5f5f5;
+}
+
+.talk-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.talk-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 0.82rem;
+  padding-bottom: 56.25%;
+  position: relative;
+}
+
+.talk-placeholder p {
+  position: absolute;
+  margin: 0;
+}
+
+.talk-placeholder p:first-child {
+  top: calc(50% - 1.2em);
+}
+
+.talk-hint {
+  font-size: 0.68rem !important;
+  top: calc(50% + 0.2em) !important;
+  color: #ddd !important;
+  font-family: monospace;
+}
+
+.talk-info {
+  padding: 0.9rem 1.1rem;
+}
+
+.talk-title {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+
+.talk-meta {
+  font-size: 0.78rem;
+  color: #bbb;
+  margin-bottom: 0;
+}
+
+
+/* --- Research callout --------------------------------------- */
+.research-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background: #fff;
+}
+
+.research-callout {
+  border-top: 2px solid #111;
+  padding-top: 2.5rem;
+}
+
+.research-callout .research-cta {
+  display: inline-block;
+  margin-top: 1.25rem;
+}
+
+.research-desc {
+  font-size: 0.975rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 0;
+}
+
+.research-cta {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #111;
+  padding-bottom: 2px;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.research-cta:hover {
+  color: #2d68f6;
+  border-color: #2d68f6;
+  text-decoration: none;
+}
+
+
+/* --- Speaking ---------------------------------------------- */
+.speaking-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.speak-tag {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 100px;
+  padding: 3px 12px;
+  letter-spacing: 0.02em;
+}
+
+.talks-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.talk-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 1rem;
+}
+
+.talk-entry-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.talk-entry-title {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #222;
+  text-decoration: none;
+}
+
+a.talk-entry-title:hover {
+  color: #2d68f6;
+  text-decoration: none;
+}
+
+.talk-entry-meta {
+  font-size: 0.78rem;
+  color: #bbb;
+}
+
+.talk-watch-link {
+  font-size: 0.78rem;
+  color: #aaa;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.talk-watch-link:hover {
+  color: #2d68f6;
+  text-decoration: none;
+}
+
+/* Embed variant (optional, for when you want inline video) */
+.talk-embed-row {
+  margin-bottom: 1.5rem;
+}
+
+.talk-embed-row .talk-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.talk-embed-row .talk-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+
+/* --- Contact / CTA ----------------------------------------- */
+.contact-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background: #fff;
+}
+
+.contact-inner {
+  border-top: 2px solid #111;
+  padding-top: 2.5rem;
+  max-width: 540px;
+}
+
+.contact-hooks {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.contact-hooks li {
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 300;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.contact-hooks li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: #ccc;
+}
+
+.contact-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.contact-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #111;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.contact-link:hover {
+  color: #2d68f6;
+  border-color: #2d68f6;
+  text-decoration: none;
+}
+
+
+/* --- Footer ------------------------------------------------- */
+.site-footer {
+  padding: 2rem 0;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-social {
+  margin-bottom: 0;
+}
+
+.footer-social li a {
+  font-size: 1rem;
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-right: 0.25rem;
+}
+
+.footer-social li a:hover {
+  color: #111;
+  text-decoration: none;
+}
+
+.footer-copy {
+  font-size: 0.72rem;
+  color: #ccc;
+}
+
+@media (max-width: 576px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
 }
