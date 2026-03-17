@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="How I built an AI-powered school lunch tracker with Claude and Home Assistant — from PDF menus to a live dashboard card.">
+  <meta name="author" content="Rafa Pages">
+
+  <title>AI-Powered School Lunch Tracker — Rafa Pagés</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI-Powered School Lunch Tracker — Rafa Pagés" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="How I built an AI-powered school lunch tracker with Claude and Home Assistant — from PDF menus to a live dashboard card." />
+  <meta property="og:image" content="https://rafapages.com/img/rafa_electro_new_logo.jpg" />
+  <meta property="og:url" content="https://rafapages.com/lunch-tracker.html" />
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link rel="icon" href="rp.ico">
+
+  <script src="https://kit.fontawesome.com/ab904bb842.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Case study page styles ── */
+    .cs-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .cs-back {
+      display: inline-block;
+      font-size: 0.82rem;
+      color: #999;
+      text-decoration: none;
+      margin-top: 6rem;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s;
+    }
+    .cs-back:hover {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .cs-header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 2.5rem;
+    }
+
+    .cs-kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-title {
+      font-family: 'Bungee', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #111;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: 0;
+    }
+
+    .cs-subtitle {
+      font-size: 1.05rem;
+      color: #777;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cs-tag {
+      font-size: 0.72rem;
+      color: #999;
+      border: 1px solid #e0e0e0;
+      border-radius: 100px;
+      padding: 2px 10px;
+    }
+
+    /* Article body */
+    .cs-body {
+      padding-bottom: 5rem;
+    }
+
+    .cs-body h2 {
+      font-family: 'Bungee', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #111;
+      margin-top: 3rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0;
+    }
+
+    .cs-body h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #333;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+
+    .cs-body p {
+      font-size: 0.975rem;
+      color: #444;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .cs-body ul {
+      padding-left: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .cs-body li {
+      font-size: 0.975rem;
+      color: #444;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 0.2rem;
+    }
+
+    .cs-body strong {
+      font-weight: 700;
+      color: #222;
+    }
+
+    .cs-body a {
+      color: #2d68f6;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45,104,246,0.25);
+      transition: border-color 0.2s;
+    }
+    .cs-body a:hover {
+      border-color: #2d68f6;
+      text-decoration: none;
+    }
+
+    /* Code blocks */
+    .cs-body pre {
+      background: #f7f7f7;
+      border: 1px solid #ebebeb;
+      border-radius: 8px;
+      padding: 1.25rem 1.4rem;
+      overflow-x: auto;
+      margin: 1.25rem 0 1.5rem;
+    }
+
+    .cs-body pre code {
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: #333;
+      background: none;
+      padding: 0;
+    }
+
+    .cs-body code {
+      font-size: 0.82rem;
+      background: #f3f3f3;
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: #333;
+    }
+
+    /* Pull quote / callout */
+    .cs-callout {
+      border-left: 3px solid #2d68f6;
+      padding: 0.75rem 1.25rem;
+      margin: 1.75rem 0;
+      background: #f8faff;
+      border-radius: 0 6px 6px 0;
+    }
+    .cs-callout p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Section divider */
+    .cs-rule {
+      border: none;
+      border-top: 1px solid #f0f0f0;
+      margin: 2.5rem 0;
+    }
+
+    /* Tech stack table */
+    .cs-stack {
+      border-top: 1px solid #ebebeb;
+      margin: 1.5rem 0;
+    }
+    .cs-stack-row {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid #f5f5f5;
+      align-items: baseline;
+    }
+    .cs-stack-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #aaa;
+      flex: 0 0 170px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cs-stack-value {
+      font-size: 0.875rem;
+      color: #444;
+      font-weight: 300;
+    }
+
+    @media (max-width: 576px) {
+      .cs-title {
+        font-size: 1.6rem;
+      }
+      .cs-stack-row {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .cs-stack-label {
+        flex: none;
+      }
+    }
+  </style>
+
+</head>
+
+<body id="page-top">
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="site-nav scrolled" id="site-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-name" href="/">Rafa Pagés</a>
+      <div class="nav-links">
+        <a href="/#products">Products</a>
+        <a href="/#speaking">Speaking</a>
+        <a href="/research.html">Research</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     ARTICLE
+     ============================================================ -->
+<main>
+  <div class="cs-container">
+
+    <a href="/#making" class="cs-back">← Back to Making</a>
+
+    <div class="cs-header">
+      <p class="cs-kicker">Case Study · Side Project</p>
+      <h1 class="cs-title">AI-Powered School Lunch Tracker integrated into Home Assistant</h1>
+      <p class="cs-subtitle">From a dinner-planning annoyance to a live HA dashboard card — built with Claude, vanilla JS, and a one-line Python snippet.</p>
+      <div class="cs-meta">
+        <span class="cs-tag">Claude API</span>
+        <span class="cs-tag">Home Assistant</span>
+        <span class="cs-tag">Vanilla JS</span>
+        <span class="cs-tag">Vibe Coding</span>
+      </div>
+    </div>
+
+    <article class="cs-body">
+
+      <h2>The Problem</h2>
+      <p>My two kids go to different schools. Every month, both schools send a PDF with the lunch menu for the entire month. Simple enough — except I kept running into the same annoying problem: I'd plan dinner, start cooking, and then realise one of the kids had already eaten that exact thing for lunch. Omelette again. Fish again.</p>
+      <p>The solution should have been easy: just check the menus before cooking. But in practice, pulling up two different PDFs, finding the right day in each, and cross-referencing them every evening was just enough friction that I kept forgetting. I needed something that would surface the right information at a glance, without any effort on my part.</p>
+      <p>That's when I started thinking: could I build a small AI web app to fix this? And could I surface the result directly on my Home Assistant dashboard, so it's just there every evening when I'm thinking about dinner?</p>
+
+      <h2>The Idea</h2>
+      <p>The concept was straightforward:</p>
+      <ul>
+        <li>Upload both PDF menus once a month</li>
+        <li>Use Claude's API to extract the meal data from each PDF</li>
+        <li>Display a combined calendar showing both kids' lunches side by side</li>
+        <li>Highlight days where both kids had the same main ingredient — dinner warnings</li>
+        <li>Push today's meals to Home Assistant so they show up on the dashboard automatically</li>
+      </ul>
+      <p>I built the whole thing in collaboration with Claude — using it both as the AI backbone of the app (parsing the PDFs) and as my brainstorming and coding partner throughout the project.</p>
+
+      <hr class="cs-rule">
+
+      <h2>The Web App</h2>
+      <p>The app is a single HTML file — no framework, no build step, no server. It lives in Home Assistant's static file folder and runs entirely in the browser. You open it, upload the two PDFs, and hit a button.</p>
+
+      <h3>PDF Parsing with Claude</h3>
+      <p>The trickiest part of the project was reliably extracting meal data from the school PDFs. Each school has a different format, and the layouts are inconsistent — tables with day numbers at the bottom of cells, bilingual content in Spanish and English, special event days with no standard format.</p>
+      <p>The final approach uses Claude's vision capabilities to read each PDF directly. The prompt instructs Claude to:</p>
+      <ul>
+        <li>Read the table cell by cell</li>
+        <li>Extract only the Spanish meal names</li>
+        <li>Verify that no entries fall on weekends — a reliable signal that the day numbering has shifted by one</li>
+      </ul>
+      <div class="cs-callout">
+        <p>I'm not completely sure the prompt will work 100% of the time, so I added an optional free-text field where I can give Claude additional instructions for tricky months. Escape hatch as a feature.</p>
+      </div>
+
+      <h3>The Calendar View</h3>
+      <p>The result is a month-view calendar with colour-coded chips for each kid per day. Days where both kids had a similar main ingredient are highlighted in amber. There's also a list view for scanning linearly, and inline editing for correcting any days Claude got wrong. Everything is saved to localStorage so the calendar loads instantly on subsequent visits without re-processing. The two kids' calendars are independent, allowing for the odd days when the youngest goes to day care but his older brother is home.</p>
+
+      <h3>Settings Panel</h3>
+      <p>All configuration — Anthropic API key, kid names, PDF upload, Home Assistant URL and token, and the optional free-text field for extra instructions — lives behind a collapsible settings panel. The default view is just the calendar. The app feels like a dashboard first and a tool second.</p>
+
+      <hr class="cs-rule">
+
+      <h2>The Home Assistant Integration</h2>
+      <p>Once the calendar is processed, hitting "Send to Home Assistant" pushes the full month's data to HA. From there, everything is automatic.</p>
+
+      <h3>How the Data Flows</h3>
+      <p>The web app encodes the JSON data as base64 and calls a <code>shell_command</code> defined in HA's <code>configuration.yaml</code>. That command runs a one-line Python snippet that decodes the data and writes it to a file called <code>lunch_data.json</code> in HA's <code>www</code> folder.</p>
+      <p>Four <code>command_line</code> sensors — <code>lunch_kid1_today</code>, <code>lunch_kid2_today</code>, <code>lunch_kid1_tomorrow</code>, and <code>lunch_kid2_tomorrow</code> — read from that file daily, look up the relevant date, and expose the meal as a standard HA sensor state. These are plain sensors that any card, automation, or notification can read from.</p>
+
+      <pre><code>command_line:
+  - sensor:
+      name: lunch_kid1_today
+      scan_interval: 86400
+      command: "python3 -c \"import json,datetime; data=json.load(open('/config/www/lunch_data.json')); today=datetime.date.today().isoformat(); meals=[m['meal'] for m in data['kid1']['meals'] if m['date']==today]; print(meals[0] if meals else 'Sin menú hoy')\""</code></pre>
+
+      <h3>The Midnight Automation</h3>
+      <p>A simple HA automation runs at 00:01 every night and calls <code>homeassistant.update_entity</code> on all four sensors. This ensures they always reflect the correct day — today's lunch flips to the new day at midnight, not at some arbitrary time based on when HA last restarted.</p>
+
+      <pre><code>alias: Actualizar menú escolar
+trigger:
+  - platform: time
+    at: "00:01:00"
+action:
+  - action: homeassistant.update_entity
+    data:
+      entity_id:
+        - sensor.lunch_kid1_today
+        - sensor.lunch_kid2_today
+        - sensor.lunch_kid1_tomorrow
+        - sensor.lunch_kid2_tomorrow</code></pre>
+
+      <h3>The Dashboard Cards</h3>
+      <p>Two Lovelace cards sit on the main dashboard — one for today, one for tomorrow. Each uses <code>vertical-stack-in-card</code> with <code>mushroom-template-card</code> components styled to look like a single unified card. The header shows the date in Spanish, with the cutlery icon turning grey on non-school days. Each kid gets their own row with name and meal.</p>
+      <p>Tapping either card opens the full web app, so manual edits and reprocessing are always one tap away.</p>
+
+      <hr class="cs-rule">
+
+      <h2>What I Learned</h2>
+      <ul>
+        <li><strong>PDF parsing is harder than it looks.</strong> The most persistent bug was Claude associating meal content with the wrong day number, because the number appears at the bottom of each cell rather than the top. The fix was a weekend verification step — if a meal lands on a Saturday or Sunday, the whole sequence has shifted and needs correcting.</li>
+        <li><strong>Prompt engineering is iterative.</strong> Each version of the extraction prompt was a direct response to a specific failure mode. The final prompt is more specific than I would have written upfront, but it was shaped by real failures.</li>
+        <li><strong>Home Assistant's <code>configuration.yaml</code> still matters.</strong> Some things — shell commands, <code>command_line</code> sensors — can't be done through the UI and require editing config files directly. That's not a complaint, just something to be aware of when planning an integration.</li>
+        <li><strong>The 255-character limit on <code>input_text</code> helpers is a real constraint.</strong> We went through a few approaches before landing on the <code>shell_command</code> + file approach, which is cleaner anyway.</li>
+        <li><strong>Vibe coding works best as a collaboration.</strong> The best results came from describing the problem clearly, reviewing what was built, and being specific about what was wrong. Claude Code was useful for architectural decisions, while Claude.ai was better for the iterative UI and prompt work.</li>
+      </ul>
+
+      <hr class="cs-rule">
+
+      <h2>The Result</h2>
+      <p>Once a month, I spend about two minutes uploading PDFs and hitting a button. From that point, the dashboard shows today's and tomorrow's lunches for both kids automatically, every day, on every device in the house.</p>
+      <p>The dinner warnings have already saved me from serving pasta twice in one day more than once. Small problem, satisfying solution.</p>
+      <p>The next step is probably a dinner planner that actively suggests what to cook based on what to avoid — but that's a project for another month.</p>
+
+      <hr class="cs-rule">
+
+      <h2>Tech Stack</h2>
+      <div class="cs-stack">
+        <div class="cs-stack-row">
+          <span class="cs-stack-label">AI / PDF parsing</span>
+          <span class="cs-stack-value">Claude API (claude-sonnet-4)</span>
+        </div>
+        <div class="cs-stack-row">
+          <span class="cs-stack-label">Frontend</span>
+          <span class="cs-stack-value">Vanilla HTML/CSS/JS — single-file, no framework</span>
+        </div>
+        <div class="cs-stack-row">
+          <span class="cs-stack-label">Home server</span>
+          <span class="cs-stack-value">Home Assistant Green</span>
+        </div>
+        <div class="cs-stack-row">
+          <span class="cs-stack-label">HA integration</span>
+          <span class="cs-stack-value">shell_command + command_line sensors</span>
+        </div>
+        <div class="cs-stack-row">
+          <span class="cs-stack-label">Dashboard</span>
+          <span class="cs-stack-value">Mushroom Cards + vertical-stack-in-card + card_mod</span>
+        </div>
+      </div>
+
+    </article>
+
+  </div>
+</main>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <ul class="list-inline footer-social">
+        <li class="list-inline-item">
+          <a href="https://twitter.com/rafamolone" target="_blank" title="Twitter/X">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://linkedin.com/in/rafapages/en" target="_blank" title="LinkedIn">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://rafapages.medium.com" target="_blank" title="Medium">
+            <i class="fa fa-medium"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://github.com/rafapages" target="_blank" title="GitHub">
+            <i class="fa fa-github"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://scholar.google.com/citations?user=V5G2vyIAAAAJ&hl=en&oi=ao" target="_blank" title="Google Scholar">
+            <i class="fa fa-book"></i>
+          </a>
+        </li>
+      </ul>
+      <span class="footer-copy">© Rafael Pagés</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Scripts -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  window.addEventListener('scroll', function () {
+    const nav = document.getElementById('site-nav');
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+
+</body>
+</html>
