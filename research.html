@@ -91,7 +91,7 @@
     My research interests are computer vision, 3D reconstruction, volumetric video, and image processing.
   </p>
   <p class="research-page-note">
-    Representative papers are <span class="paper-highlight-label">highlighted</span>.
+    Representative papers are <mark class="highlight">highlighted</mark>.
     Hover thumbnails to preview.
   </p>
 </div>
@@ -166,7 +166,7 @@
 
     const linksHtml = (p.links || [])
       .map(l => `<a href="${l.url}" target="_blank">${l.label}</a>`)
-      .join(' · ');
+      .join('');
 
     const yearStr = p.year ? `, ${p.year}` : '';
 

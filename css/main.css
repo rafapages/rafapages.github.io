@@ -195,7 +195,7 @@ header .carousel-item {
 }
 
 a {
-	color: rgb(45, 104, 246);
+  color: #111;
 }
 
 .black{
@@ -579,7 +579,8 @@ footer {
 }
 
 .hero-bio a:hover {
-  border-color: #111;
+  color: #2d68f6;
+  border-color: #2d68f6;
   text-decoration: none;
 }
 
@@ -596,11 +597,12 @@ footer {
   text-decoration: none;
   border-bottom: 1px solid #111;
   padding-bottom: 2px;
-  transition: opacity 0.2s;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .hero-ctas a:hover {
-  opacity: 0.45;
+  color: #2d68f6;
+  border-color: #2d68f6;
   text-decoration: none;
 }
 
@@ -996,6 +998,20 @@ footer {
   margin-top: 0.65rem;
 }
 
+.research-desc a {
+  color: #111;
+  font-weight: 400;
+  border-bottom: 1px solid #ccc;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.research-desc a:hover {
+  color: #2d68f6;
+  border-color: #2d68f6;
+  text-decoration: none;
+}
+
 .research-cta {
   font-size: 0.9rem;
   font-weight: 700;
@@ -1103,8 +1119,8 @@ footer {
 }
 
 .timeline-item:hover .timeline-dot--highlight {
-  background: #2d68f6;
-  box-shadow: 0 0 0 1px #2d68f6;
+  background: rgb(255, 220, 0);
+  box-shadow: 0 0 0 1px rgb(255, 220, 0);
 }
 
 /* Icon dots (Font Awesome <i> tags) override the circle styles */
@@ -1131,7 +1147,7 @@ i.timeline-dot.timeline-dot--highlight {
 .timeline-item:hover i.timeline-dot {
   background: none;
   box-shadow: none;
-  color: #2d68f6;
+  color: rgb(255, 220, 0);
   transform: scale(1.35);
 }
 
