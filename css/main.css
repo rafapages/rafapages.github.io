@@ -980,8 +980,12 @@ footer {
   color: #666;
   font-weight: 300;
   line-height: 1.75;
-  max-width: 560px;
+  max-width: 620px;
   margin-bottom: 0;
+}
+
+.research-desc + .research-desc {
+  margin-top: 0.65rem;
 }
 
 .research-cta {
@@ -1017,6 +1021,7 @@ footer {
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
+  font-family: 'Bungee', cursive;
   line-height: 1;
   color: #111;
 }
@@ -1029,106 +1034,185 @@ footer {
   margin-top: 0.3rem;
 }
 
-/* --- Research featured cards ------------------------------- */
-.research-featured {
-  margin-bottom: 0.5rem;
+/* --- Research timeline ------------------------------------- */
+.research-timeline {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 2rem 0 2.5rem;
+  padding: 3rem 3rem 1.5rem;
+  background: #fafafa;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.research-col {
-  margin-bottom: 1.5rem;
+.timeline-track {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  min-width: 560px;
 }
 
-.research-card {
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 4px; /* vertically centered on dot */
+  left: calc(100% / 14); /* start at middle of first item */
+  right: calc(100% / 14);
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.timeline-item {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ececec;
-  border-radius: 10px;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: box-shadow 0.2s;
-  height: 100%;
-}
-
-.research-card:hover {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  text-decoration: none;
-  color: inherit;
-}
-
-.research-card-media {
+  align-items: center;
   position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: #f4f4f4;
+  cursor: default;
 }
 
-
-.research-card-media img,
-.research-card-media video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  border: 2px solid #fafafa;
+  box-shadow: 0 0 0 1px #ccc;
+  margin-bottom: 0.6rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
-.research-card-media video {
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.8);
+  background: #111;
+  box-shadow: 0 0 0 1px #111;
+}
+
+.timeline-dot--highlight {
+  background: #111;
+  box-shadow: 0 0 0 1px #111;
+}
+
+.timeline-item:hover .timeline-dot--highlight {
+  background: #2d68f6;
+  box-shadow: 0 0 0 1px #2d68f6;
+}
+
+/* Icon dots (Font Awesome <i> tags) override the circle styles */
+i.timeline-dot {
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  width: 16px;
+  height: 16px;
+  font-size: 14px;
+  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+i.timeline-dot.timeline-dot--highlight {
+  background: none;
+  box-shadow: none;
+  color: #111;
+}
+
+.timeline-item:hover i.timeline-dot {
+  background: none;
+  box-shadow: none;
+  color: #2d68f6;
+  transform: scale(1.35);
+}
+
+.timeline-year {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-label {
+  font-size: 0.7rem;
+  color: #777;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.timeline-label span {
+  color: #aaa;
+}
+
+/* --- Timeline hover popup (fixed, JS-positioned) ----------- */
+#timeline-popup {
+  position: fixed;
+  background: #111;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  width: 190px;
+  font-size: 0.72rem;
+  line-height: 1.55;
   opacity: 0;
-  transition: opacity 0.3s;
+  pointer-events: none;
+  transition: opacity 0.18s;
+  z-index: 9999;
+  /* JS sets top = dot top; this transform lifts it above the dot */
+  transform: translateX(-50%) translateY(calc(-100% - 14px));
 }
 
-.research-card:hover .research-card-media video {
+#timeline-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: var(--arrow-left, 50%);
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #111;
+}
+
+#timeline-popup.visible {
   opacity: 1;
 }
 
-.research-card-body {
-  padding: 1rem 1.25rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+.tp-year {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.78rem;
 }
 
-.research-card-meta {
-  font-size: 0.72rem;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.5rem;
+.tp-lines p {
+  margin: 0;
+  opacity: 0.75;
 }
 
-.research-card-title {
-  font-size: 1rem;
+.tp-lines p + p {
+  margin-top: 3px;
+}
+
+/* --- Scholar link in stats --------------------------------- */
+.scholar-link {
+  font-size: 0.75rem;
   font-weight: 700;
   color: #111;
-  line-height: 1.45;
-  flex: 1;
-  margin-bottom: 0.75rem;
+  text-decoration: none;
+  border-bottom: 1px solid #111;
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  align-self: flex-end;
+  margin-bottom: 2px;
 }
 
-.research-card-footer {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-bottom: 0;
+.scholar-link:hover {
+  color: #2d68f6;
+  border-color: #2d68f6;
+  text-decoration: none;
 }
-
-.research-citations {
-  font-size: 0.72rem;
-  color: #888;
-}
-
-.research-award {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #d4870a;
-  background: #fff8ec;
-  border: 1px solid #f5d89a;
-  border-radius: 4px;
-  padding: 1px 6px;
-}
-
 
 /* --- Speaking ---------------------------------------------- */
 .speaking-topics {
