@@ -307,55 +307,9 @@
       <span class="speak-tag">Computer Vision</span>
       <span class="speak-tag">Product Building</span>
     </div>
-
-    <div class="talks-list">
-
-      <!--
-        ── ADD A TALK OR INTERVIEW ────────────────────────────────
-        Copy one of the blocks below, fill in your details, and
-        optionally add a YouTube/podcast URL to the watch link.
-
-        For a YouTube embed instead of a link, replace the entire
-        .talk-entry with:
-
-        <div class="talk-embed-row">
-          <div class="talk-embed">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-          </div>
-          <div class="talk-entry-body" style="margin-top:.75rem">
-            <span class="talk-entry-title">Title</span>
-            <span class="talk-entry-meta">Channel · Year</span>
-          </div>
-        </div>
-      -->
-
-      <!-- example entry — replace with real ones -->
-      <div class="talk-entry">
-        <div class="talk-entry-body">
-          <span class="talk-entry-title">Talk / Lecture / Interview Title</span>
-          <span class="talk-entry-meta">Event, University, or Podcast · Year</span>
-        </div>
-        <a href="#" class="talk-watch-link">Watch ↗</a>
-      </div>
-
-      <div class="talk-entry">
-        <div class="talk-entry-body">
-          <span class="talk-entry-title">Talk / Lecture / Interview Title</span>
-          <span class="talk-entry-meta">Event, University, or Podcast · Year</span>
-        </div>
-        <a href="#" class="talk-watch-link">Watch ↗</a>
-      </div>
-
-      <div class="talk-entry">
-        <div class="talk-entry-body">
-          <span class="talk-entry-title">Talk / Lecture / Interview Title</span>
-          <span class="talk-entry-meta">Event, University, or Podcast · Year</span>
-        </div>
-        <!-- remove the link if there's no recording -->
-      </div>
-
-    </div>
   </div>
+
+  <div class="events-gallery-full" id="events-gallery"></div>
 </section>
 
 
@@ -439,12 +393,81 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<div id="gallery-tooltip" role="tooltip"></div>
+
 <script>
   // Add shadow to nav on scroll
   window.addEventListener('scroll', function () {
     const nav = document.getElementById('site-nav');
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
+
+  // Events photo gallery — infinite marquee
+  (function () {
+    var gallery = document.getElementById('events-gallery');
+    var tooltip = document.getElementById('gallery-tooltip');
+    if (!gallery || !tooltip) return;
+
+    fetch('img/events/captions.json')
+      .then(function (r) { return r.json(); })
+      .then(function (captions) {
+        var entries = Object.keys(captions).map(function (filename) {
+          return { filename: filename, caption: captions[filename] };
+        });
+
+        // Distribute images across 3 rows in round-robin order
+        var rowData = [[], [], []];
+        entries.forEach(function (entry, i) {
+          rowData[i % 3].push(entry);
+        });
+
+        rowData.forEach(function (rowEntries) {
+          var rowDiv = document.createElement('div');
+          rowDiv.className = 'gallery-row';
+
+          var track = document.createElement('div');
+          track.className = 'gallery-track';
+
+          // Duplicate each row's images for a seamless infinite loop
+          rowEntries.concat(rowEntries).forEach(function (entry) {
+            var wrap = document.createElement('div');
+            wrap.className = 'gallery-img-wrap';
+
+            var img = document.createElement('img');
+            img.src = 'img/events/' + entry.filename;
+            img.alt = entry.caption;
+            img.loading = 'lazy';
+
+            wrap.appendChild(img);
+            track.appendChild(wrap);
+
+            wrap.addEventListener('mouseenter', function () {
+              tooltip.textContent = entry.caption;
+              tooltip.classList.add('visible');
+            });
+            wrap.addEventListener('mousemove', function (e) {
+              tooltip.style.left = (e.clientX + 14) + 'px';
+              tooltip.style.top  = (e.clientY - 36) + 'px';
+            });
+            wrap.addEventListener('mouseleave', function () {
+              tooltip.classList.remove('visible');
+            });
+          });
+
+          rowDiv.appendChild(track);
+          gallery.appendChild(rowDiv);
+        });
+
+        // Pause all rows on any hover; hide tooltip on leave
+        gallery.addEventListener('mouseenter', function () {
+          gallery.classList.add('paused');
+        });
+        gallery.addEventListener('mouseleave', function () {
+          gallery.classList.remove('paused');
+          tooltip.classList.remove('visible');
+        });
+      });
+  })();
 </script>
 
 </body>

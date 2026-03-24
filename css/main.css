@@ -1072,6 +1072,77 @@ a.talk-entry-title:hover {
 }
 
 
+/* --- Events photo gallery — infinite marquee (Speaking section) --- */
+.events-gallery-full {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2.5rem;
+}
+
+.gallery-row {
+  overflow: hidden;
+}
+
+@keyframes gallery-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.gallery-track {
+  display: flex;
+  gap: 6px;
+  width: max-content;
+  will-change: transform;
+  animation: gallery-scroll 45s linear infinite;
+}
+
+.events-gallery-full.paused .gallery-track {
+  animation-play-state: paused;
+}
+
+.gallery-img-wrap {
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: default;
+}
+
+.gallery-img-wrap img {
+  height: 130px;
+  width: auto;
+  display: block;
+  object-fit: cover;
+  transition: opacity 0.2s;
+}
+
+.gallery-img-wrap:hover img {
+  opacity: 0.8;
+}
+
+#gallery-tooltip {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  pointer-events: none;
+  white-space: normal;
+  max-width: 200px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 9999;
+}
+
+#gallery-tooltip.visible {
+  opacity: 1;
+}
+
+
 /* --- Contact / CTA ----------------------------------------- */
 .contact-section {
   padding-top: 4rem;
