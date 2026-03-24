@@ -31,7 +31,11 @@ const PAPERS = [
     venue: "IEEE Access, Vol 11",
     year: 2023,
     highlight: false,
-    links: [],
+    links: [
+      { label: "code", url: "https://github.com/sascha-kirch/rgb-d-fusion" }
+
+    ],
+    
     description: "We present RGB-D-Fusion, a multi-modal conditional denoising diffusion probabilistic model to generate high resolution depth maps from low-resolution monocular RGB images of humanoid subjects."
   },
   {
@@ -59,7 +63,9 @@ const PAPERS = [
     venue: "Arxiv",
     year: 2022,
     highlight: false,
-    links: [],
+    links: [
+      {label: "code", url: "https://github.com/sascha-kirch/vologan"}
+    ],
     description: "We present VoloGAN, an adversarial domain adaptation network that translates synthetic RGB-D images of a high-quality 3D model of a person, into RGB-D images that could be generated with a consumer depth sensor."
   },
   {
