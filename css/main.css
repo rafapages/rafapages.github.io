@@ -825,8 +825,6 @@ footer {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
   background: #fafafa;
-  border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
 }
 
 .press-label {
@@ -966,8 +964,18 @@ footer {
 }
 
 .research-callout {
-  border-top: 2px solid #111;
   padding-top: 2.5rem;
+}
+
+.section-doodle {
+  display: block;
+  margin: 0 auto 1.75rem;
+}
+
+.doodle-divider {
+  text-align: center;
+  line-height: 0;
+  padding: 1rem 0;
 }
 
 .research-cta {
@@ -1041,8 +1049,6 @@ footer {
   margin: 2rem 0 2.5rem;
   padding: 3rem 3rem 1.5rem;
   background: #fafafa;
-  border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
 }
 
 .timeline-track {
@@ -1384,7 +1390,6 @@ a.talk-entry-title:hover {
 }
 
 .contact-inner {
-  border-top: 2px solid #111;
   padding-top: 2.5rem;
   max-width: 540px;
 }
