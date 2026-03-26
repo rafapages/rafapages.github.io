@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Static file server (Python)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3000", "--directory", "/Users/rafa/sw/rafa-web/5.0/rafapages.github.io/img/events/.claude/worktrees/intelligent-kowalevski"],
+      "port": 3000
+    }
+  ]
+}
