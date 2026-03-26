@@ -1410,15 +1410,23 @@ a.talk-entry-title:hover {
   font-weight: 300;
   padding: 0.6rem 0;
   border-bottom: 1px solid #f0f0f0;
-  padding-left: 1.5rem;
+  padding-left: 3.1rem;
   position: relative;
 }
 
 .contact-hooks li::before {
-  content: "—";
+  content: "";
   position: absolute;
   left: 0;
-  color: #ccc;
+  top: calc(0.6rem + 0.85em);
+  width: 1.35rem;
+  height: 5px;
+  border-radius: 1px 2px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 220, 0, 0.85),
+    rgba(255, 200, 0, 0.65)
+  );
 }
 
 .contact-links {
