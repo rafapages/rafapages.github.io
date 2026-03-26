@@ -1,0 +1,14 @@
+/* TEAM */
+Name: Rafael Pagés
+Role: Entrepreneur, Product Manager
+Twitter: @rafamolone
+LinkedIn: linkedin.com/in/rafapages
+GitHub: github.com/rafapages
+Location: Madrid, Spain
+
+/* SITE */
+Last update: 2026/03/26
+Language: English, Spanish
+Standards: HTML5, CSS3
+Components: Bootstrap 5, Font Awesome, jQuery
+Hosted on: GitHub Pages
