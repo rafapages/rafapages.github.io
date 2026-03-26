@@ -696,29 +696,17 @@ footer {
 }
 
 .product-card-media {
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
 }
 
-.product-media-volu {
-  background: linear-gradient(135deg, #dceeff 0%, #c5d9ff 100%);
-}
-
-.product-media-messages {
-  background: linear-gradient(135deg, #ece8ff 0%, #ddd5ff 100%);
-}
-
-.product-media-studio {
-  background: linear-gradient(135deg, #f0f0f0 0%, #e4e4e4 100%);
-}
-
-.product-initial {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: rgba(0, 0, 0, 0.18);
+.product-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .product-card-body {
