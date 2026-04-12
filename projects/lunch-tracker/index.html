@@ -183,6 +183,34 @@
       color: #333;
     }
 
+    /* Wide image breakout */
+    .cs-img-wide {
+      margin-left: -15rem;
+      margin-right: -15rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+    }
+    .cs-img-wide img {
+      width: 100%;
+      display: block;
+      border-radius: 6px;
+    }
+    .cs-img-caption {
+      font-size: 0.75rem;
+      color: #aaa;
+      font-style: italic;
+      text-align: center;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      .cs-img-wide {
+        margin-left: -1.25rem;
+        margin-right: -1.25rem;
+      }
+    }
+
     /* Pull quote / callout */
     .cs-callout {
       border-left: 3px solid #2d68f6;
@@ -291,15 +319,30 @@
       <h2>The Problem</h2>
       <p>My two kids go to different schools (normal school and day care). Every month, both schools send a PDF with the lunch menu for the entire month. Simple enough, except I kept running into the same annoying problem: I'd plan dinner, start cooking, and then realise one of the kids had already eaten that exact thing for lunch. Omelette again. Fish again.</p>
       <p>The solution should have been easy: just check the menus before cooking. But in practice, pulling up two different PDFs (each of them with their own formatting and crazy kid-friendly design), finding the right day in each, and cross-referencing them every evening was just enough friction that I kept forgetting. I needed something that would surface the right information at a glance, without any effort on my part.</p>
+      
+      <div class="cs-img-wide">
+        <img src="img/menus.jpg" alt="The problem">
+        <p class="cs-img-caption">Here is an example of what I have to deal with every month... Aren't these supposed to be for parents? Why the colours and illustrations? 😅</p>
+      </div>
       <p>That's when I started thinking: could I build a small AI web app to fix this? And could I surface the result directly on my Home Assistant dashboard, so it's just there every evening when I'm thinking about dinner?</p>
       <p>I should say upfront: I'm not a Home Assistant power user. I had played a bit with Lovelace cards and automations, but I knew nothing about setting up custom sensors. I figured it out as I went, mostly by asking Claude to explain things as it helped me build them.</p>
 
       <hr class="cs-rule">
 
+      <h2>The Idea</h2>
+      <p>The concept was straightforward:</p>
+      <ul>
+        <li>Upload both PDF menus once a month</li>
+        <li>Use Claude's API to extract the correct meal data from each PDF</li>
+        <li>Display a combined calendar showing both kids' lunches side by side</li>
+        <li>Push today's meals to Home Assistant so they show up on the dashboard automatically</li>
+      </ul>
+      <p>I built the whole thing in collaboration with Claude, brainstorming and chatting to figure out the best way to process and display the data. And I'm really happy about the result.</p>
+
+      <hr class="cs-rule">
+
       <h2>The Web App</h2>
       <p>The app is a single HTML file — no framework, no build step, no server. It lives in Home Assistant's static file folder, which means it's always accessible from the local network without running anything separately. You open it, upload the two PDFs, and hit a button.</p>
-      <p>The concept is straightforward: upload both PDF menus once a month, use Claude's API to extract the correct meal data from each PDF, display a combined calendar showing both kids' lunches side by side, and push today's meals to Home Assistant so they show up on the dashboard automatically.</p>
-      <p>I built the whole thing in collaboration with Claude, brainstorming and chatting to figure out the best way to process and display the data. And I'm really happy about the result.</p>
 
       <h3>PDF Parsing with Claude</h3>
       <p>The trickiest part of the project was reliably extracting meal data from the school PDFs. Each school has a different format, and the layouts are inconsistent — tables with day numbers at the bottom of cells, bilingual content in Spanish and English, special event days with no standard format.</p>
