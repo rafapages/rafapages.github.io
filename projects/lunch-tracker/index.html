@@ -83,7 +83,7 @@
       <p>The solution should have been easy: just check the menus before cooking. But in practice, pulling up two different PDFs (each of them with their own formatting and crazy kid-friendly design), finding the right day in each, and cross-referencing them every evening was just enough friction that I kept forgetting. I needed something that would surface the right information at a glance, without any effort on my part.</p>
       
       <div class="cs-img-wide">
-        <img src="img/menus.jpg" alt="The problem">
+        <img src="img/menus.jpg" alt="The two different PDFs the schools send with the lunch menu for the entire month">
         <p class="cs-img-caption">Here is an example of what I have to deal with every month... Aren't these supposed to be for parents? Why the colours and illustrations? 😅</p>
       </div>
       <p>That's when I started thinking: could I build a small AI web app to fix this? And could I surface the result directly on my Home Assistant dashboard, so it's just there every evening when I'm thinking about dinner?</p>
@@ -107,7 +107,7 @@
       <p>The app is a single HTML file — no framework, no build step, no server. It lives in Home Assistant's static file folder, which means it's always accessible from the local network without running anything separately. You open it, upload the two PDFs, and hit a button.</p>
 
       <div class="cs-img-inline">
-        <img src="img/input.jpg" alt="The web app before processing" class="img-fluid" style="border-radius:6px;">
+        <img src="img/input.jpg" alt="The web app before processing, with two input fields for the PDFs and a button to process them" class="img-fluid" style="border-radius:6px;">
         <p class="cs-img-caption">A very simple input layout screen. Once processed, this gets hidden under a settings icon ⚙️.</p>
       </div>
 
@@ -123,7 +123,7 @@
       <p>The result is a month-view calendar with colour-coded chips for each kid per day. There's also a list view for scanning linearly, and inline editing for correcting any days Claude got wrong. Everything is saved to localStorage so the calendar loads instantly on subsequent visits without re-processing. The two kids' calendars are independent, which helps on the odd days when the youngest goes to day care but his older brother is home.</p>
 
       <div class="cs-img-inline">
-        <img src="img/calendar.jpg" alt="The calendar view in the web app" class="img-fluid" style="border-radius:6px;">
+        <img src="img/calendar.jpg" alt="The calendar view in the web app, with both kids' meals side by side" class="img-fluid" style="border-radius:6px;">
         <p class="cs-img-caption">The resulting calendar view with both kids' meals side by side.</p>
       </div>
 
@@ -173,7 +173,7 @@ action:
       <p>Tapping either card opens the full web app, so manual edits and reprocessing are always one tap away.</p>
 
       <div class="cs-img-inline">
-        <img src="img/widget.jpg" alt="The dashboard cards" class="img-fluid" style="border-radius:6px;">
+        <img src="img/widget.jpg" alt="The dashboard cards for today and tomorrow, showing the date in Spanish and the meals for each kid" class="img-fluid" style="border-radius:6px;">
         <p class="cs-img-caption">This is how the cards for today and tomorrow ("Mañana") look on my Home Assistant dashboard. They are in Spanish but you get the idae 🙃.</p>
       </div>
 
