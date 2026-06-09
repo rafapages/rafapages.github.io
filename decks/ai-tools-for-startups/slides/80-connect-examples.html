@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Steal These Automations — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .ex-pad {
+    position: relative;
+    padding: 60px 100px 68px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; gap: 22px;
+    z-index: 2;
+  }
+  .ex-head { display: flex; flex-direction: column; gap: 8px; }
+  .ex-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mid);
+  }
+  .ex-title { font-family: var(--font-display); font-size: 2.1rem; line-height: 1; color: var(--fg); white-space: nowrap; }
+
+  .ex-grid {
+    flex: 1; min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 20px;
+  }
+  .ex-card {
+    border: 4px solid var(--black); border-radius: 16px;
+    background: var(--white);
+    padding: 40px 24px 18px;
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative; z-index: 2; min-height: 0;
+  }
+  .ex-card.alt { background: var(--gray1); }
+  .ex-cat {
+    position: absolute; top: -13px; left: 22px;
+    font-family: var(--font-display); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow);
+    padding: 5px 12px; border-radius: 6px; ;
+    transform: rotate(-1.5deg);
+  }
+  .ex-card h3 { font-family: var(--font-display); font-size: 0.76rem; line-height: 1.12; color: var(--fg); margin: 0; }
+  .ex-card p { font-family: var(--font-body); font-size: 0.64rem; color: var(--fg-mid); line-height: 1.45; margin: 0; }
+
+  .ex-flow {
+    margin-top: auto; padding-top: 11px; border-top: 2px dashed var(--gray2);
+    display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+  }
+  .ex-chip {
+    font-family: var(--font-display); font-size: 0.5rem; letter-spacing: 0.06em;
+    color: var(--fg); background: var(--white); border: 2px solid var(--black);
+    padding: 5px 9px; border-radius: 7px; line-height: 1.1;
+  }
+  .ex-card.alt .ex-chip { background: var(--white); }
+  .ex-chip.ai, .ex-card.alt .ex-chip.ai { background: var(--yellow); }
+  .ex-sep {
+    font-family: var(--font-display); font-size: 0.6rem; color: var(--fg-muted);
+  }
+
+  .ex-foot {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-body); font-size: 0.82rem; color: var(--fg-mid); line-height: 1.4;
+  }
+  .ex-foot .star { font-family: var(--font-display); font-size: 1.05rem; color: var(--fg); }
+  .ex-foot strong { color: var(--fg); font-weight: 700; }
+  .ex-legend {
+    margin-left: auto; display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 0.5rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .ex-legend .dot { width: 14px; height: 14px; border-radius: 4px; border: 2px solid var(--black); background: var(--yellow); }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="80 Steal These Automations">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="ex-pad">
+
+    <div class="ex-head">
+      <div class="ex-eyebrow">Connect · A menu to steal from</div>
+      <h1 class="ex-title">Things you can <span class="hl">automate</span> this week</h1>
+    </div>
+
+    <div class="ex-grid">
+
+      <div class="ex-card">
+        <span class="ex-cat">Lead magnet</span>
+        <h3>Free asset, captured email</h3>
+        <p>Someone wants your checklist or template. They fill a form, get the file instantly — and you get their email on your list. No AI required, just plumbing.</p>
+        <div class="ex-flow">
+          <span class="ex-chip">Form filled</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip">Deliver file</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip">Save to list</span>
+        </div>
+      </div>
+
+      <div class="ex-card alt">
+        <span class="ex-cat">Newsletter</span>
+        <h3>Newsletter that writes itself</h3>
+        <p>On a schedule, AI pulls your latest posts, links and notes, drafts the issue in your voice, and queues it for one-click review before it ships.</p>
+        <div class="ex-flow">
+          <span class="ex-chip">Source ideas</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip ai">AI drafts</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip">Queue to send</span>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <span class="ex-cat">Daily digest</span>
+        <h3>Your news, summarised by 8am</h3>
+        <p>Each morning it scans the sources you care about, AI boils them down to the five things that matter, and drops a tidy brief in your inbox.</p>
+        <div class="ex-flow">
+          <span class="ex-chip">Collect sources</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip ai">AI summarises</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip">Email you</span>
+        </div>
+      </div>
+
+      <div class="ex-card alt">
+        <span class="ex-cat">Daily planner</span>
+        <h3>Your day, planned for you</h3>
+        <p>It pulls your open tasks from Jira, your inbox and your notes, then AI builds a prioritised action plan — what to tackle first, what can wait.</p>
+        <div class="ex-flow">
+          <span class="ex-chip">Gather tasks</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip ai">AI prioritises</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip">Action plan</span>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <span class="ex-cat">Support</span>
+        <h3>Inbox triage on autopilot</h3>
+        <p>A support email arrives. AI reads it, classifies the topic, drafts a reply and routes urgent ones to a human — so nothing sits unanswered overnight.</p>
+        <div class="ex-flow">
+          <span class="ex-chip">New ticket</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip ai">AI sort + draft</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip">Reply / route</span>
+        </div>
+      </div>
+
+      <div class="ex-card alt">
+        <span class="ex-cat">Meetings</span>
+        <h3>Notes &amp; tasks, done for you</h3>
+        <p>A call wraps up. AI turns the transcript into a clean recap, pulls out the action items, emails everyone and creates the to-dos automatically.</p>
+        <div class="ex-flow">
+          <span class="ex-chip">Call ends</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip ai">AI recap + tasks</span>
+          <span class="ex-sep">&rarr;</span>
+          <span class="ex-chip">Send + create</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="ex-foot">
+      <span class="star">★</span>
+      <span>Pick <strong>one</strong>. Build it in Zapier or Make this week — then steal the next.</span>
+      <span class="ex-legend"><span class="dot"></span> = an AI step</span>
+    </div> -->
+
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

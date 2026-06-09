@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Now Go Build — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .cl-pad {
+    position: relative;
+    padding: 80px 140px 72px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: space-between;
+    z-index: 2;
+  }
+  .cl-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cl-eyebrow {
+    font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--fg-mid); display: inline-flex; align-items: center; gap: 16px;
+  }
+  .cl-eyebrow::before { content: ''; width: 60px; height: 5px; background: var(--black); border-radius: 3px; }
+  .cl-recap { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.12em; color: var(--fg-mid); }
+  .cl-recap .on { color: var(--fg); }
+
+  .cl-center { display: flex; flex-direction: column; gap: 18px; }
+  .cl-big { font-family: var(--font-display); font-size: 4rem; line-height: 0.88; letter-spacing: -0.02em; color: var(--fg); margin: 0; }
+  .cl-big .you { display: inline-block; position: relative; }
+  .cl-big .you::after {
+    content: ''; position: absolute; inset: 8% -6% 4% -6%;
+    background: var(--yellow); z-index: -1;
+    transform: rotate(-1.2deg) skewX(-2.5deg); border-radius: 8px 26px 12px 8px;
+  }
+  .cl-sub { font-family: var(--font-body); font-size: 0.72rem; color: var(--fg-mid); line-height: 1.4; max-width: 1300px; margin: 0; }
+  .cl-sub strong { color: var(--fg); font-weight: 700; }
+
+  .cl-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; align-items: stretch; }
+  .cl-card {
+    background: var(--white); border: 4px solid var(--black); border-radius: 18px;
+    padding: 22px 24px; display: flex; flex-direction: column; gap: 9px;
+  }
+  .cl-card.dark { background: var(--black); color: var(--white); transform: rotate(0.4deg); }
+  .cl-card.yel { background: var(--yellow); transform: rotate(-0.4deg); }
+  .cl-card .lbl { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mid); }
+  .cl-card.dark .lbl { color: #aaa; }
+  .cl-card.yel .lbl { color: var(--fg); }
+  .cl-card h3 { font-family: var(--font-display); font-size: 0.86rem; line-height: 1.1; color: var(--fg); margin: 0; }
+  .cl-card.dark h3 { color: var(--white); }
+  .cl-card p { font-family: var(--font-body); font-size: 0.72rem; color: var(--fg-mid); line-height: 1.4; margin: 0; }
+  .cl-card.dark p { color: #cfcfcf; }
+  .cl-card.yel p { color: var(--fg); }
+
+  .cl-blob { position: absolute; bottom: 150px; right: -80px; width: 340px; height: 210px; z-index: 0; }
+  .cl-spark { position: absolute; top: 190px; right: 230px; width: 64px; transform: rotate(15deg); z-index: 1; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide no-wave" data-screen-label="90 Now Go Build">
+
+  <svg class="cl-blob" viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M260 8 C310 14 332 60 322 110 C312 160 268 192 210 188 C150 184 96 152 96 100 C96 54 142 22 196 14 C218 10 240 6 260 8Z" fill="#FFE234"/>
+  </svg>
+  <svg class="cl-spark" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M30 4 L30 22 M30 38 L30 56 M4 30 L22 30 M38 30 L56 30 M11 11 L23 23 M37 37 L49 49 M49 11 L37 23 M23 37 L11 49"
+          stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </svg>
+
+  <div class="cl-pad">
+
+    <div class="cl-top">
+      <div class="cl-eyebrow">That's a wrap</div>
+      <div class="cl-recap"><span class="on">Understand</span> · <span class="on">Use</span> · <span class="on">Connect</span> · <span class="on">Build</span></div>
+    </div>
+
+    <div class="cl-center">
+      <h1 class="cl-big">Now go<br/>build <span class="you">stuff</span>.</h1>
+      <p class="cl-sub">The tools will change every month. The skill — knowing <strong>what to build</strong>, prompting it well, and shipping it — stays. Pick one idea you've been sitting on. <strong>Spec it tonight. Have a v1 by tomorrow.</strong> Send it to me when you do.</p>
+    </div>
+
+    <div class="cl-bottom">
+      <div class="cl-card">
+        <span class="lbl">All the resources</span>
+        <h3>rafapages.com/<br/>decks/ai-tools-for-startups</h3>
+        <p>These slides, and other materials.</p>
+      </div>
+      <div class="cl-card yel">
+        <span class="lbl">Send me what you make</span>
+        <h3>rpages@<br/>faculty.ie.edu</h3>
+        <p>I read everything, and I reply — eventually. Nothing makes my week like a student shipping.</p>
+      </div>
+      <div class="cl-card dark">
+        <span class="lbl">Keep in touch</span>
+        <h3>@rafapages</h3>
+        <p>LinkedIn · X · Bluesky. Mostly what I'm building and what's actually working.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+</body>
+</html>

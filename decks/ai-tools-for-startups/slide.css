@@ -1,0 +1,287 @@
+/* ============================================================
+   Slide scaffolding — handles 1920x1080 design canvas
+   scaled to viewport. Use for previews and standalone slides.
+   For Reveal.js, just use the .slide-content children directly.
+   ============================================================ */
+@import url('./colors_and_type.css');
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  background: var(--white);
+  overflow: hidden;
+  transform-origin: top left;
+  transform: translate(var(--slide-tx, 0px), var(--slide-ty, 0px)) scale(var(--slide-scale, 1));
+}
+
+.slide.dark {
+  background: var(--black);
+  color: var(--white);
+}
+.slide.dark h1, .slide.dark h2, .slide.dark h3, .slide.dark h4,
+.slide.dark p, .slide.dark li { color: var(--white); }
+.slide.dark .muted { color: #BBB; }
+.slide.dark .mid { color: #DDD; }
+
+/* ============================================================
+   Footer wave — irregular, never straight. Auto on every slide.
+   Override with .no-wave. Tune height with --wave-h (default 22px).
+   ============================================================ */
+.slide::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: var(--wave-h, 22px);
+  background-color: var(--yellow);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 14' preserveAspectRatio='none'><path d='M0 7 Q160 1 320 8 Q480 14 640 6 Q800 0 960 8 Q1120 14 1280 6 Q1440 0 1600 8 Q1760 13 1920 7 L1920 14 L0 14Z' fill='white'/></svg>") no-repeat 0 0 / 100% 100%;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 14' preserveAspectRatio='none'><path d='M0 7 Q160 1 320 8 Q480 14 640 6 Q800 0 960 8 Q1120 14 1280 6 Q1440 0 1600 8 Q1760 13 1920 7 L1920 14 L0 14Z' fill='white'/></svg>") no-repeat 0 0 / 100% 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+.slide.no-wave::after { display: none; }
+.slide.tall-wave { --wave-h: 70px; }
+.slide.tall-wave::after {
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 80' preserveAspectRatio='none'><path d='M0 40 Q160 8 320 42 Q480 76 640 32 Q800 0 960 38 Q1120 76 1280 28 Q1440 0 1600 40 Q1760 70 1920 36 L1920 80 L0 80Z' fill='white'/></svg>") no-repeat 0 0 / 100% 100%;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 80' preserveAspectRatio='none'><path d='M0 40 Q160 8 320 42 Q480 76 640 32 Q800 0 960 38 Q1120 76 1280 28 Q1440 0 1600 40 Q1760 70 1920 36 L1920 80 L0 80Z' fill='white'/></svg>") no-repeat 0 0 / 100% 100%;
+}
+
+/* ============================================================
+   Corner blob (top-right by default; override w/ inline)
+   ============================================================ */
+.slide-blob {
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  width: 320px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 0;
+}
+.slide-blob svg { width: 100%; height: 100%; display: block; }
+
+/* ============================================================
+   Slide number + brand strip (top-right corner)
+   ============================================================ */
+.slide-brand {
+  position: absolute;
+  top: 48px; right: 64px;
+  font-family: var(--font-display);
+  font-size: var(--t-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-mid);
+  z-index: 10;
+}
+.slide.dark .slide-brand { color: #BBB; }
+
+/* ============================================================
+   Inner padded canvas
+   ============================================================ */
+.slide-pad {
+  position: relative;
+  z-index: 2;
+  padding: 96px 128px 88px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   Utility — generic flex helpers
+   ============================================================ */
+.row { display: flex; }
+.col { display: flex; flex-direction: column; }
+.center { align-items: center; justify-content: center; }
+.between { justify-content: space-between; }
+.gap-2 { gap: var(--s-2); }
+.gap-3 { gap: var(--s-3); }
+.gap-4 { gap: var(--s-4); }
+.gap-5 { gap: var(--s-5); }
+.gap-6 { gap: var(--s-6); }
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.card {
+  background: var(--white);
+  border: var(--bw-rule) solid var(--black);
+  border-radius: var(--r-card);
+  padding: var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.card.soft {
+  background: var(--gray1);
+  border-color: var(--gray2);
+}
+.card.dark {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+.card.dark h3, .card.dark h4, .card.dark p { color: var(--white); }
+
+/* ============================================================
+   Tag / chip
+   ============================================================ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border: var(--bw-rule) solid var(--black);
+  border-radius: var(--r-pill);
+  background: var(--white);
+  color: var(--black);
+}
+.tag.solid { background: var(--black); color: var(--white); }
+.tag.yellow { background: var(--yellow); border-color: var(--black); color: var(--black); }
+
+/* ============================================================
+   Badge — for "DEMO", "HANDS-ON", "TIMER"
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  padding: 0.5rem 0.9rem;
+  background: var(--yellow);
+  color: var(--black);
+  border: var(--bw-bold) solid var(--black);
+  border-radius: var(--r-tight);
+  transform: rotate(-1.5deg);
+}
+.badge.dark-bg { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+
+/* ============================================================
+   Bullet list — custom marker
+   ============================================================ */
+ul.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+ul.bullets li {
+  position: relative;
+  padding-left: 2.2rem;
+  font-size: var(--t-body);
+  line-height: var(--lh-normal);
+}
+ul.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55rem;
+  width: 1.2rem; height: 1.2rem;
+  background: var(--yellow);
+  border-radius: 4px 12px 6px 10px / 8px 4px 10px 6px;
+  transform: rotate(-8deg);
+}
+
+/* Tight bullet variant */
+ul.bullets.tight li { padding-left: 1.6rem; font-size: 0.9rem; }
+ul.bullets.tight li::before { width: 0.85rem; height: 0.85rem; top: 0.5rem; }
+
+/* ============================================================
+   Numbered steps
+   ============================================================ */
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+}
+.step .step-num {
+  flex: 0 0 auto;
+  width: 3rem;
+  height: 3rem;
+  background: var(--yellow);
+  border: var(--bw-bold) solid var(--black);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--black);
+  transform: rotate(-3deg);
+}
+
+/* ============================================================
+   LLM explainer slide layout (slides 06–14)
+   ============================================================ */
+.step-num-badge {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  background: var(--black);
+  color: var(--yellow);
+  padding: 8px 18px;
+  border-radius: 8px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+  align-self: flex-start;
+}
+.llm-pad {
+  position: relative;
+  padding: 132px 120px 64px; /* top = original 76px + badge height 40px + gap 16px */
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  gap: 16px; z-index: 2;
+}
+.llm-title {
+  font-family: var(--font-display);
+  font-size: 1.9rem; line-height: 0.95; color: var(--fg);
+  max-width: 70%; /* ← tune title/lede width here */
+}
+.llm-lede {
+  font-family: var(--font-body);
+  font-size: 0.74rem; line-height: 1.5;
+  color: var(--fg-mid);
+  max-width: 70%; /* ← same value, change both together */
+}
+.llm-lede strong { color: var(--fg); font-weight: 700; }
+.llm-canvas {
+  flex: 1; display: flex;
+  align-items: center; justify-content: center;
+}
+.llm-note {
+  font-family: var(--font-body);
+  font-size: 0.58rem; color: var(--fg-muted);
+  text-align: center; line-height: 1.5;
+}
+.llm-note strong { color: var(--fg-mid); font-weight: 700; }
+
+/* ============================================================
+   Scaling script (vanilla JS, drop in <head>)
+   ============================================================ */

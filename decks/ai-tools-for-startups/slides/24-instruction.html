@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Instruction — Tell it exactly what to do — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .ins-pad {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: 96px 140px 92px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+  .ins-head { display: flex; flex-direction: column; gap: 14px; }
+  .ins-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+  }
+  .ins-title {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    line-height: 0.96;
+    color: var(--fg);
+  }
+
+  /* prompt -> output flow */
+  .ins-flow {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 150px 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+  .ins-card {
+    border: 4px solid var(--black);
+    border-radius: 20px;
+    padding: 40px 46px;
+    display: flex; flex-direction: column;
+    gap: 18px;
+    min-height: 240px;
+    justify-content: center;
+  }
+  .ins-card.prompt { background: var(--white); transform: rotate(-0.7deg); }
+  .ins-card.output { background: var(--gray1); transform: rotate(0.7deg); }
+  .ins-label {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .ins-prompt-text {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: var(--fg);
+  }
+  .ins-prompt-text em { font-style: italic; }
+  .ins-output-text {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    letter-spacing: 0.06em;
+    color: var(--fg);
+  }
+
+  .ins-arrow { display: grid; place-items: center; }
+  .ins-arrow svg { width: 130px; height: 60px; }
+
+  .ins-note {
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    color: var(--fg-mid);
+    line-height: 1.4;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .ins-note strong { color: var(--fg); font-weight: 700; }
+
+  .ins-blob {
+    position: absolute; top: -50px; right: -80px;
+    width: 280px; height: 170px; z-index: 0;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="24 Instruction">
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <svg class="ins-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="ins-pad">
+
+    <div class="ins-head">
+      <div class="ins-eyebrow">RICCE —  Instruction</div>
+      <h1 class="ins-title">Tell it <span class="hl">exactly</span> what to do.</h1>
+    </div>
+
+    <div class="ins-flow">
+      <div class="ins-card prompt">
+        <span class="ins-label">The instruction</span>
+        <p class="ins-prompt-text">Write the word <em>“funny”</em> backwards.</p>
+      </div>
+
+      <div class="ins-arrow">
+        <svg viewBox="0 0 130 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 30 Q60 22 112 30" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M98 18 L116 30 L98 42" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="ins-card output">
+        <span class="ins-label">Model output</span>
+        <p class="ins-output-text">ynnuf</p>
+      </div>
+    </div>
+
+    <div class="ins-note">
+      <span>★</span>
+      <span><strong>One job, one clear verb.</strong> The more precise the ask, the less the model has to guess.</span>
+    </div>
+
+  </div>
+</section>
+</div>
+</body>
+</html>

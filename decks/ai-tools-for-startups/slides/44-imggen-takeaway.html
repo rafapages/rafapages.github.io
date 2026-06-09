@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Takeaway — Image Generation — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .takeaway-pad {
+    padding: 100px 160px;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    gap: 52px;
+    height: 100%; width: 100%;
+    position: relative; z-index: 2;
+  }
+  .ta-statement {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    line-height: 0.98;
+    max-width: 1240px;
+    color: var(--fg);
+  }
+  .ta-bullets {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column;
+    gap: 22px;
+    max-width: 1240px;
+  }
+  .ta-bullets li {
+    position: relative;
+    padding-left: 48px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--fg-muted);
+  }
+  .ta-bullets li::before {
+    content: "\2192";
+    font-family: var(--font-display);
+    font-size: 0.70rem;
+    color: var(--black);
+    position: absolute;
+    left: 0; top: 0;
+  }
+  .ta-bullets li strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="44 Image-Gen Takeaway">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="takeaway-pad">
+    <span class="tag solid">The one-sentence version</span>
+    <p class="ta-statement">LLMs predict the next word. Diffusion models <span class="hl">remove noise, step by step</span> &mdash; and both give you the <em>plausible</em>, not the <em>correct</em>.</p>
+    <ul class="ta-bullets">
+      <li>Use them where <strong>plausible and fast</strong> wins: concepts, mood boards, drafts, marketing variations, placeholder art.</li>
+      <li>Add <strong>human review and guardrails</strong> for anything customer-facing &mdash; especially around brand accuracy, bias, and licensing.</li>
+      <li>Same lesson as before: the winners aren't those with the fanciest model, but those who <strong>design around what it can't do</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

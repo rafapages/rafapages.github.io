@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Your prompt steers every step — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .steer-wrap { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+  .steer-pills { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .pill {
+    font-family: var(--font-display);
+    font-size: 0.58rem; letter-spacing: 0.04em;
+    padding: 12px 22px; border-radius: 99px;
+    border: 3px solid var(--black); background: var(--white); color: var(--fg);
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+  }
+  .pill.on {
+    background: var(--yellow); color: var(--black);
+    transform: translateY(-4px) rotate(-1.5deg);
+  }
+  .steer-stage { display: flex; align-items: center; gap: 36px; }
+  .sbox {
+    position: relative;
+    width: 240px; height: 240px;
+    border: 4px solid var(--black); border-radius: 14px;
+    overflow: hidden; background: var(--white);
+    display: grid; place-items: center;
+  }
+  .sbox canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+  .steer-arrow {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 1.3rem; color: var(--fg);
+  }
+  .steer-arrow small {
+    font-family: var(--font-body); font-size: 0.42rem;
+    color: var(--fg-muted); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .s-out {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-size: 130px; line-height: 1;
+    background: radial-gradient(circle at 50% 42%, #bfe3ff, #7fb0e8 55%, #3a6ea5);
+    transition: opacity 0.25s;
+  }
+  .guide-note {
+    font-family: var(--font-body); font-size: 0.5rem;
+    color: var(--fg-muted); text-align: center; max-width: 900px; line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="40 Prompt Steering">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">Your prompt steers <span class="hl">every step</span></h1>
+    <p class="llm-lede">Because it learned which words go with which patterns, your text acts as a guide rail at <strong>each</strong> denoising step &mdash; pulling the result toward your words and away from everything else. Noise alone would clean up into <em>some</em> image; the prompt decides <strong>which one</strong>.</p>
+
+    <div class="llm-canvas">
+      <div class="steer-wrap">
+        <div class="steer-pills" id="pills">
+          <span class="pill on" data-emoji="🏔️">mountain</span>
+          <span class="pill" data-emoji="🐶">corgi</span>
+          <span class="pill" data-emoji="🌮">taco</span>
+          <span class="pill" data-emoji="🚀">rocket</span>
+        </div>
+        <div class="steer-stage">
+          <div class="sbox"><canvas id="steerNoise" width="40" height="40"></canvas></div>
+          <div class="steer-arrow">&rarr;<small>guided by prompt</small></div>
+          <div class="sbox"><div class="s-out" id="steerOut">🏔️</div></div>
+        </div>
+        <p class="guide-note">Same starting noise, different destination &mdash; this is why small wording changes can swing the result so much.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+<script>
+(function(){
+  var idx = 0, _interval = null;
+
+  function drawNoise(canvas){
+    var ctx = canvas.getContext('2d');
+    var w = canvas.width, h = canvas.height;
+    var img = ctx.createImageData(w, h);
+    for (var i = 0; i < w * h; i++) {
+      var v = Math.random() * 255;
+      img.data[i*4] = v; img.data[i*4+1] = v; img.data[i*4+2] = v;
+      img.data[i*4+3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  function show(pill){
+    document.querySelectorAll('#pills .pill').forEach(function(p){
+      p.classList.toggle('on', p === pill);
+    });
+    var out = document.getElementById('steerOut');
+    out.style.opacity = 0;
+    setTimeout(function(){
+      out.textContent = pill.dataset.emoji;
+      out.style.opacity = 1;
+    }, 200);
+  }
+
+  function startSteer(){
+    var pills = document.querySelectorAll('#pills .pill');
+    drawNoise(document.getElementById('steerNoise')); // fixed noise — drawn once, never changes
+    idx = 0; show(pills[0]);
+    _interval = setInterval(function(){
+      idx = (idx + 1) % pills.length;
+      show(pills[idx]);
+    }, 2400);
+  }
+  function stopSteer(){
+    if (_interval) { clearInterval(_interval); _interval = null; }
+  }
+
+  window.startSteer = startSteer;
+  window.stopSteer = stopSteer;
+
+  if (typeof Reveal === 'undefined') {
+    document.addEventListener('DOMContentLoaded', startSteer);
+  }
+})();
+</script>
+</body>
+</html>

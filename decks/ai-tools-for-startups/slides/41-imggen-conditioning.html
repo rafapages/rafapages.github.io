@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Text is just one kind of guide rail — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .cond-wrap { display: flex; flex-direction: column; align-items: center; gap: 22px; width: 100%; }
+  .cond-cards { display: flex; gap: 16px; justify-content: center; }
+  .cond-card {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    width: 150px; padding: 18px 12px;
+    border: 3px solid var(--black); border-radius: 12px; background: var(--white);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .cond-card.on { background: var(--yellow); transform: translateY(-4px) rotate(-1.5deg); }
+  .cond-card .cc-ic { font-size: 40px; line-height: 1; }
+  .cond-card .cc-t {
+    font-family: var(--font-display); font-size: 0.4rem; letter-spacing: 0.04em;
+    color: var(--fg); text-align: center; line-height: 1.3; text-transform: uppercase;
+  }
+
+  .cond-stage { display: flex; align-items: center; gap: 28px; }
+  .cond-inputs { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+  .cond-chip {
+    font-family: var(--font-display); font-size: 0.5rem; letter-spacing: 0.03em;
+    padding: 10px 16px; border-radius: 8px; background: var(--white);
+    border: 3px solid var(--black); color: var(--fg);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cond-chip .mini-ic { font-size: 18px; line-height: 1; }
+  .cond-chip.alt { border-color: var(--gray2); color: var(--fg-muted); }
+  .cond-plus { font-family: var(--font-display); font-size: 0.7rem; color: var(--fg-muted); }
+  .cond-arrow {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 1.2rem; color: var(--fg);
+  }
+  .cond-arrow small {
+    font-family: var(--font-body); font-size: 0.4rem; color: var(--fg-muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .cond-out {
+    position: relative; width: 210px; height: 210px;
+    border: 4px solid var(--black); border-radius: 14px; background: var(--white);
+    display: grid; place-items: center; overflow: hidden;
+  }
+  .co-img {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font-size: 88px; line-height: 1; opacity: 0; transition: opacity 0.3s;
+    background: radial-gradient(circle at 50% 40%, #cabaff, #8a74e8 60%, #5b4bd6);
+  }
+  .co-img.show { opacity: 1; }
+  .cond-note {
+    font-family: var(--font-body); font-size: 0.5rem; color: var(--fg-muted);
+    text-align: center; max-width: 1000px; line-height: 1.5; min-height: 2.6em;
+    transition: opacity 0.2s;
+  }
+  .cond-note strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="41 Conditioning">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">Text is just <span class="hl">one</span> kind of guide rail</h1>
+    <p class="llm-lede">If words can steer the denoising, so can other inputs. You can hand the model <strong>extra guides</strong> alongside your prompt &mdash; and this is what powers most of the AI photo products you've seen.</p>
+
+    <div class="llm-canvas">
+      <div class="cond-wrap">
+        <div class="cond-cards" id="condCards">
+          <div class="cond-card on" data-key="photo"
+               data-note="A reference photo of a person &rarr; the model keeps the likeness while changing the scene. This is the &quot;put me in the photo&quot; / avatar-app trick.">
+            <span class="cc-ic">🤳</span>
+            <span class="cc-t">a photo of you</span>
+          </div>
+          <div class="cond-card" data-key="sketch"
+               data-note="A rough sketch or layout &rarr; the model fills it in. Used for interior design, product mockups, &quot;turn my doodle into art.&quot;">
+            <span class="cc-ic">✏️</span>
+            <span class="cc-t">a sketch / layout</span>
+          </div>
+          <div class="cond-card" data-key="pose"
+               data-note="A pose or edge map &rarr; the model matches the body position or outline exactly. This is how you get consistent characters and poses.">
+            <span class="cc-ic">🦴</span>
+            <span class="cc-t">a pose</span>
+          </div>
+          <div class="cond-card" data-key="edit"
+               data-note="An existing image + &quot;change this part&quot; &rarr; the model edits only the masked region. This is inpainting: remove an object, swap a background.">
+            <span class="cc-ic">🩹</span>
+            <span class="cc-t">an image to edit</span>
+          </div>
+        </div>
+
+        <div class="cond-stage">
+          <div class="cond-inputs">
+            <div class="cond-chip" id="condChip"><span class="mini-ic"></span><span id="condChipLbl">your photo</span></div>
+            <span class="cond-plus">+</span>
+            <div class="cond-chip alt">"as an oil painting"</div>
+          </div>
+          <div class="cond-arrow">&rarr;<small>both steer denoising</small></div>
+          <div class="cond-out" id="condOut">
+            <div class="co-img" data-key="photo">🧑‍🎨</div>
+            <div class="co-img" data-key="sketch">🏠</div>
+            <div class="co-img" data-key="pose">🕺</div>
+            <div class="co-img" data-key="edit">🖼️</div>
+          </div>
+        </div>
+
+        <p class="cond-note" id="condNote">A reference photo of a person &rarr; the model keeps the likeness while changing the scene. This is the "put me in the photo" / avatar-app trick.</p>
+      </div>
+    </div>
+
+    <p class="llm-note">Under the hood it's the same machine &mdash; just given more than words to aim at. <strong>The catch:</strong> none of these give pixel-perfect control (see next).</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+<script>
+(function(){
+  var keys = ['photo', 'sketch', 'pose', 'edit'];
+  var labels = { photo: 'your photo', sketch: 'your sketch', pose: 'a pose', edit: 'an image' };
+  var idx = 0, _interval = null;
+
+  function show(key){
+    var cards = document.querySelectorAll('#condCards .cond-card');
+    var active = null;
+    cards.forEach(function(c){
+      var on = c.dataset.key === key;
+      c.classList.toggle('on', on);
+      if (on) active = c;
+    });
+    document.querySelectorAll('.co-img').forEach(function(o){
+      o.classList.toggle('show', o.dataset.key === key);
+    });
+    document.getElementById('condChipLbl').textContent = labels[key];
+    // copy active card's emoji icon into the input chip
+    var slot = document.querySelector('#condChip .mini-ic');
+    if (active && slot) slot.textContent = active.querySelector('.cc-ic').textContent;
+    var note = document.getElementById('condNote');
+    if (active) note.innerHTML = active.dataset.note;
+  }
+
+  function startCond(){
+    idx = 0; show(keys[0]);
+    _interval = setInterval(function(){
+      idx = (idx + 1) % keys.length;
+      show(keys[idx]);
+    }, 2800);
+  }
+  function stopCond(){
+    if (_interval) { clearInterval(_interval); _interval = null; }
+  }
+
+  window.startCond = startCond;
+  window.stopCond = stopCond;
+
+  if (typeof Reveal === 'undefined') {
+    document.addEventListener('DOMContentLoaded', startCond);
+  }
+})();
+</script>
+</body>
+</html>

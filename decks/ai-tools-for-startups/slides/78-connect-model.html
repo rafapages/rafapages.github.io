@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Trigger · Process · Action — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .cm-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow);
+    align-self: flex-start; padding: 8px 18px; border-radius: 8px;
+    transform: rotate(-1.5deg); margin-bottom: 22px;
+  }
+  .cm-flow { display: flex; align-items: stretch; gap: 30px; justify-content: center; width: 100%; }
+  .cm-node {
+    flex: 1; max-width: 440px;
+    border: 4px solid var(--black);
+    border-radius: 18px;
+    padding: 32px 34px 34px;
+    background: white;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .cm-node.ai { background: var(--yellow); transform: rotate(-1deg); }
+  .cm-kind {
+    font-family: var(--font-display);
+    font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted);
+  }
+  .cm-node h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--fg); margin: 0; }
+  .cm-node p { font-family: var(--font-body); font-size: 0.72rem; color: var(--fg-mid); line-height: 1.45; margin: 0; }
+  .cm-node p strong { color: var(--fg); font-weight: 700; }
+  .cm-eg {
+    font-family: var(--font-body); font-size: 0.62rem; color: var(--fg-mid);
+    background: var(--gray1); padding: 10px 14px; border-radius: 8px;
+    border-left: 4px solid var(--yellow); line-height: 1.4; margin-top: auto;
+  }
+  .cm-node.ai .cm-eg { background: rgba(255,255,255,0.55); border-left-color: var(--black); }
+  .cm-arrow { align-self: center; }
+  .cm-arrow svg { width: 70px; height: 34px; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="78 Trigger Process Action">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <span class="cm-eyebrow">Connect · The mental model</span>
+    <h1 class="llm-title">Every automation is the <span class="hl">same shape</span></h1>
+    <!-- <p class="llm-lede">Once you see it, you'll spot automatable work everywhere. Something happens, something makes sense of it, and a real action follows — no human relay in between.</p> -->
+
+    <div class="llm-canvas">
+      <div class="cm-flow">
+
+        <div class="cm-node">
+          <span class="cm-kind">When this happens</span>
+          <h3>Trigger</h3>
+          <p>An event kicks it off — a <strong>form submission, new email, calendar invite, file upload,</strong> or a schedule.</p>
+          <div class="cm-eg">A lead fills your demo form.</div>
+        </div>
+
+        <div class="cm-arrow">
+          <svg viewBox="0 0 90 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 16 Q22 12 44 16 Q66 20 80 15" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M70 6 L84 15 L70 24" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="cm-node ai">
+          <span class="cm-kind">Make sense of it</span>
+          <h3>Process</h3>
+          <p>Filter, sort, look up, calculate — or hand it to <strong>AI to read, classify, or draft.</strong> Sometimes a one-line rule does it; sometimes it's the model's judgment.</p>
+          <div class="cm-eg">Match a rule — or let AI score intent and draft a reply.</div>
+        </div>
+
+        <div class="cm-arrow">
+          <svg viewBox="0 0 90 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 16 Q22 12 44 16 Q66 20 80 15" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M70 6 L84 15 L70 24" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="cm-node">
+          <span class="cm-kind">Do something real</span>
+          <h3>Action</h3>
+          <p>It writes back to your tools — <strong>send, update, notify, file</strong> — so the loop closes itself.</p>
+          <div class="cm-eg">Send the email, log to CRM, ping Slack.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- <p class="llm-note"><strong>The unlock:</strong> the old version of this needed a person to read and route every item. The process step — a simple rule or full-blown AI — is what removes you from the middle.</p> -->
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

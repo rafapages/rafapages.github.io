@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Advanced Prompting — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .ap-pad {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    gap: 84px;
+    padding: 90px 110px 96px;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+
+  /* ---- Left: the statement ---- */
+  .ap-left { flex: 0 1 700px; }
+
+  .ap-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 0.74rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: var(--r-pill);
+    transform: rotate(-1.5deg);
+  }
+  .ap-headline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    line-height: 0.9;
+    margin: 26px 0 24px;
+  }
+  .ap-word {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    color: var(--fg);
+    display: block;
+  }
+  .ap-sub {
+    font-family: var(--font-body);
+    font-size: 0.94rem;
+    color: var(--fg-mid);
+    line-height: 1.5;
+    max-width: 560px;
+  }
+  .ap-sub strong { color: var(--fg); font-weight: 700; }
+
+  /* ---- Right: the prompt document ---- */
+  .ap-right { flex: 1 1 0; display: flex; justify-content: center; }
+  .ap-doc {
+    width: 100%;
+    max-width: 700px;
+    background: var(--white);
+    border: 3px solid var(--black);
+    border-radius: var(--r-card);
+    padding: 32px 40px 38px;
+    box-sizing: border-box;
+    transform: rotate(-1deg);
+    opacity: 0;
+    animation: cardIn 0.6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .ap-doc-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+    border-bottom: 2px solid var(--black);
+  }
+  .ap-doc-title {
+    font-family: var(--font-display);
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+    color: var(--fg);
+  }
+  .ap-doc-meta {
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  .ap-body { display: flex; flex-direction: column; gap: 20px; }
+  .ap-sec { display: flex; flex-direction: column; gap: 9px; }
+  .ap-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+    margin-bottom: 3px;
+    opacity: 0;
+  }
+  .ap-label i {
+    width: 13px; height: 13px;
+    flex: none;
+    background: var(--yellow);
+    border: 2px solid var(--black);
+    transform: rotate(-8deg);
+    display: block;
+  }
+  .bar {
+    height: 11px;
+    border-radius: var(--r-pill);
+    background: #cfcfcf;
+    clip-path: inset(0 100% 0 0);
+  }
+  .bar.y { background: var(--yellow); }
+
+  /* gated entry animation — JS sets per-element delays then adds .go */
+  .ap-doc.go .ap-label { animation: lineIn 0.45s ease both; }
+  .ap-doc.go .bar { animation: fillBar 0.55s cubic-bezier(.2,.7,.2,1) both; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(16px) rotate(-1deg); }
+    to   { opacity: 1; transform: translateY(0) rotate(-1deg); }
+  }
+  @keyframes lineIn {
+    from { opacity: 0; transform: translateX(-8px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fillBar {
+    from { clip-path: inset(0 100% 0 0); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="19 Advanced Prompting">
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <div class="ap-pad">
+
+    <!-- Left: the statement -->
+    <div class="ap-left">
+      <span class="ap-eyebrow">Now we go further&hellip;</span>
+      <div class="ap-headline">
+        <span class="ap-word"><span class="hl">ADVANCED</span></span>
+        <span class="ap-word">PROMPTING</span>
+      </div>
+      <p class="ap-sub">
+        Real prompts aren&rsquo;t one line. They&rsquo;re a <strong>full brief</strong> &mdash;
+        role, instructions, context, constraints, examples. Longer and more
+        structured. <strong>That&rsquo;s the whole game.</strong>
+      </p>
+    </div>
+
+    <!-- Right: the prompt as a structured document -->
+    <div class="ap-right">
+      <div class="ap-doc" aria-hidden="true">
+        <div class="ap-doc-head">
+          <span class="ap-doc-title">One good prompt</span>
+          <!-- <span class="ap-doc-meta">&asymp; 400 words</span> -->
+        </div>
+        <div class="ap-body">
+
+          <div class="ap-sec">
+            <div class="ap-label"><i></i>Role</div>
+            <div class="bar" style="width:72%"></div>
+            <div class="bar" style="width:46%"></div>
+          </div>
+
+          <div class="ap-sec">
+            <div class="ap-label"><i></i>Instructions</div>
+            <div class="bar y" style="width:92%"></div>
+            <div class="bar" style="width:80%"></div>
+            <div class="bar" style="width:54%"></div>
+          </div>
+
+          <div class="ap-sec">
+            <div class="ap-label"><i></i>Context</div>
+            <div class="bar" style="width:96%"></div>
+            <div class="bar" style="width:90%"></div>
+            <div class="bar" style="width:58%"></div>
+          </div>
+
+          <div class="ap-sec">
+            <div class="ap-label"><i></i>Constraints</div>
+            <div class="bar" style="width:90%"></div>
+            <div class="bar" style="width:84%"></div>
+            <div class="bar" style="width:64%"></div>
+          </div>
+
+          <div class="ap-sec">
+            <div class="ap-label"><i></i>Examples</div>
+            <div class="bar y" style="width:82%"></div>
+            <div class="bar" style="width:48%"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<script>
+(function () {
+  function run() {
+    var doc = document.querySelector('.ap-doc');
+    if (!doc) return;
+    var els = doc.querySelectorAll('.ap-label, .bar');
+    els.forEach(function (el, i) {
+      el.style.animationDelay = (0.5 + i * 0.085).toFixed(2) + 's';
+    });
+    doc.classList.add('go');
+  }
+  function stop() {
+    var doc = document.querySelector('.ap-doc');
+    if (doc) doc.classList.remove('go');
+  }
+  window.startAdvancedPrompt = run;
+  window.stopAdvancedPrompt = stop;
+
+  if (typeof Reveal === 'undefined') {
+    if (document.readyState !== 'loading') run();
+    else document.addEventListener('DOMContentLoaded', run);
+  }
+})();
+</script>
+</body>
+</html>

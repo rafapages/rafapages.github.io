@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>The RICCE Framework — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .ricce-pad {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: 110px 160px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .ricce-head { display: flex; flex-direction: column; gap: 14px; }
+  .ricce-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+  }
+  .ricce-title {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    line-height: 0.96;
+    color: var(--fg);
+  }
+
+  /* Acrostic rows */
+  .ricce-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    flex: 1;
+    justify-content: center;
+  }
+  .ricce-row {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+  }
+  .ricce-letter {
+    flex: 0 0 auto;
+    width: 96px; height: 96px;
+    background: var(--yellow);
+    border: 4px solid var(--black);
+    border-radius: 16px;
+    display: grid; place-items: center;
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--fg);
+  }
+  .ricce-row:nth-child(odd)  .ricce-letter { transform: rotate(-3deg); }
+  .ricce-row:nth-child(even) .ricce-letter { transform: rotate(3deg); }
+
+  .ricce-word {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--fg);
+    letter-spacing: 0.01em;
+  }
+
+  .ricce-blob {
+    position: absolute; top: -50px; right: -80px;
+    width: 280px; height: 170px; z-index: 0;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="21 RICCE">
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <svg class="ricce-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="ricce-pad">
+
+    <div class="ricce-head">
+      <div class="ricce-eyebrow">A recipe you can remember</div>
+      <h1 class="ricce-title">The <span class="hl">RICCE</span> framework</h1>
+    </div>
+
+    <div class="ricce-list">
+      <div class="ricce-row"><div class="ricce-letter">R</div><div class="ricce-word">Role</div></div>
+      <div class="ricce-row"><div class="ricce-letter">I</div><div class="ricce-word">Instructions</div></div>
+      <div class="ricce-row"><div class="ricce-letter">C</div><div class="ricce-word">Context</div></div>
+      <div class="ricce-row"><div class="ricce-letter">C</div><div class="ricce-word">Constraints</div></div>
+      <div class="ricce-row"><div class="ricce-letter">E</div><div class="ricce-word">Examples</div></div>
+    </div>
+
+  </div>
+</section>
+</div>
+</body>
+</html>

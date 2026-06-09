@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Limits — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .lim-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    width: 100%;
+    max-width: 1600px;
+  }
+  .lim-card {
+    border: 4px solid var(--black);
+    border-radius: 14px;
+    padding: 40px 44px;
+    background: white;
+    display: flex; flex-direction: column; gap: 16px;
+    opacity: 0; transform: translateY(20px);
+    animation: lim-card-pop 0.55s forwards;
+  }
+  .lim-card:nth-child(1) { animation-delay: 0.15s; }
+  .lim-card:nth-child(2) { animation-delay: 0.30s; }
+  .lim-card:nth-child(3) { animation-delay: 0.45s; }
+  .lim-card:nth-child(4) { animation-delay: 0.60s; }
+  @keyframes lim-card-pop { to { opacity: 1; transform: none; } }
+
+  .lim-header {
+    display: flex; align-items: center; gap: 18px;
+  }
+  .lim-icon {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    width: 44px; height: 44px;
+    background: var(--black);
+    color: var(--yellow);
+    display: grid; place-items: center;
+    border-radius: 8px;
+    transform: rotate(-3deg);
+    flex-shrink: 0;
+  }
+  .lim-card h3 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--fg);
+    margin: 0;
+  }
+  .lim-card p {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    color: var(--fg-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .lim-card p strong { color: var(--fg); font-weight: 700; }
+
+  .lim-bottom-note {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    color: var(--fg-muted);
+    text-align: center;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="11 Limits">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">So here's why it does <span class="hl">weird</span> things</h1>
+    <!-- <p class="llm-lede">Every limitation below falls straight out of "predict the next likely token." <strong>This is the slide that matters for using these tools well.</strong></p> -->
+
+    <div class="llm-canvas">
+      <div class="lim-grid">
+
+        <div class="lim-card">
+          <div class="lim-header">
+            <div class="lim-icon">!</div>
+            <h3>Confident hallucinations</h3>
+          </div>
+          <p>It generates what's <strong>plausible</strong>, not what's true. A fake citation looks statistically like a real one — so it writes one with total confidence.</p>
+        </div>
+
+        <div class="lim-card">
+          <div class="lim-header">
+            <div class="lim-icon">#</div>
+            <h3>Bad at exact math &amp; counting</h3>
+          </div>
+          <p>It's pattern-matching language, not calculating. <strong>"How many r's in strawberry"</strong> is hard because it sees tokens, not letters. Give it a tool or calculator.</p>
+        </div>
+
+        <div class="lim-card">
+          <div class="lim-header">
+            <div class="lim-icon">~</div>
+            <h3>No memory of its own</h3>
+          </div>
+          <p>Each request only "knows" what's in the prompt — the <strong>context window</strong>. Close the chat and it forgets. Memory features just re-feed past text back in.</p>
+        </div>
+
+        <div class="lim-card">
+          <div class="lim-header">
+            <div class="lim-icon">@</div>
+            <h3>Frozen knowledge + bias</h3>
+          </div>
+          <p>It only knows its training data, up to a <strong>cutoff date</strong>, and absorbs that data's biases. For current or proprietary info, it needs search or your documents fed in.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- <p class="lim-bottom-note">The next two slides show how the industry works around these — reasoning and search.</p> -->
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

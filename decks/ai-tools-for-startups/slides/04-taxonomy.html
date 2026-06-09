@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>AI Taxonomy — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .tx-pad {
+    position: relative;
+    padding: 84px 96px 80px;
+    width: 100%; height: 100%;
+    z-index: 2;
+  }
+
+  .tx-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 6px;
+  }
+
+  /* ---------- LEFT DEFINITION COLUMN ---------- */
+  .tx-list {
+    position: absolute;
+    left: 96px;
+    top: 132px;
+    width: 800px;
+    z-index: 4;
+  }
+  .tx-item { position: absolute; left: 0; width: 100%; }
+  .tx-item.ai  { top: 0; }
+  .tx-item.ml  { top: 226px; }
+  .tx-item.dl  { top: 470px; }
+  .tx-item.gen { top: 700px; }
+
+  .tx-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 0.98;
+    color: var(--fg);
+    margin: 0;
+  }
+  .tx-rule {
+    height: 0;
+    border-bottom: 2px solid var(--black);
+    margin: 14px 0 14px;
+    width: 100%;
+  }
+  .tx-desc {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    line-height: 1.4;
+    color: var(--fg-mid);
+    max-width: 660px;
+  }
+  .tx-desc strong { color: var(--fg); font-weight: 700; }
+  .tx-eg {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    color: var(--fg-muted);
+    letter-spacing: 0.01em;
+  }
+  .tx-eg b { color: var(--fg); font-weight: 700; }
+
+  /* ---------- CONNECTOR LINES (full-slide overlay) ---------- */
+  .tx-links {
+    position: absolute; inset: 0;
+    width: 1920px; height: 1080px;
+    z-index: 3; pointer-events: none;
+  }
+
+  /* ---------- DIAGRAM ---------- */
+  .tx-diagram {
+    position: absolute;
+    top: 180px; right: 70px;
+    width: 720px; height: 720px;
+    z-index: 2;
+  }
+  .tx-diagram svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+  .ring-label {
+    font-family: var(--font-display);
+    fill: var(--black);
+    text-anchor: middle;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="4 AI Taxonomy">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <!-- <div class="tx-pad">
+    <div class="tx-eyebrow">Field → branch → method → model</div>
+  </div> -->
+
+  <!-- LEFT DEFINITIONS -->
+  <div class="tx-list">
+    <div class="tx-item ai">
+      <h2 class="tx-name">Artificial<br/>Intelligence</h2>
+      <div class="tx-rule"></div>
+      <p class="tx-desc">Is the field of study.</p>
+    </div>
+
+    <div class="tx-item ml">
+      <h2 class="tx-name">Machine Learning</h2>
+      <div class="tx-rule"></div>
+      <p class="tx-desc">A branch of AI focused on building machines that <strong>learn from data</strong>. Another well-known branch of AI is <strong>Optimization</strong>.</p>
+    </div>
+
+    <div class="tx-item dl">
+      <h2 class="tx-name">Deep Learning</h2>
+      <div class="tx-rule"></div>
+      <p class="tx-desc">A subset of Machine Learning methods, based on <strong>Artificial Neural Networks</strong>.<span class="tx-eg"><b>Examples:</b> CNNs, RNNs</span></p>
+    </div>
+
+    <div class="tx-item gen">
+      <h2 class="tx-name">Generative AI</h2>
+      <div class="tx-rule"></div>
+      <p class="tx-desc">A type of ANN that generates data <strong>similar to what it was trained on</strong>.<span class="tx-eg"><b>Examples:</b> GANs, LLMs</span></p>
+    </div>
+  </div>
+
+  <!-- CONNECTORS -->
+  <svg class="tx-links" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- AI → outer ring left edge -->
+    <path d="M896 249 Q1030 320 1166 410" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- ML → 2nd ring left edge -->
+    <path d="M896 424 Q1060 454 1238 482" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- DL → 3rd ring left edge -->
+    <path d="M896 668 Q1080 622 1310 560" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Gen AI → inner ring left edge -->
+    <path d="M896 898 Q1110 786 1373 585" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <!-- DIAGRAM: nested octagons -->
+  <div class="tx-diagram">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+      <!-- AI (outer) -->
+      <polygon points="248.8,40 551.2,40 760,248.8 760,551.2 551.2,760 248.8,760 40,551.2 40,248.8"
+               fill="#FFF6CC" stroke="#111" stroke-width="2"/>
+      <!-- ML -->
+      <polygon points="282.4,120 517.6,120 680,282.4 680,517.6 517.6,680 282.4,680 120,517.6 120,282.4"
+               fill="#FFEC8A" stroke="#111" stroke-width="2"/>
+      <!-- Deep Learning -->
+      <polygon points="316,200 484,200 600,316 600,484 484,600 316,600 200,484 200,316"
+               fill="#FFE234" stroke="#111" stroke-width="2"/>
+      <!-- Generative AI -->
+      <polygon points="345.4,270 454.6,270 530,345.4 530,454.6 454.6,530 345.4,530 270,454.6 270,345.4"
+               fill="#F2C200" stroke="#111" stroke-width="3"/>
+
+      <!-- labels -->
+      <text class="ring-label" x="400" y="100" font-size="48">AI</text>
+      <text class="ring-label" x="400" y="178" font-size="48">ML</text>
+      <text class="ring-label" x="400" y="228" font-size="24">Deep</text>
+      <text class="ring-label" x="400" y="255" font-size="24">Learning</text>
+      <text class="ring-label" x="400" y="395" font-size="32">Generative</text>
+      <text class="ring-label" x="400" y="433" font-size="32">AI</text>
+    </svg>
+  </div>
+
+</section>
+</div>
+</body>
+</html>

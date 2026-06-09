@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Loop — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .loop-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 32px;
+    width: 100%;
+  }
+  .loop-line-wrap {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: var(--fg);
+    min-height: 1.4em;
+  }
+  .loop-cursor {
+    display: inline-block;
+    width: 14px; height: 1.1em;
+    background: var(--black);
+    vertical-align: -4px;
+    animation: cur-blink 1s steps(2) infinite;
+    margin-left: 4px;
+  }
+  @keyframes cur-blink { 50% { opacity: 0; } }
+  .loop-new { color: var(--yellow-dark); transition: color 0.5s; }
+
+  .loop-cycle {
+    display: flex; align-items: center; gap: 20px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .loop-node {
+    font-family: var(--font-display);
+    font-size: 0.60rem;
+    letter-spacing: 0.1em;
+    padding: 12px 22px;
+    border: 2px solid var(--black);
+    border-radius: 99px;
+    background: var(--white);
+    text-transform: uppercase;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .loop-node.active {
+    background: var(--yellow);
+    border-color: var(--black);
+  }
+  .loop-sep {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--fg-muted);
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="10 Loop">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">Then it repeats &mdash; one token at a time</h1>
+    <p class="llm-lede">It picks a token, adds it to the text, and feeds the whole thing back in to predict the next one. Sentences are built left to right, like this:</p>
+
+    <div class="llm-canvas">
+      <div class="loop-wrap">
+        <div class="loop-line-wrap">
+          <span id="loopLine"></span><span class="loop-cursor" id="loopCursor"></span>
+        </div>
+        <div class="loop-cycle">
+          <div class="loop-node" id="ln0">predict next token</div>
+          <div class="loop-sep">&rarr;</div>
+          <div class="loop-node" id="ln1">append it</div>
+          <div class="loop-sep">&rarr;</div>
+          <div class="loop-node" id="ln2">feed back in</div>
+          <div class="loop-sep">&circlearrowleft;</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="llm-note"><strong>The model has no idea where the sentence ends up</strong> when it writes the first word.</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+<script>
+(function(){
+  var tokens = ['A',' great',' pitch',' tells',' a',' clear',' story','.'];
+  var _timeout = null;
+  var _running = false;
+  var _tokenIdx = 0;
+  var _phase = 0; // 0=predict, 1=append, 2=feed
+
+  function setNodes(active) {
+    for (var i = 0; i < 3; i++) {
+      document.getElementById('ln' + i).classList.toggle('active', i === active);
+    }
+  }
+
+  function resetDisplay() {
+    document.getElementById('loopLine').textContent = '';
+    var cur = document.getElementById('loopCursor');
+    if (cur) cur.style.display = 'inline-block';
+    setNodes(-1);
+  }
+
+  function step() {
+    if (!_running) return;
+    if (_tokenIdx >= tokens.length) {
+      setNodes(-1);
+      _timeout = setTimeout(function() {
+        if (!_running) return;
+        resetDisplay();
+        _tokenIdx = 0;
+        step();
+      }, 2200);
+      return;
+    }
+
+    if (_phase === 0) {
+      // predict
+      setNodes(0);
+      _timeout = setTimeout(function() { if (_running) { _phase = 1; step(); } }, 520);
+    } else if (_phase === 1) {
+      // append — add yellow token
+      setNodes(1);
+      var line = document.getElementById('loopLine');
+      var span = document.createElement('span');
+      span.className = 'loop-new';
+      span.textContent = tokens[_tokenIdx];
+      line.appendChild(span);
+      _timeout = setTimeout(function() {
+        if (!_running) return;
+        // settle — remove yellow class
+        span.className = '';
+        _phase = 2;
+        step();
+      }, 360);
+    } else {
+      // feed back
+      setNodes(2);
+      _tokenIdx++;
+      _timeout = setTimeout(function() { if (_running) { _phase = 0; step(); } }, 420);
+    }
+  }
+
+  function startLoop() {
+    _running = true;
+    _tokenIdx = 0;
+    _phase = 0;
+    resetDisplay();
+    step();
+  }
+
+  function stopLoop() {
+    _running = false;
+    if (_timeout) { clearTimeout(_timeout); _timeout = null; }
+    resetDisplay();
+  }
+
+  window.startLoop = startLoop;
+  window.stopLoop = stopLoop;
+
+  if (typeof Reveal === 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() { startLoop(); });
+  }
+})();
+</script>
+</body>
+</html>

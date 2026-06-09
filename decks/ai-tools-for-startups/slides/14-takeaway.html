@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Takeaway — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .takeaway-pad {
+    padding: 100px 160px;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    gap: 52px;
+    height: 100%; width: 100%;
+    position: relative; z-index: 2;
+  }
+  .ta-statement {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    line-height: 0.95;
+    max-width: 1200px;
+    color: var(--fg);
+  }
+  .ta-bullets {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column;
+    gap: 22px;
+    max-width: 1200px;
+  }
+  .ta-bullets li {
+    position: relative;
+    padding-left: 48px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--fg-muted);
+  }
+  .ta-bullets li::before {
+    content: "\2192";
+    font-family: var(--font-display);
+    font-size: 0.70rem;
+    color: var(--black);
+    position: absolute;
+    left: 0; top: 0;
+  }
+  .ta-bullets li strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="14 Takeaway">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="takeaway-pad">
+    <span class="tag solid">The one-sentence version</span>
+    <p class="ta-statement">At its core an LLM is sophisticated <span class="hl">autocomplete</span> &mdash; reasoning and search are how we make it reliable.</p>
+    <ul class="ta-bullets">
+      <li>The base model is <strong>plausible, not correct</strong>: great for drafts, summaries, brainstorming, code starters.</li>
+      <li><strong>Reasoning</strong> buys you logic and multi-step accuracy; <strong>search</strong> buys you real, current, and proprietary facts. The most useful products combine both.</li>
+      <li>The companies winning aren't the ones with the best model — they're the ones who <strong>designed around the limits</strong> with the right scaffolding.</li>
+    </ul>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

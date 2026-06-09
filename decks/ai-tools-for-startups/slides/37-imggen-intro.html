@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>How Image Generators Work — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .intro-pad {
+    position: relative;
+    padding: 100px 140px 80px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    z-index: 2;
+  }
+  .intro-title {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    line-height: 0.95;
+    color: var(--fg);
+    margin-bottom: 36px;
+    max-width: 1180px;
+  }
+  .intro-def {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.65;
+    color: var(--fg-mid);
+    max-width: 980px;
+    margin-bottom: 52px;
+  }
+  .intro-def strong { color: var(--fg); font-weight: 700; }
+  .intro-conclusion {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    line-height: 0.95;
+    color: var(--fg);
+    max-width: 1100px;
+  }
+  /* bottom-right noise→image deco */
+  .gen-deco {
+    position: absolute;
+    bottom: 116px; right: 150px;
+    display: flex; gap: 18px;
+    align-items: center;
+    opacity: 0.5;
+    z-index: 1;
+  }
+  .gen-deco-box {
+    width: 96px; height: 96px;
+    border: 3px solid var(--black);
+    border-radius: 12px;
+    background: var(--white);
+    overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .gen-deco-box canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+  .gen-deco-box .img-tile {
+    width: 100%; height: 100%;
+    display: grid; place-items: center;
+    font-size: 52px; line-height: 1;
+    background: radial-gradient(circle at 50% 42%, #bfe3ff, #7fb0e8 55%, #3a6ea5);
+  }
+  .gen-deco-arrow {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--fg-muted);
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="37 How Image Generators Work">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="intro-pad">
+    <h1 class="intro-title">How do <span class="hl">image generators</span> work?</h1>
+    <p class="intro-def">
+      The companion to the LLM walkthrough &mdash; <strong>same idea, different mechanism</strong>.
+      These models don't <em>draw</em> a picture stroke by stroke. They start from a screen of
+      pure random noise and <strong>sculpt an image out of it</strong>, removing the noise a little
+      at a time until something recognizable is left.
+    </p>
+    <p class="intro-conclusion">
+      So, how does typing a sentence turn into an image?
+    </p>
+  </div>
+
+  <div class="gen-deco" aria-hidden="true">
+    <div class="gen-deco-box"><canvas id="introNoise" width="40" height="40"></canvas></div>
+    <span class="gen-deco-arrow">&rarr;</span>
+    <div class="gen-deco-box"><div class="img-tile">🏔️</div></div>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+<script>
+(function(){
+  function drawNoise(canvas, amount){
+    var ctx = canvas.getContext('2d');
+    var w = canvas.width, h = canvas.height;
+    var img = ctx.createImageData(w, h);
+    for (var i = 0; i < w * h; i++) {
+      var v = Math.random() * 255;
+      img.data[i*4] = v; img.data[i*4+1] = v; img.data[i*4+2] = v;
+      img.data[i*4+3] = Math.round(255 * amount);
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+  var c = document.getElementById('introNoise');
+  if (c) drawNoise(c, 1);
+})();
+</script>
+</body>
+</html>

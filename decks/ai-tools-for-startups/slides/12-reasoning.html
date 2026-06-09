@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Reasoning — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  /* pull canvas content to top so spacing above/below question is balanced */
+  .llm-canvas { align-items: flex-start; padding-top: 50px; }
+
+  .rea-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 36px;
+    width: 100%;
+  }
+  .rea-question {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    color: var(--fg);
+    text-align: center;
+  }
+  .rea-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 1300px;
+  }
+  .rea-col {
+    display: flex; flex-direction: column; gap: 18px;
+    padding: 0 52px;
+  }
+  .rea-col:first-child {
+    border-right: 2px solid var(--gray2);
+    padding-left: 0;
+  }
+  .rea-col:last-child {
+    padding-right: 0;
+  }
+  .rea-col-label {
+    font-family: var(--font-display);
+    font-size: 0.42rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .rea-wrong {
+    font-family: var(--font-display);
+    font-size: 0.80rem;
+    color: var(--fg-muted);
+  }
+  .rea-wrong-note {
+    font-family: var(--font-body);
+    font-size: 0.58rem;
+    color: var(--fg-muted);
+    margin-top: -6px;
+  }
+  .rea-step {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: var(--fg-muted);
+    line-height: 1.5;
+    opacity: 0; transform: translateY(6px);
+  }
+  .rea-step strong { color: var(--fg); font-weight: 700; }
+  .rea-step.show { animation: rea-fadeUp 0.4s forwards; }
+  @keyframes rea-fadeUp { to { opacity: 1; transform: none; } }
+  .rea-answer {
+    border-top: 2px solid var(--gray2);
+    padding-top: 16px;
+    font-family: var(--font-display);
+    font-size: 0.80rem;
+    color: var(--fg);
+    opacity: 0;
+  }
+  .rea-answer.show { animation: rea-fadeUp 0.4s forwards; }
+  .llm-note { font-size: 0.68rem; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="12 Reasoning">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">Reasoning models: <br>let it "think"</h1>
+    <p class="llm-lede">A reasoning model is the same machine given room to think out loud first — intermediate steps become context that steers a better final answer.</p>
+
+    <div class="llm-canvas">
+      <div class="rea-wrap">
+        <div class="rea-question">Q: A startup burns $40k/mo with $260k in the bank. How many months of runway?</div>
+        <div class="rea-cols">
+
+          <div class="rea-col">
+            <span class="rea-col-label">Standard LLM &mdash; answers immediately</span>
+            <div class="rea-wrong">"About 5 months."</div>
+            <div class="rea-wrong-note">blurts the most plausible-sounding number</div>
+          </div>
+
+          <div class="rea-col">
+            <span class="rea-col-label">Reasoning model &mdash; thinks first</span>
+            <div class="rea-step" id="rs0"><strong>Step 1.</strong> Runway = cash &divide; monthly burn.</div>
+            <div class="rea-step" id="rs1"><strong>Step 2.</strong> Cash = $260k, burn = $40k/mo.</div>
+            <div class="rea-step" id="rs2"><strong>Step 3.</strong> 260 &divide; 40 = 6.5.</div>
+            <div class="rea-answer" id="rsAns">"6.5 months of runway."</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <p class="llm-note">Far better at math, logic, and multi-step planning; but slower and more expensive (you pay for thinking tokens). <br><strong>Reduces errors without eliminating them.</strong></p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+<script>
+(function(){
+  var _timeout = null;
+  var _running = false;
+
+  function clearSteps() {
+    for (var i = 0; i < 3; i++) {
+      var el = document.getElementById('rs' + i);
+      if (el) { el.classList.remove('show'); el.style.opacity = '0'; el.style.transform = 'translateY(6px)'; }
+    }
+    var ans = document.getElementById('rsAns');
+    if (ans) { ans.classList.remove('show'); ans.style.opacity = '0'; }
+  }
+
+  function runSequence() {
+    if (!_running) return;
+    clearSteps();
+    var steps = ['rs0','rs1','rs2'];
+    var delay = 0;
+    steps.forEach(function(id, i) {
+      _timeout = setTimeout(function() {
+        if (!_running) return;
+        var el = document.getElementById(id);
+        if (el) el.classList.add('show');
+      }, delay += 850);
+    });
+    _timeout = setTimeout(function() {
+      if (!_running) return;
+      var ans = document.getElementById('rsAns');
+      if (ans) ans.classList.add('show');
+    }, delay += 850);
+    _timeout = setTimeout(function() {
+      if (!_running) return;
+      runSequence();
+    }, delay + 2600);
+  }
+
+  function startReasoning() {
+    _running = true;
+    runSequence();
+  }
+
+  function stopReasoning() {
+    _running = false;
+    if (_timeout) { clearTimeout(_timeout); _timeout = null; }
+    clearSteps();
+  }
+
+  window.startReasoning = startReasoning;
+  window.stopReasoning = stopReasoning;
+
+  if (typeof Reveal === 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() { startReasoning(); });
+  }
+})();
+</script>
+</body>
+</html>
