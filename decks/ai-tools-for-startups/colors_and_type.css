@@ -1,0 +1,157 @@
+/* ============================================================
+   Rafa Pagés — GenAI for Startups
+   Colors & Type tokens
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lato:wght@300;400;700;900&display=swap');
+
+:root {
+  /* -------- COLOR TOKENS -------- */
+  --yellow:        #FFE234;
+  --yellow-dark:   #D4AA00;
+  --black:         #111111;
+  --white:         #FFFFFF;
+  --gray1:         #F4F4F4;
+  --gray2:         #E8E8E8;
+  --text:          #111111;
+  --text-mid:      #444444;
+  --text-muted:    #888888;
+  --border:        #E2E2E2;
+
+  /* -------- SEMANTIC -------- */
+  --bg:            var(--white);
+  --bg-alt:        var(--gray1);
+  --bg-dark:       var(--black);
+  --fg:            var(--text);
+  --fg-mid:        var(--text-mid);
+  --fg-muted:      var(--text-muted);
+  --accent:        var(--yellow);
+  --accent-deep:   var(--yellow-dark);
+  --rule:          var(--border);
+
+  /* -------- TYPOGRAPHY FAMILIES -------- */
+  --font-display:  'Bungee', 'Impact', 'Arial Black', sans-serif;
+  --font-body:     'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* -------- TYPE SCALE (slide @1920x1080, base = 40px) -------- */
+  --t-hero:        9rem;     /* 360px — cover title */
+  --t-display:     6.5rem;   /* 260px — session dividers */
+  --t-h1:          4.5rem;   /* 180px — block titles */
+  --t-h2:          3rem;     /* 120px — slide titles */
+  --t-h3:          2rem;     /*  80px — card titles */
+  --t-h4:          1.4rem;   /*  56px — labels */
+  --t-body:        1rem;     /*  40px — body */
+  --t-small:       0.8rem;   /*  32px — captions */
+  --t-eyebrow:     0.7rem;   /*  28px — eyebrow / kicker */
+
+  /* -------- WEIGHTS -------- */
+  --w-light:       300;
+  --w-regular:     400;
+  --w-bold:        700;
+  --w-black:       900;
+
+  /* -------- LINE HEIGHTS -------- */
+  --lh-tight:      1.0;
+  --lh-snug:       1.15;
+  --lh-normal:     1.35;
+  --lh-loose:      1.6;
+
+  /* -------- TRACKING -------- */
+  --tr-tight:      -0.02em;
+  --tr-normal:     0;
+  --tr-wide:       0.04em;
+  --tr-eyebrow:    0.15em;
+
+  /* -------- SPACING (slide @42px base) -------- */
+  --s-1:           0.25rem;  /* 10px */
+  --s-2:           0.5rem;   /* 21px */
+  --s-3:           0.75rem;  /* 32px */
+  --s-4:           1rem;     /* 42px */
+  --s-5:           1.5rem;   /* 63px */
+  --s-6:           2rem;     /* 84px */
+  --s-7:           3rem;     /* 126px */
+  --s-8:           4rem;     /* 168px */
+
+  /* -------- BORDERS / RADII -------- */
+  --bw-hair:       1px;
+  --bw-rule:       2px;
+  --bw-bold:       4px;
+  --r-tight:       4px;
+  --r-soft:        8px;
+  --r-card:        14px;
+  --r-pill:        999px;
+}
+
+/* ============================================================
+   Semantic element styles (apply across slides + UI kit)
+   ============================================================ */
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  font-size: 40px;
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, .display, .hero {
+  font-family: var(--font-display);
+  font-weight: var(--w-regular); /* Bungee has only one weight */
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-normal);
+  color: var(--fg);
+  margin: 0;
+}
+
+.hero    { font-size: var(--t-hero); }
+.display { font-size: var(--t-display); }
+h1       { font-size: var(--t-h1); }
+h2       { font-size: var(--t-h2); }
+h3       { font-size: var(--t-h3); }
+h4       { font-size: var(--t-h4); }
+
+p, li, .body {
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  font-size: var(--t-body);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  margin: 0;
+}
+
+.eyebrow, .kicker {
+  font-family: var(--font-display);
+  font-size: var(--t-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-mid);
+}
+
+.muted   { color: var(--fg-muted); }
+.mid     { color: var(--fg-mid); }
+.small   { font-size: var(--t-small); }
+.bold    { font-weight: var(--w-bold); }
+
+/* ============================================================
+   Marker highlight — the signature element
+   Uses an inline background SVG so it renders correctly in
+   screenshot libraries (html-to-image, html2canvas) AND in
+   real browsers. The svg is a slightly skewed rounded rect —
+   not a flat rectangle.
+   ============================================================ */
+.hl {
+  position: relative;
+  display: inline;
+  padding: 0 0.08em;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60' preserveAspectRatio='none'><path d='M6 10 Q4 8 8 6 Q60 2 110 4 Q170 6 194 8 Q198 12 196 28 Q198 44 194 52 Q140 56 90 54 Q40 56 8 54 Q4 50 6 42 Q4 26 6 10Z' fill='%23FFE234' opacity='0.92'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 88%;
+  background-position: center 58%;
+}
+.hl.alt {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60' preserveAspectRatio='none'><path d='M4 12 Q8 6 14 5 Q70 2 130 5 Q180 4 196 12 Q198 26 196 40 Q194 54 188 56 Q120 58 70 54 Q24 56 8 54 Q4 44 6 28 Q4 18 4 12Z' fill='%23FFE234' opacity='0.92'/></svg>");
+  background-position: center 62%;
+}

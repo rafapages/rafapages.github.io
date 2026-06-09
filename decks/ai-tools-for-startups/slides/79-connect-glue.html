@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>The Glue — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .gl-grid { display: flex; gap: 26px; justify-content: center; width: 100%; }
+  .gl-card {
+    flex: 1; max-width: 460px;
+    border: 4px solid var(--black);
+    border-radius: 16px;
+    padding: 30px 32px 32px;
+    background: white;
+    display: flex; flex-direction: column; gap: 14px;
+    opacity: 0; transform: translateY(18px);
+    animation: gl-pop 0.5s forwards;
+  }
+  .gl-card:nth-child(1) { animation-delay: 0.12s; transform: rotate(-0.5deg) translateY(18px); }
+  .gl-card:nth-child(2) { animation-delay: 0.26s; }
+  .gl-card:nth-child(3) { animation-delay: 0.40s; transform: rotate(0.5deg) translateY(18px); }
+  @keyframes gl-pop { to { opacity: 1; transform: none; } }
+
+  .gl-logo {
+    height: 72px; width: 100%;
+    display: flex; align-items: center; justify-content: flex-start;
+    margin-bottom: 4px;
+  }
+  .gl-logo img { height: 52px; width: auto; object-fit: contain; }
+  .gl-name { font-family: var(--font-display); font-size: 1.5rem; color: var(--fg); margin: 0; }
+  .gl-for {
+    font-family: var(--font-display); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow); align-self: flex-start;
+    padding: 5px 12px; border-radius: 6px; transform: rotate(-1.5deg);
+  }
+  .gl-card p { font-family: var(--font-body); font-size: 0.7rem; color: var(--fg-mid); line-height: 1.5; margin: 0; }
+  .gl-card p strong { color: var(--fg); font-weight: 700; }
+  .gl-meta {
+    margin-top: auto; padding-top: 14px; border-top: 2px dashed var(--gray2);
+    font-family: var(--font-body); font-size: 0.62rem; color: var(--fg-muted); line-height: 1.4;
+  }
+  .gl-meta strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="79 The Glue">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">The <span class="hl">glue</span> that wires it together</h1>
+    <p class="llm-lede">You don't write code for this. These platforms connect thousands of apps and let you drop an AI step in the middle — drag, drop, done. Pick one and stick with it.</p>
+
+    <div class="llm-canvas">
+      <div class="gl-grid">
+
+        <div class="gl-card">
+          <div class="gl-logo"><img src="../assets/logos/zapier.svg" alt="Zapier"/></div>
+          <span class="gl-for">Easiest start</span>
+          <h3 class="gl-name">Zapier</h3>
+          <p>The friendliest on-ramp. <strong>7,000+ app integrations</strong> and templates for the obvious stuff. If it's a common workflow, it already exists as a recipe.</p>
+          <div class="gl-meta"><strong>Reach for it when:</strong> you want something live this afternoon.</div>
+        </div>
+
+        <div class="gl-card">
+          <div class="gl-logo"><img src="../assets/logos/make.svg" alt="Make"/></div>
+          <span class="gl-for">Most powerful</span>
+          <h3 class="gl-name">Make</h3>
+          <p>A visual canvas with more control over <strong>logic, branching and data</strong>. A little steeper, but you can build genuinely intricate flows.</p>
+          <div class="gl-meta"><strong>Reach for it when:</strong> the logic gets complex or branchy.</div>
+        </div>
+
+        <div class="gl-card">
+          <div class="gl-logo"><img src="../assets/logos/n8n.svg" alt="n8n"/></div>
+          <span class="gl-for">Own it yourself</span>
+          <h3 class="gl-name">n8n</h3>
+          <p><strong>Open-source, self-hostable.</strong> Keeps data in-house and dodges per-task pricing — the technical, cost-conscious choice as you scale.</p>
+          <div class="gl-meta"><strong>Reach for it when:</strong> privacy, cost or scale start to matter.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="llm-note"><strong>Same shape, swappable parts:</strong> trigger &rarr; AI step &rarr; action. Any block can be a different app — the structure never changes.</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

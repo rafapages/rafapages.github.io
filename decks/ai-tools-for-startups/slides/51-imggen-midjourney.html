@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>The Tool — Midjourney — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .show-pad { position: relative; padding: 64px 110px 64px; width: 100%; height: 100%;
+    display: flex; flex-direction: column; gap: 14px; z-index: 2; }
+  .show-title { font-family: var(--font-display); font-size: 1.45rem; line-height: 0.98; color: var(--fg); max-width: 80%; }
+  .show-lede { font-family: var(--font-body); font-size: 0.7rem; color: var(--fg-mid);
+    line-height: 1.45; max-width: 72%; }
+  .show-lede strong { color: var(--fg); font-weight: 700; }
+  .show-canvas { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
+  .show-img { max-width: 100%; max-height: 100%;
+    border-radius: 14px; display: block; }
+  video.show-img { object-fit: contain; }
+  .tool-chips { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 2px; }
+  .tool-chips-label { font-family: var(--font-body); font-size: 0.6rem; color: var(--fg-muted);
+    margin-right: 4px; }
+  .tool-chip { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.01em;
+    color: var(--fg); border: 2px solid var(--black); border-radius: var(--r-pill, 999px);
+    padding: 7px 18px; background: var(--white); line-height: 1; }
+  .tool-chip.is-called-out { background: var(--yellow); }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide no-wave" data-screen-label="51 The Tool">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="show-pad">
+    <h1 class="show-title">One tool to anchor on: <span class="hl">Midjourney</span></h1>
+    <p class="show-lede">The idea is the same everywhere (<strong>you type, it denoises toward your words</strong>) so the prompt craft you learn here transfers.</p>
+    <div class="tool-chips">
+      <!-- <span class="tool-chips-label">Same craft, everywhere else:</span> -->
+      <span class="tool-chip is-called-out">Google's Nano Banana</span>
+      <span class="tool-chip">ChatGPT Image</span>
+      <span class="tool-chip">Flux</span>
+      <span class="tool-chip">Stable Diffusion</span>
+    </div>
+    <div class="show-canvas">
+      <video class="show-img" src="../assets/video/midjourney.mp4" autoplay loop muted playsinline></video>
+    </div>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

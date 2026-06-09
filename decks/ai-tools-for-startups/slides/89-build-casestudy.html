@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Case Study — Let's Crush It — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .cs-pad {
+    position: relative;
+    padding: 64px 120px 72px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; gap: 18px;
+    z-index: 2; box-sizing: border-box;
+  }
+
+  .cs-head { display: flex; flex-direction: column; gap: 10px; }
+  .cs-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--fg-mid);
+  }
+  .cs-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem; line-height: 0.98; color: var(--fg); margin: 0;
+    max-width: 1480px;
+  }
+  .cs-lede {
+    font-family: var(--font-body);
+    font-size: 0.72rem; color: var(--fg-mid); line-height: 1.42;
+    max-width: 1480px; margin: 0;
+  }
+  .cs-lede strong { color: var(--fg); font-weight: 700; }
+
+  /* main: hero screenshot (left) + capability chips (right) */
+  .cs-main { display: flex; gap: 48px; flex: 1; min-height: 0; align-items: stretch; }
+
+  .cs-shotwrap { flex: 1 1 58%; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: flex-start; }
+  .cs-shot {
+    display: block; position: relative;
+    height: 100%; max-height: 100%;
+    aspect-ratio: 1100 / 900;
+    border: 4px solid var(--black);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--white);
+    transform: rotate(-0.6deg);
+  }
+  .cs-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .cs-caption {
+    position: absolute; left: 18px; bottom: 18px;
+    font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.06em;
+    background: var(--black); color: var(--yellow);
+    padding: 9px 16px; border-radius: 8px; transform: rotate(-1.5deg);
+    text-decoration: none; display: inline-block;
+  }
+
+  /* capability chips */
+  .cs-chips { flex: 0 0 36%; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+  .cs-kicker {
+    font-family: var(--font-display); font-size: 0.56rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--fg-muted); margin-bottom: 2px;
+  }
+  .cs-chip {
+    border: 4px solid var(--black); border-radius: 14px; background: var(--white);
+    padding: 16px 20px; display: flex; flex-direction: column; gap: 4px;
+  }
+  .cs-chip:nth-child(2) { transform: rotate(-0.8deg); }
+  .cs-chip:nth-child(3) { transform: rotate(0.6deg); }
+  .cs-chip:nth-child(4) { transform: rotate(-0.5deg); }
+  .cs-chip:nth-child(5) { transform: rotate(0.7deg); }
+  .cs-chip.hot { background: var(--yellow); }
+  .cs-chip .k { font-family: var(--font-display); font-size: 0.82rem; line-height: 1.02; color: var(--fg); }
+  .cs-chip .v { font-family: var(--font-body); font-size: 0.64rem; color: var(--fg-mid); line-height: 1.3; }
+  .cs-chip.hot .v { color: var(--fg); }
+
+  .cs-foot {
+    font-family: var(--font-body); font-size: 0.78rem; color: var(--fg-mid);
+    line-height: 1.4; display: flex; align-items: center; gap: 14px;
+  }
+  .cs-foot .star { font-family: var(--font-display); font-size: 1.05rem; color: var(--fg); }
+  .cs-foot strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="89 Case Study — Let's Crush It">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="cs-pad">
+
+    <div class="cs-head">
+      <div class="cs-eyebrow">Build · Case study</div>
+      <h1 class="cs-title">I built this. And I'm <span class="hl">not an iOS developer.</span></h1>
+      <!-- <p class="cs-lede"><strong>Let's Crush It</strong> is a real iOS app. AI wrote the SwiftUI in a language I didn't know, the website and the copy, every image, and the automations. It even helped me decide <strong>what to build</strong> and how to launch it.</p> -->
+    </div>
+
+    <div class="cs-main">
+
+      <div class="cs-shotwrap">
+        <a class="cs-shot" href="https://letscrush.it" target="_blank" rel="noopener">
+          <img src="../assets/images/LCI.jpeg" alt="The Let's Crush It website — hero with a fist crushing a grid and the tagline 'Motivation starts it. Habit keeps it going.'"/>
+          <span class="cs-caption">letscrush.it &#8599;</span>
+        </a>
+      </div>
+
+      <div class="cs-chips">
+        <span class="cs-kicker">All of it, with AI</span>
+        <div class="cs-chip hot">
+          <span class="k">iOS app · SwiftUI</span>
+          <span class="v">A native app in a language I didn't know.</span>
+        </div>
+        <div class="cs-chip">
+          <span class="k">Website + copy</span>
+          <span class="v">What you're looking at, written and built.</span>
+        </div>
+        <div class="cs-chip">
+          <span class="k">All the imagery</span>
+          <span class="v">One consistent style, no designer.</span>
+        </div>
+        <div class="cs-chip">
+          <span class="k">Email + automations</span>
+          <span class="v">Capture and follow-up that runs itself.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="cs-foot">
+      <span class="star">&#9733;</span>
+      <span>One person, every tool in this course. <strong>Your turn.</strong></span>
+    </div> -->
+
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

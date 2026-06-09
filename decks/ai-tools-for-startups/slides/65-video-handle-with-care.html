@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Generative Video — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .vm-cols { display: flex; gap: 44px; width: 100%; align-items: stretch; }
+  .vm-col {
+    flex: 1;
+    border: 4px solid var(--black);
+    border-radius: 18px;
+    background: white;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .vm-col.pays { transform: rotate(-0.6deg); }
+  .vm-col.bites { transform: rotate(0.6deg); }
+
+  /* bold header band — instant good/caution read */
+  .vm-band {
+    display: flex; align-items: center; gap: 18px;
+    padding: 22px 30px;
+    font-family: var(--font-display); font-size: 1.05rem; line-height: 1;
+    border-bottom: 4px solid var(--black);
+  }
+  .pays .vm-band { background: var(--yellow); color: var(--black); }
+  .bites .vm-band { background: var(--black); color: var(--white); }
+  .vm-mark {
+    font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+    width: 54px; height: 54px; display: grid; place-items: center;
+    border: 3px solid var(--black); border-radius: 50%;
+    transform: rotate(-4deg); flex-shrink: 0;
+  }
+  .pays .vm-mark { background: var(--black); color: var(--yellow); }
+  .bites .vm-mark { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+
+  .vm-body {
+    padding: 28px 32px 32px; flex: 1;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .bites .vm-body { background: var(--gray1); }
+  .vm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+  .vm-list li {
+    font-family: var(--font-body); font-size: 0.74rem; color: var(--fg-mid); line-height: 1.45;
+    padding-left: 22px; position: relative;
+  }
+  .vm-list li::before {
+    content: ""; position: absolute; left: 0; top: 0.42em;
+    width: 9px; height: 9px; border-radius: 2px; transform: rotate(45deg);
+  }
+  .pays .vm-list li::before { background: var(--yellow); border: 2px solid var(--black); }
+  .bites .vm-list li::before { background: var(--black); }
+  .vm-list li strong { color: var(--fg); font-weight: 700; }
+
+  /* hand-drawn clapperboard doodle, top-right of canvas */
+  .vm-doodle { position: absolute; top: -6px; right: 4px; width: 96px; height: 96px; opacity: 0.9; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="65 Generative video · handle with care">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">Video is the newest frontier — <span class="hl">handle with care</span></h1>
+    <p class="llm-lede">A text prompt can now produce broadcast-looking footage. It's spectacular in a demo but hard to control in real work, so know what it's good for before committing on a deadline.</p>
+
+    <div class="llm-canvas" style="position: relative;">
+
+      <!-- clapperboard doodle -->
+      <svg class="vm-doodle" viewBox="0 0 100 100" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="16" y="40" width="68" height="44" rx="4"/>
+        <path d="M16 40 L24 24 L40 30 L32 46Z M40 30 L56 22 L72 28 L56 44Z M72 28 L86 22 L92 36 L78 42Z"/>
+      </svg>
+
+      <div class="vm-cols">
+
+        <div class="vm-col pays">
+          <div class="vm-band"><span class="vm-mark">+</span> Where it pays today</div>
+          <div class="vm-body">
+            <ul class="vm-list">
+              <li><strong>Social &amp; ad b-roll</strong> — short, atmospheric clips you'd otherwise license from stock.</li>
+              <li><strong>Pitch &amp; sizzle reels</strong> — a striking few seconds to open a deck or demo day.</li>
+              <li><strong>Concept &amp; mood films</strong> — show an idea before you've built or shot anything.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="vm-col bites">
+          <div class="vm-band"><span class="vm-mark">&ndash;</span> Where it still bites</div>
+          <div class="vm-body">
+            <ul class="vm-list">
+              <li><strong>Precise control</strong> — getting an exact action, product, or logo right is fiddly and slow.</li>
+              <li><strong>Continuity</strong> — same character or scene across shots drifts between generations.</li>
+              <li><strong>Time &amp; cost</strong> — many takes to get one usable second; easy to burn an afternoon.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- <p class="llm-note"><strong>Bottom line:</strong> reach for it when "evocative" beats "exact." <br>For anything that must be precise or on-brand, you'll get there faster with the targeted video tools we'll see next — Synthesia, HeyGen, Tavus.</p> -->
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

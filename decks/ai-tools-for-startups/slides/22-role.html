@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Role — You are now a… — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .role-pad {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: 96px 140px 92px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .role-head { display: flex; flex-direction: column; gap: 14px; }
+  .role-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+  }
+  .role-title {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    line-height: 0.96;
+    color: var(--fg);
+  }
+
+  /* Two stacks of options with an "or" pivot between them */
+  .role-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    align-items: center;
+    gap: 30px;
+  }
+  .role-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .role-col.left  { align-items: flex-end; }
+  .role-col.right { align-items: flex-start; }
+  .role-item {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--fg);
+    background: var(--white);
+    border: 2px solid var(--black);
+    border-radius: var(--r-pill);
+    padding: 0.42rem 1.05rem;
+  }
+  .role-col.left  .role-item:nth-child(odd)  { transform: rotate(-1deg); }
+  .role-col.left  .role-item:nth-child(even) { transform: rotate(0.8deg); }
+  .role-col.right .role-item { background: var(--yellow); }
+  .role-col.right .role-item:nth-child(odd)  { transform: rotate(1deg); }
+  .role-col.right .role-item:nth-child(even) { transform: rotate(-0.8deg); }
+
+  .role-or {
+    display: grid;
+    place-items: center;
+  }
+  .role-or span {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--fg);
+    background: var(--white);
+    width: 96px; height: 96px;
+    border: 4px solid var(--black);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    transform: rotate(-6deg);
+  }
+
+  .role-blob {
+    position: absolute; top: -50px; right: -80px;
+    width: 280px; height: 170px; z-index: 0;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="22 Role">
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <svg class="role-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="role-pad">
+
+    <div class="role-head">
+      <div class="role-eyebrow">RICCE — Role</div>
+      <h1 class="role-title">“You are now <span class="hl">a&hellip;</span>”</h1>
+    </div>
+
+    <div class="role-grid">
+
+      <div class="role-col left">
+        <span class="role-item">Social media expert</span>
+        <span class="role-item">Personal trainer</span>
+        <span class="role-item">Blog expert</span>
+        <span class="role-item">Mathematician</span>
+        <span class="role-item">Sales executive</span>
+        <span class="role-item">Legal expert</span>
+        <span class="role-item">SEO strategist</span>
+      </div>
+
+      <div class="role-or"><span>or</span></div>
+
+      <div class="role-col right">
+        <span class="role-item">Elon Musk</span>
+        <span class="role-item">Bill Gates</span>
+        <span class="role-item">Gary Vaynerchuk</span>
+        <span class="role-item">Albert Einstein</span>
+        <span class="role-item">Marques Brownlee</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+</div>
+</body>
+</html>

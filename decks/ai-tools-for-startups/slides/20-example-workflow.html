@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Example Workflow — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .ew-pad {
+    position: relative;
+    padding: 84px 96px 92px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    gap: 26px;
+    z-index: 2;
+    box-sizing: border-box;
+  }
+
+  .ew-head { display: flex; flex-direction: column; gap: 12px; }
+  .ew-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+  }
+  .ew-title {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    line-height: 0.96;
+    color: var(--fg);
+  }
+  .ew-sub {
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    color: var(--fg-mid);
+    line-height: 1.45;
+    max-width: 1120px;
+  }
+  .ew-sub strong { color: var(--fg); font-weight: 700; }
+
+  /* Persona pill */
+  .ew-persona {
+    display: inline-flex;
+    width: max-content;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 22px;
+    background: var(--white);
+    border: 3px solid var(--black);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+  .ew-persona .pulse {
+    width: 12px; height: 12px;
+    background: var(--yellow);
+    border-radius: 50%;
+    border: 2px solid var(--black);
+  }
+
+  .ew-stage {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 56px 1fr 56px 1fr 56px 224px;
+    align-items: center;
+  }
+
+  .ew-step {
+    background: var(--white);
+    border: 3px solid var(--black);
+    border-radius: 18px;
+    padding: 28px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 268px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+  }
+  .ew-step.alt { background: var(--gray1); }
+
+  /* Number now lives in the top-right corner */
+  .ew-step .num {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 44px; height: 44px;
+    background: var(--black);
+    color: var(--yellow);
+    border-radius: 11px;
+    display: grid; place-items: center;
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    transform: rotate(-3deg);
+  }
+  .ew-step h3 {
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    line-height: 1.08;
+    color: var(--fg);
+    padding-right: 52px; /* clear the corner number */
+  }
+  .ew-step .desc {
+    font-family: var(--font-body);
+    font-size: 0.64rem;
+    color: var(--fg-mid);
+    line-height: 1.4;
+  }
+  .ew-step .out {
+    margin-top: auto;
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    color: var(--fg);
+    padding-top: 12px;
+    border-top: 2px dashed var(--border);
+  }
+
+  .ew-arrow {
+    display: grid; place-items: center;
+    margin: 0 -4px;
+    z-index: 1;
+  }
+  .ew-arrow svg { width: 56px; height: 28px; }
+
+  .ew-final {
+    background: var(--black);
+    color: var(--white);
+    border: 3px solid var(--black);
+    border-radius: 18px;
+    padding: 26px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    height: 268px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+  }
+  .ew-final .crown {
+    width: 56px; height: 56px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--fg);
+    transform: rotate(-6deg);
+  }
+  .ew-final h3 {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    line-height: 1.15;
+    color: var(--white);
+    text-align: center;
+  }
+  .ew-final .desc {
+    font-family: var(--font-body);
+    font-size: 0.64rem;
+    color: #ccc;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .ew-foot {
+    display: flex; align-items: center; gap: 18px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--fg-mid);
+    line-height: 1.4;
+  }
+  .ew-foot .icon {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--fg);
+  }
+  .ew-foot strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="20 Example Workflow">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <div class="ew-pad">
+
+    <div class="ew-head">
+      <div class="ew-eyebrow">The use case we&rsquo;ll build on</div>
+      <h1 class="ew-title">You&rsquo;re the new <span class="hl">sales intern</span>.</h1>
+      <p class="ew-sub">
+        You&rsquo;ve been handed a list of leads. Here&rsquo;s the workflow that turns them
+        into meetings &mdash; let&rsquo;s turn <em>that</em> into <strong>one strong prompt</strong>, a piece at a time.
+      </p>
+    </div>
+
+    <span class="ew-persona"><span class="pulse"></span>Your task &middot; Turn these leads into meetings</span>
+
+    <div class="ew-stage">
+
+      <div class="ew-step alt">
+        <span class="num">1</span>
+        <h3>Evaluate fit</h3>
+        <div class="desc">Rate each lead on size, market, and business needs.</div>
+        <div class="out">&rarr; Notes per lead</div>
+      </div>
+
+      <div class="ew-arrow">
+        <svg viewBox="0 0 90 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 16 Q22 12 44 16 Q66 20 80 15" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M70 6 L84 15 L70 24" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="ew-step">
+        <span class="num">2</span>
+        <h3>Score &amp; rank</h3>
+        <div class="desc">Turn that into a priority score &mdash; who to chase first.</div>
+        <div class="out">&rarr; A ranked shortlist</div>
+      </div>
+
+      <div class="ew-arrow">
+        <svg viewBox="0 0 90 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 16 Q22 12 44 16 Q66 20 80 15" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M70 6 L84 15 L70 24" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="ew-step alt">
+        <span class="num">3</span>
+        <h3>Draft the plan</h3>
+        <div class="desc">A tailored sales play for the top targets.</div>
+        <div class="out">&rarr; A sales strategy</div>
+      </div>
+
+      <div class="ew-arrow">
+        <svg viewBox="0 0 90 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 16 Q22 12 44 16 Q66 20 80 15" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M70 6 L84 15 L70 24" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="ew-final">
+        <div class="crown">&#9733;</div>
+        <h3>Booked meetings.</h3>
+        <div class="desc">The whole job, repeatable.</div>
+      </div>
+
+    </div>
+
+    <!-- <div class="ew-foot">
+      <span class="icon">&#8627;</span>
+      <span>Keep this workflow in mind. Every prompting principle we cover plugs <strong>straight into it</strong>.</span>
+    </div> -->
+
+  </div>
+</section>
+</div>
+</body>
+</html>

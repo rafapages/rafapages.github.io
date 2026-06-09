@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Search / RAG — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .sr-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 28px;
+    width: 100%;
+  }
+  .sr-flow {
+    display: flex; align-items: center; gap: 24px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .sr-node {
+    border: 4px solid var(--black);
+    border-radius: 14px;
+    padding: 24px 28px;
+    text-align: center;
+    min-width: 200px;
+    background: white;
+    opacity: 0; transform: translateY(12px);
+  }
+  .sr-node.docs { background: var(--gray1); }
+  .sr-node.answer { background: var(--yellow); }
+  .sr-node.show { animation: sr-fadeUp 0.5s forwards; }
+  @keyframes sr-fadeUp { to { opacity: 1; transform: none; } }
+
+  .sr-node-label {
+    font-family: var(--font-display);
+    font-size: 0.60rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .sr-node-sub {
+    font-family: var(--font-body);
+    font-size: 0.58rem;
+    color: var(--fg-muted);
+    line-height: 1.4;
+  }
+  .sr-arrow {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+    opacity: 0;
+  }
+  .sr-arrow.show { animation: sr-fadeIn 0.4s forwards; }
+  @keyframes sr-fadeIn { to { opacity: 1; } }
+
+  .sr-context {
+    border: 4px solid var(--black);
+    border-radius: 14px;
+    padding: 28px 36px;
+    background: var(--gray1);
+    max-width: 900px;
+    width: 100%;
+    opacity: 0; transform: translateY(12px);
+  }
+  .sr-context.show { animation: sr-fadeUp 0.5s forwards; }
+  .sr-ctx-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.52rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .sr-doc-line {
+    display: flex; gap: 10px;
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    color: var(--fg-mid);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .sr-query-line {
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    color: var(--fg);
+    font-weight: 700;
+    border-top: 2px dashed var(--gray2);
+    padding-top: 8px;
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="13 Search">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">Search (RAG): give it the facts, then ask</h1>
+    <p class="llm-lede">Two limitations — frozen knowledge and confident hallucinations — come from asking the model to <em>recall</em>. Search flips it: fetch real documents first, paste them into the context window, then ask the model to answer <strong>only from those</strong>.</p>
+
+    <div class="llm-canvas">
+      <div class="sr-wrap">
+        <div class="sr-flow">
+          <div class="sr-node" id="srn1">
+            <span class="sr-node-label">Your Question</span>
+            <span class="sr-node-sub">"What's our refund policy?"</span>
+          </div>
+          <div class="sr-arrow" id="sra2">&rarr;</div>
+          <div class="sr-node docs" id="srn3">
+            <span class="sr-node-label">Fetch Documents</span>
+            <span class="sr-node-sub">web &middot; your files &middot; database</span>
+          </div>
+          <div class="sr-arrow" id="sra4">&rarr;</div>
+          <div class="sr-node answer" id="srn5">
+            <span class="sr-node-label">Grounded Answer</span>
+            <span class="sr-node-sub">built from what was found</span>
+          </div>
+        </div>
+        <div class="sr-context" id="srCtx">
+          <span class="sr-ctx-eyebrow">What the model actually receives</span>
+          <div class="sr-doc-line">[doc] "Refunds accepted within 30 days with receipt&hellip;"</div>
+          <div class="sr-doc-line">[doc] "Digital goods are non-refundable after download&hellip;"</div>
+          <div class="sr-query-line">[q] Using only the text above, answer: what's our refund policy?</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="llm-note"><strong>Why it matters:</strong> answers grounded in real, current, or proprietary data. <strong>The catch:</strong> it's only as good as what it retrieves.</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+<script>
+(function(){
+  var _timeout = null;
+  var _running = false;
+
+  var sequence = [
+    { id: 'srn1', type: 'node' },
+    { id: 'sra2', type: 'arrow' },
+    { id: 'srn3', type: 'node' },
+    { id: 'sra4', type: 'arrow' },
+    { id: 'srn5', type: 'node' },
+    { id: 'srCtx', type: 'node' }
+  ];
+
+  function clearAll() {
+    sequence.forEach(function(s) {
+      var el = document.getElementById(s.id);
+      if (el) {
+        el.classList.remove('show');
+        el.style.opacity = '0';
+        if (s.type === 'node') el.style.transform = 'translateY(12px)';
+      }
+    });
+  }
+
+  function runSequence() {
+    if (!_running) return;
+    clearAll();
+    var delay = 0;
+    sequence.forEach(function(s) {
+      _timeout = setTimeout(function() {
+        if (!_running) return;
+        var el = document.getElementById(s.id);
+        if (el) el.classList.add('show');
+      }, delay += 500);
+    });
+    _timeout = setTimeout(function() {
+      if (!_running) return;
+      runSequence();
+    }, delay + 4000);
+  }
+
+  function startSearch() {
+    _running = true;
+    runSequence();
+  }
+
+  function stopSearch() {
+    _running = false;
+    if (_timeout) { clearTimeout(_timeout); _timeout = null; }
+    clearAll();
+  }
+
+  window.startSearch = startSearch;
+  window.stopSearch = stopSearch;
+
+  if (typeof Reveal === 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() { startSearch(); });
+  }
+})();
+</script>
+</body>
+</html>

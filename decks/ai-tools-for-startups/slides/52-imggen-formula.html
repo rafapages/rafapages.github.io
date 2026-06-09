@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>The Image-Prompt Formula — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .formula-pad {
+    position: relative; padding: 110px 160px 80px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; gap: 40px;
+    z-index: 2;
+  }
+  .formula-eyebrow {
+    font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.2em;
+    color: var(--black); background: var(--yellow);
+    align-self: flex-start; padding: 8px 18px; border-radius: 8px; transform: rotate(-1.5deg);
+  }
+  .formula {
+    font-family: var(--font-body); font-weight: 300;
+    font-size: 1.5rem; line-height: 1.5; color: var(--fg-mid);
+    max-width: 1480px;
+  }
+  .formula .slot {
+    font-family: var(--font-display); font-size: 0.74em;
+    color: var(--fg); letter-spacing: 0.01em;
+    border-bottom: 3px solid var(--yellow);
+    padding-bottom: 1px;
+  }
+  .formula .param {
+    font-family: var(--font-display); font-size: 0.74em; color: var(--fg-muted);
+  }
+  .formula-note {
+    font-family: var(--font-body); font-size: 0.66rem; color: var(--fg-muted);
+    max-width: 1200px; line-height: 1.5;
+  }
+  .formula-note strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="52 Image-Prompt Formula">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="formula-pad">
+    <span class="formula-eyebrow">The image-prompt formula</span>
+    <p class="formula">
+      <span class="slot">Subject</span> in the <span class="slot">style / technique</span>, set in
+      <span class="slot">environment</span> with a <span class="slot">mood / atmosphere</span>.
+      Include <span class="slot">details / modifiers</span>, <span class="slot">camera</span> and
+      <span class="slot">aperture</span>, use <span class="slot">lighting</span>,
+      <span class="slot">composition / perspective</span>. <span class="param">[--parameters]</span>
+    </p>
+    <p class="formula-note">You don't need every slot every time &mdash; but the more of them you fill, the less the model has to guess. <strong>An empty slot is a decision you've handed to the dice.</strong></p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

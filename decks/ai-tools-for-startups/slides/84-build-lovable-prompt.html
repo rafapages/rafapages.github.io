@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>The Prompt — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .lv-pad {
+    position: relative; z-index: 2;
+    width: 100%; height: 100%;
+    padding: 60px 120px 56px;
+    display: flex; flex-direction: column; gap: 16px;
+    box-sizing: border-box;
+  }
+  .lv-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow);
+    align-self: flex-start; padding: 7px 16px; border-radius: 8px;
+    transform: rotate(-1.5deg);
+  }
+  .lv-title { font-family: var(--font-display); font-size: 1.7rem; line-height: 1.02; color: var(--fg); margin-bottom: 18px; }
+
+  /* prompt composer card */
+  .lv-card {
+    flex: 1; min-height: 0;
+    display: flex; flex-direction: column;
+    border: 4px solid var(--black); border-radius: 20px;
+    background: var(--white); overflow: hidden;
+  }
+  .lv-head {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 26px; border-bottom: 3px solid var(--black); background: var(--gray1);
+  }
+  .lv-head img { height: 40px; width: auto; display: block; border-radius: 9px; }
+  .lv-head .name { font-family: var(--font-display); font-size: 0.92rem; color: var(--fg); }
+  .lv-head .tag {
+    margin-left: auto; font-family: var(--font-display);
+    font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow);
+    border: 2px solid var(--black); border-radius: 999px; padding: 6px 14px; transform: rotate(-1.5deg);
+  }
+
+  .lv-body, .lv-body p, .lv-body li, .lv-body b {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;   /* ← tune prompt text size here */
+  }
+  .lv-body {
+    flex: 1; min-height: 0; overflow: hidden;
+    padding: 26px 34px;
+    display: flex; flex-direction: column; gap: 12px;
+    color: var(--fg); line-height: 1.5;
+  }
+  .lv-body p { margin: 0; }
+  .lv-body .em { color: var(--fg-mid); }
+  .lv-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .lv-list li { position: relative; padding-left: 28px; }
+  .lv-list li::before {
+    content: ""; position: absolute; left: 4px; top: 0.42em;
+    width: 11px; height: 11px; background: var(--yellow);
+    border: 2px solid var(--black); border-radius: 3px; transform: rotate(-8deg);
+  }
+  .lv-list b { font-weight: 700; }
+
+  .lv-foot {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 26px; border-top: 3px solid var(--black); background: var(--gray1);
+  }
+  .lv-foot .placeholder { font-family: 'Courier New', Courier, monospace; font-size: 0.58rem; color: var(--fg-muted); }
+  .lv-send {
+    margin-left: auto; display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--yellow); background: var(--black); border-radius: 999px; padding: 9px 18px;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide no-wave" data-screen-label="84 The Prompt">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="lv-pad">
+    <span class="lv-eyebrow">Build · Vibe coding</span>
+    <h1 class="lv-title">The whole brief, <br>in <span class="hl">plain English</span></h1>
+
+    <div class="lv-card">
+      <div class="lv-head">
+        <img src="../assets/logos/lovable.svg" alt="Lovable"/>
+        <span class="name">Lovable</span>
+        <span class="tag">New project</span>
+      </div>
+
+      <div class="lv-body">
+        <p>Let's create a webapp for my new company. It's going to be a <b>project management tool for architects who do home renovations</b> for clients. The tool needs to have:</p>
+        <ul class="lv-list">
+          <li>A <b>Kanban board</b> with columns of cards. Cards need to be editable, and have a creation date and due date. Columns need to be editable too. We should be able to enter text in the cards, and also comments.</li>
+          <li>A <b>timeline view</b> where all the tasks in the Kanban board are represented.</li>
+          <li>A <b>wiki view</b> where the architect can drop information on providers.</li>
+          <li>A <b>moodboard view</b> the architect can compile with ideas for their clients.</li>
+        </ul>
+        <p class="em">We will add login information later, but let's start with this general view. Include some <b>sample data</b> so we can get an idea of how it works all together. Make sure its UI is nice and simple, with minimal design elements, as architects typically like.</p>
+      </div>
+
+      <!-- <div class="lv-foot">
+        <span class="placeholder">Ask Lovable to build&hellip;</span>
+        <span class="lv-send">Build it &uarr;</span>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

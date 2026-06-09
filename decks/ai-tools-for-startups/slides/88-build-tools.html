@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Two Ways To Ship It — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .tc-pad {
+    position: relative;
+    padding: 70px 120px 64px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; gap: 24px;
+    z-index: 2;
+  }
+  .tc-head { display: flex; flex-direction: column; gap: 10px; }
+  .tc-eyebrow { font-family: var(--font-display); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-mid); }
+  .tc-title { font-family: var(--font-display); font-size: 2.3rem; line-height: 0.96; color: var(--fg); }
+
+  .tc-grid { display: grid; grid-template-columns: 1fr 74px 1fr; gap: 24px; flex: 1; align-items: stretch; min-height: 0; }
+  .tc-col {
+    border: 4px solid var(--black); border-radius: 18px; background: var(--white);
+    padding: 58px 36px 30px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; position: relative;
+  }
+  .tc-col.alt { background: var(--gray1); transform: rotate(0.4deg); }
+  .tc-col.left { transform: rotate(-0.4deg); }
+  .tc-stamp {
+    position: absolute; top: -20px; left: 32px; padding: 9px 18px;
+    background: var(--yellow); border: 4px solid var(--black); border-radius: 10px;
+    font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+    transform: rotate(-2deg);
+  }
+  .tc-col.alt .tc-stamp { background: var(--white); transform: rotate(2deg); }
+  .tc-top { display: flex; flex-direction: column; gap: 10px; }
+  .tc-col h2 { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.02; color: var(--fg); margin: 0; }
+  .tc-col .what { font-family: var(--font-body); font-size: 0.66rem; color: var(--fg-mid); line-height: 1.4; margin: 0; }
+
+  /* logo row — integrated, no boxes */
+  .tc-logos { display: flex; gap: 14px; }
+  .tc-logo { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .tc-logo img { height: 42px; width: auto; max-width: 92%; object-fit: contain; display: block; }
+  .tc-logo .nm { font-family: var(--font-display); font-size: 0.5rem; letter-spacing: 0.02em; color: var(--fg); text-align: center; }
+
+  .tc-rows { list-style: none; padding: 16px 0 0; margin: 0; display: flex; flex-direction: column; gap: 10px; border-top: 2px dashed var(--gray2); }
+  .tc-rows li { display: flex; flex-direction: column; gap: 2px; }
+  .tc-rows .k { font-family: var(--font-display); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
+  .tc-rows .v { font-family: var(--font-body); font-size: 0.68rem; color: var(--fg); line-height: 1.3; }
+
+  .vs { display: flex; align-items: center; justify-content: center; }
+  .vs .word {
+    font-family: var(--font-display); font-size: 0.82rem; color: var(--fg); background: var(--yellow);
+    width: 74px; height: 74px; display: grid; place-items: center; border-radius: 50%;
+    border: 4px solid var(--black); transform: rotate(-6deg);
+  }
+
+  .tc-foot { font-family: var(--font-body); font-size: 0.74rem; color: var(--fg-mid); line-height: 1.4; display: flex; align-items: center; gap: 14px; max-width: 1560px; }
+  .tc-foot .star { font-family: var(--font-display); font-size: 1.05rem; color: var(--fg); }
+  .tc-foot strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="88 Two Ways To Ship">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="tc-pad">
+
+    <div class="tc-head">
+      <div class="tc-eyebrow">Build · Hand the spec to a builder</div>
+      <h1 class="tc-title">Two ways to <span class="hl">ship it.</span></h1>
+    </div>
+
+    <div class="tc-grid">
+
+      <div class="tc-col left">
+        <span class="tc-stamp">App builders</span>
+        <div class="tc-top">
+          <h2>Describe it, deploy it.</h2>
+          <p class="what">Type what you want, watch it appear, hit publish. No setup, nothing to install.</p>
+        </div>
+        <div class="tc-logos">
+          <div class="tc-logo"><img src="../assets/logos/lovable.svg" alt="Lovable"/><span class="nm">Lovable</span></div>
+          <div class="tc-logo"><img src="../assets/logos/replit.svg" alt="Replit"/><span class="nm">Replit</span></div>
+          <div class="tc-logo"><img src="../assets/logos/base44.svg" alt="Base44"/><span class="nm">Base44</span></div>
+        </div>
+        <ul class="tc-rows">
+          <li><span class="k">Best for</span><span class="v">Landing pages, MVPs, prototypes, internal tools.</span></li>
+          <li><span class="k">You get</span><span class="v">A live, hosted web app with a public URL.</span></li>
+          <li><span class="k">Feels like</span><span class="v">Designing: visual, instant, forgiving.</span></li>
+          <li><span class="k">Ceiling</span><span class="v">Great until you need deep custom logic.</span></li>
+        </ul>
+      </div>
+
+      <div class="vs"><span class="word">or</span></div>
+
+      <div class="tc-col alt">
+        <span class="tc-stamp">Code agents</span>
+        <div class="tc-top">
+          <h2>Own the codebase.</h2>
+          <p class="what">An AI engineer in your editor or terminal, writing real files across the whole project.</p>
+        </div>
+        <div class="tc-logos">
+          <div class="tc-logo"><img src="../assets/logos/claude.svg" alt="Claude Code"/><span class="nm">Claude Code</span></div>
+          <div class="tc-logo"><img src="../assets/logos/cursor.svg" alt="Cursor"/><span class="nm">Cursor</span></div>
+          <div class="tc-logo"><img src="../assets/logos/codex.svg" alt="Codex"/><span class="nm">Codex</span></div>
+        </div>
+        <ul class="tc-rows">
+          <li><span class="k">Best for</span><span class="v">Real products, custom logic, existing codebases.</span></li>
+          <li><span class="k">You get</span><span class="v">Actual source code you own and can grow.</span></li>
+          <li><span class="k">Feels like</span><span class="v">Directing an engineer: powerful, less hand-holding.</span></li>
+          <li><span class="k">Ceiling</span><span class="v">As high as software goes.</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="tc-foot">
+      <span class="star">★</span>
+      <span><strong>Rule of thumb:</strong> start with a builder to get something real on screen fast. Move to a code agent when the idea earns it. <strong>Same spec drives both.</strong></span>
+    </div>
+
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

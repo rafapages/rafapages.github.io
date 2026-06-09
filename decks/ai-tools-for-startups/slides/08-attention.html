@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Attention — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .att-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 36px;
+    width: 100%;
+  }
+  .att-sentence-wrap {
+    position: relative;
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  }
+  .att-svg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; overflow: visible;
+  }
+  .att-word {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    border: 4px solid var(--black);
+    border-radius: 14px;
+    padding: 14px 20px;
+    background: white;
+    position: relative;
+    transition: background 0.35s, transform 0.35s;
+  }
+  .att-word.focus {
+    background: var(--yellow);
+    transform: translateY(-6px) scale(1.06);
+  }
+  .att-word.linked {
+    background: #FFFFC5;
+  }
+  .att-caption {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    color: var(--fg-muted);
+    text-align: center;
+    min-height: 2.5em;
+    max-width: 900px;
+    line-height: 1.5;
+  }
+  .att-caption b { color: var(--fg); font-weight: 700; }
+
+  .att-path {
+    fill: none; stroke: #111; stroke-width: 2.5;
+    opacity: 0; stroke-dasharray: 6 5;
+    transition: opacity 0.3s;
+  }
+  .att-path.active {
+    opacity: 0.85;
+    animation: att-dash 1s linear infinite;
+  }
+  @keyframes att-dash { to { stroke-dashoffset: -22; } }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="8 Attention">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">It weighs which words matter to each other</h1>
+    <p class="llm-lede">This is the "transformer" trick: <strong>attention</strong>. For each word, the model looks across the whole sentence and decides which other words give it context.</p>
+
+    <div class="llm-canvas">
+      <div class="att-wrap">
+        <div class="att-sentence-wrap" id="attSentence">
+          <svg class="att-svg" id="attSvg" viewBox="" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="att-word" id="aw0">The</div>
+          <div class="att-word" id="aw1">founder</div>
+          <div class="att-word" id="aw2">pitched</div>
+          <div class="att-word" id="aw3">investors</div>
+          <div class="att-word" id="aw4">because</div>
+          <div class="att-word" id="aw5">she</div>
+          <div class="att-word" id="aw6">needed</div>
+          <div class="att-word" id="aw7">capital</div>
+        </div>
+        <div class="att-caption" id="attCaption"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+<script>
+(function(){
+  var scenes = [
+    { focus: 5, linked: [1], caption: '<b>"she"</b> attends strongly to <b>"founder"</b> — that\'s who "she" refers to.' },
+    { focus: 7, linked: [2, 6], caption: '<b>"capital"</b> connects to <b>"pitched"</b> and <b>"needed"</b>' },
+    { focus: 4, linked: [2, 6], caption: '<b>"because"</b> ties the pitching to the need' }
+  ];
+  var current = 0;
+  var _interval = null;
+
+  function getCenter(el, container) {
+    var er = el.getBoundingClientRect();
+    var cr = container.getBoundingClientRect();
+    return {
+      x: er.left - cr.left + er.width / 2,
+      y: er.top - cr.top + er.height / 2
+    };
+  }
+
+  function drawPaths(focusIdx, linkedIdxs) {
+    var svg = document.getElementById('attSvg');
+    var container = document.getElementById('attSentence');
+    svg.innerHTML = '';
+    var cr = container.getBoundingClientRect();
+    svg.setAttribute('viewBox', '0 0 ' + cr.width + ' ' + cr.height);
+    var focusEl = document.getElementById('aw' + focusIdx);
+    var fc = getCenter(focusEl, container);
+    linkedIdxs.forEach(function(li) {
+      var lEl = document.getElementById('aw' + li);
+      var lc = getCenter(lEl, container);
+      var mx = (fc.x + lc.x) / 2;
+      var my = Math.min(fc.y, lc.y) - 200;
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M' + fc.x + ',' + fc.y + ' Q' + mx + ',' + my + ' ' + lc.x + ',' + lc.y);
+      path.setAttribute('class', 'att-path active');
+      svg.appendChild(path);
+    });
+  }
+
+  function applyScene(s) {
+    for (var i = 0; i < 8; i++) {
+      var el = document.getElementById('aw' + i);
+      el.classList.remove('focus', 'linked');
+    }
+    document.getElementById('aw' + s.focus).classList.add('focus');
+    s.linked.forEach(function(li) {
+      document.getElementById('aw' + li).classList.add('linked');
+    });
+    document.getElementById('attCaption').innerHTML = s.caption;
+    drawPaths(s.focus, s.linked);
+  }
+
+  function startAttention() {
+    if (_interval) clearInterval(_interval);
+    current = 0;
+    applyScene(scenes[current]);
+    _interval = setInterval(function() {
+      current = (current + 1) % scenes.length;
+      applyScene(scenes[current]);
+    }, 2600);
+  }
+
+  function stopAttention() {
+    if (_interval) clearInterval(_interval);
+    _interval = null;
+    for (var i = 0; i < 8; i++) {
+      var el = document.getElementById('aw' + i);
+      if (el) el.classList.remove('focus', 'linked');
+    }
+    var svg = document.getElementById('attSvg');
+    if (svg) svg.innerHTML = '';
+    var cap = document.getElementById('attCaption');
+    if (cap) cap.innerHTML = '';
+  }
+
+  window.startAttention = startAttention;
+  window.stopAttention = stopAttention;
+
+  if (typeof Reveal === 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() { startAttention(); });
+  }
+})();
+</script>
+</body>
+</html>

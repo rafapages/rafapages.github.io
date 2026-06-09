@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>MCP — How Your AI Plugs Into Your Tools — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .mc-wrap {
+    position: relative; z-index: 2;
+    width: 100%; height: 100%;
+    padding: 56px 96px 52px;
+    display: flex; flex-direction: column; min-height: 0;
+  }
+
+  .mc-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow);
+    align-self: flex-start; padding: 7px 16px; border-radius: 8px;
+    transform: rotate(-1.5deg); margin-bottom: 14px;
+  }
+  .mc-title { font-family: var(--font-display); font-size: 1.65rem; line-height: 1.04; color: var(--fg); }
+  .mc-title .hl { white-space: nowrap; }
+  /* two-column body: text on the left, animation on the right */
+  .mc-body { flex: 1; min-height: 0; display: flex; gap: 44px; margin-top: 18px; }
+  .mc-left { flex: 0 0 31%; display: flex; flex-direction: column; justify-content: flex-start; gap: 20px; padding-top: 6px; }
+  .mc-right { flex: 1; min-height: 0; position: relative; }
+
+  .mc-lede { font-family: var(--font-body); font-size: 0.74rem; color: var(--fg-mid); line-height: 1.5; }
+  .mc-lede b { color: var(--fg); font-weight: 700; }
+
+  /* definition box */
+  .mc-def {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+    background: var(--white); border: 3px solid var(--black);
+    border-radius: 14px; padding: 18px 20px;
+  }
+  .mc-def .lab {
+    font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.06em;
+    color: var(--black); background: var(--yellow);
+    padding: 5px 11px; border-radius: 6px; white-space: nowrap; transform: rotate(-1.5deg);
+  }
+  .mc-def .txt { font-family: var(--font-body); font-size: 0.7rem; line-height: 1.45; color: var(--fg-mid); }
+  .mc-def .txt b { color: var(--fg); font-weight: 700; }
+
+  /* diagram */
+  .mc-diagram { position: absolute; inset: 0; }
+  svg.mc-graph { width: 100%; height: 100%; display: block; overflow: visible; }
+
+  /* slot wrappers give the transforms slack so nothing clips at the foreignObject edge */
+  .mc-slot { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+  /* nodes (foreignObject) */
+  .mc-node {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    width: 150px; height: 96px; border-radius: 16px;
+    background: var(--white); border: 2px solid var(--black);
+    transition: background .25s, transform .25s;
+  }
+  .mc-node .emoji { font-size: 26px; line-height: 1; }
+  .mc-node .name { font-family: var(--font-display); font-size: 13px; color: var(--fg); letter-spacing: 0.01em; }
+  .mc-node.lit { background: var(--yellow); transform: translateY(-4px); }
+
+  .mc-hub {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    width: 172px; height: 172px; border-radius: 50%;
+    background: var(--yellow); border: 4px solid var(--black);
+    color: var(--fg); text-align: center;
+  }
+  .mc-hub .h-emoji { font-size: 38px; line-height: 1; }
+  .mc-hub .h-name { font-family: var(--font-display); font-size: 14px; line-height: 1; }
+  .mc-hub.pulsing { animation: mcHubPulse 1.4s ease-in-out infinite; }
+  @keyframes mcHubPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+  /* MCP ring */
+  .mc-ring { fill: none; stroke: var(--black); stroke-width: 2; stroke-dasharray: 7 7; opacity: .35; }
+  .mc-ring-label { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.1em; fill: var(--black); }
+  .mc-ring-label-bg { fill: var(--white); }
+
+  /* spokes */
+  .mc-spoke { stroke: #c8ccd4; stroke-width: 2; fill: none; }
+
+  /* packets */
+  .mc-packet { opacity: 0; }
+  .mc-packet.req circle { fill: var(--black); }
+  .mc-packet.res circle { fill: var(--yellow); stroke: var(--black); stroke-width: 2; }
+  .mc-packet .plabel { font-family: var(--font-display); font-size: 11px; fill: var(--fg); }
+
+  /* caption */
+  .mc-caption {
+    position: absolute; left: 50%; bottom: 2px; transform: translateX(-50%);
+    font-family: var(--font-body); font-size: 0.66rem; color: var(--fg);
+    background: var(--white); border: 2px solid var(--black); border-radius: 999px;
+    padding: 9px 22px; white-space: nowrap; transition: opacity .3s;
+  }
+  .mc-caption b { color: var(--fg); font-weight: 700; }
+  .mc-caption .res-word { background: var(--yellow); padding: 1px 6px; border-radius: 4px; font-weight: 700; }
+
+  /* footer contrast cards */
+  .mc-footer { display: flex; gap: 18px; align-items: stretch; margin-top: 14px; }
+  .mc-fcard {
+    flex: 1; border: 3px solid var(--black); border-radius: 12px; padding: 12px 18px;
+    font-family: var(--font-body); font-size: 0.62rem; line-height: 1.4; color: var(--fg-mid);
+  }
+  .mc-fcard.a { background: var(--gray1); }
+  .mc-fcard.b { background: var(--yellow); color: var(--fg); }
+  .mc-fcard b { color: var(--fg); font-weight: 700; }
+  .mc-fcard .ftitle {
+    font-family: var(--font-display); font-size: 0.56rem; letter-spacing: 0.04em;
+    color: var(--fg); margin-bottom: 5px; display: block;
+  }
+
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="82 MCP">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="mc-wrap">
+    <span class="mc-eyebrow">Connect · MCP</span>
+    <h1 class="mc-title">MCP: how your AI <span class="hl">plugs into</span> your tools</h1>
+
+    <div class="mc-body">
+
+      <div class="mc-left">
+        <p class="mc-lede">Automation tools are <b>rails you lay down in advance</b>: "when X happens, do Y." </p>
+        <p class="mc-lede">MCP is different: it hands the AI a <b>toolbox</b> and lets it decide what to use, live, based on what you ask.</p>
+
+        <div class="mc-def">
+          <span class="lab">MCP =</span>
+          <span class="txt">a <b>common language</b> that lets AI assistants connect to your tools and data, so instead of copy-pasting, the AI can reach into <b>Gmail, your calendar, or Slack</b> directly.</span>
+        </div>
+      </div>
+
+      <div class="mc-right">
+        <div class="mc-diagram">
+          <svg class="mc-graph" id="mc-graph" viewBox="0 0 1020 680" preserveAspectRatio="xMidYMid meet">
+            <circle class="mc-ring" id="mc-ring" cx="510" cy="340" r="138"/>
+            <rect class="mc-ring-label-bg" x="424" y="182" width="172" height="20" rx="4"/>
+            <text class="mc-ring-label" x="510" y="197" text-anchor="middle">MCP LAYER</text>
+
+            <g id="mc-spokes"></g>
+            <g id="mc-packets"></g>
+            <g id="mc-nodes"></g>
+
+            <foreignObject x="400" y="230" width="220" height="220">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="mc-slot">
+                <div class="mc-hub" id="mc-hub">
+                  <span class="h-emoji">🤖</span>
+                  <span class="h-name">AI assistant</span>
+                </div>
+              </div>
+            </foreignObject>
+          </svg>
+          <div class="mc-caption" id="mc-caption">The AI sits in the middle. Watch it reach out through MCP&hellip;</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="mc-footer">
+      <div class="mc-fcard a">
+        <span class="ftitle">Automation tools — Zapier / Make / n8n</span>
+        <b>Pre-built pipelines.</b> You design the flow ahead of time. Predictable, repeatable, runs without you.
+      </div>
+      <div class="mc-fcard b">
+        <span class="ftitle">MCP — the AI's toolbox</span>
+        <b>The AI chooses in the moment.</b> You ask in plain language; it decides which tools to call and in what order.
+      </div>
+    </div> -->
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const cx=510, cy=340, R=138;
+  const nodeW=150, nodeH=96;
+  const NODE_RX=400, NODE_RY=262;   // elliptical spread — wider than tall, fills the available space
+  const PAD=26;                     // slack inside each foreignObject so transforms don't clip
+  const PKT_DUR=1700;   // packet travel time — slow enough to read the label
+  const services=[
+    {emoji:'📧', name:'Gmail',    ang:-150},
+    {emoji:'📅', name:'Calendar', ang:-90},
+    {emoji:'💬', name:'Slack',    ang:-30},
+    {emoji:'🗂️', name:'Jira',     ang:30},
+    {emoji:'🗄️', name:'Database', ang:90},
+    {emoji:'📁', name:'Drive',    ang:150},
+  ];
+
+  const spokesG=document.getElementById('mc-spokes');
+  const nodesG=document.getElementById('mc-nodes');
+  const packetsG=document.getElementById('mc-packets');
+  const caption=document.getElementById('mc-caption');
+  const hub=document.getElementById('mc-hub');
+
+  const nodes=services.map((s,i)=>{
+    const rad=s.ang*Math.PI/180;
+    const nx=cx+Math.cos(rad)*NODE_RX;
+    const ny=cy+Math.sin(rad)*NODE_RY;
+    // ring crossing point: along the line from hub centre toward this node
+    const dir=Math.atan2(ny-cy, nx-cx);
+    const rx=cx+Math.cos(dir)*R;
+    const ry=cy+Math.sin(dir)*R;
+
+    const line=document.createElementNS(NS,'line');
+    line.setAttribute('class','mc-spoke');
+    line.setAttribute('x1',rx); line.setAttribute('y1',ry);
+    line.setAttribute('x2',nx); line.setAttribute('y2',ny);
+    spokesG.appendChild(line);
+
+    // foreignObject is padded larger than the visible box so the lift transform never clips
+    const foW=nodeW+PAD*2, foH=nodeH+PAD*2;
+    const fo=document.createElementNS(NS,'foreignObject');
+    fo.setAttribute('x',nx-foW/2); fo.setAttribute('y',ny-foH/2);
+    fo.setAttribute('width',foW); fo.setAttribute('height',foH);
+    const slot=document.createElement('div');
+    slot.setAttribute('xmlns','http://www.w3.org/1999/xhtml');
+    slot.className='mc-slot';
+    const div=document.createElement('div');
+    div.className='mc-node'; div.id='mc-node'+i;
+    div.innerHTML='<span class="emoji">'+s.emoji+'</span><span class="name">'+s.name+'</span>';
+    slot.appendChild(div);
+    fo.appendChild(slot);
+    nodesG.appendChild(fo);
+
+    return {...s, nx, ny, rx, ry, el:div};
+  });
+
+  // tracked timers so the animation can be stopped cleanly between slide visits
+  let timers=[];
+  let running=false;
+  let stopped=false;
+  const wait=ms=>new Promise(r=>{ const id=setTimeout(r,ms); timers.push(id); });
+
+  function sendPacket(from,to,kind,label,dur){
+    return new Promise(res=>{
+      const g=document.createElementNS(NS,'g');
+      g.setAttribute('class','mc-packet '+kind);
+      const c=document.createElementNS(NS,'circle');
+      c.setAttribute('r','7');
+      const t=document.createElementNS(NS,'text');
+      t.setAttribute('class','plabel');
+      t.setAttribute('text-anchor','middle');
+      t.setAttribute('dy','-12');
+      t.textContent=label;
+      g.appendChild(c); g.appendChild(t);
+      packetsG.appendChild(g);
+
+      const start=performance.now();
+      function frame(now){
+        if(stopped){ g.remove(); res(); return; }
+        const p=Math.min(1,(now-start)/dur);
+        const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+        const x=from.x+(to.x-from.x)*e;
+        const y=from.y+(to.y-from.y)*e;
+        c.setAttribute('cx',x); c.setAttribute('cy',y);
+        t.setAttribute('x',x); t.setAttribute('y',y);
+        g.style.opacity = p<.1 ? p/.1 : (p>.9 ? (1-p)/.1 : 1);
+        if(p<1) requestAnimationFrame(frame);
+        else { g.remove(); res(); }
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  async function roundTrip(node, reqLabel, resLabel, capHTML){
+    caption.style.opacity=0;
+    await wait(180);
+    caption.innerHTML=capHTML;
+    caption.style.opacity=1;
+    await sendPacket({x:cx,y:cy},{x:node.nx,y:node.ny},'req',reqLabel,PKT_DUR);
+    node.el.classList.add('lit');
+    await wait(450);
+    await sendPacket({x:node.nx,y:node.ny},{x:cx,y:cy},'res',resLabel,PKT_DUR);
+    await wait(350);
+    node.el.classList.remove('lit');
+  }
+
+  async function runSequence(){
+    if(running) return;
+    running=true; stopped=false;
+    hub.classList.add('pulsing');
+
+    await wait(400);
+    if(stopped){ cleanup(); return; }
+
+    await roundTrip(nodes[1], 'when?', 'free 3pm',
+      'AI asks <b>Calendar</b>: when am I free? <span class="res-word">3pm tomorrow</span>');
+    await roundTrip(nodes[3], 'ticket?', 'BUG-42',
+      'AI asks <b>Jira</b>: what\'s the open bug? <span class="res-word">ticket BUG-42</span>');
+    await roundTrip(nodes[0], 'invite', 'sent',
+      'AI tells <b>Gmail</b>: send a calendar invite <span class="res-word">done</span>');
+    await roundTrip(nodes[2], 'notify', 'posted',
+      'AI tells <b>Slack</b>: let the team know <span class="res-word">posted</span>');
+
+    caption.style.opacity=0;
+    await wait(200);
+    caption.innerHTML='One request in chat &rarr; the AI <b>orchestrated four tools</b> on its own. That\'s MCP.';
+    caption.style.opacity=1;
+
+    hub.classList.remove('pulsing');
+    running=false;
+  }
+
+  function cleanup(){
+    running=false;
+    hub.classList.remove('pulsing');
+    nodes.forEach(n=>n.el.classList.remove('lit'));
+  }
+
+  async function loop(){
+    await runSequence();
+    if(stopped) return;
+    await wait(3500);
+    if(stopped) return;
+    loop();
+  }
+
+  // lifecycle hooks (match the deck's animation pattern)
+  window.startMcp=function(){ stopped=false; if(!running) loop(); };
+  window.stopMcp=function(){
+    stopped=true;
+    timers.forEach(clearTimeout); timers=[];
+    cleanup();
+  };
+
+  // autostart when opened standalone; Reveal calls startMcp() in the deck
+  if (typeof Reveal === 'undefined') loop();
+})();
+</script>
+</body>
+</html>

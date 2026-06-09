@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>The Spec-First Loop — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .sf-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow);
+    align-self: flex-start; padding: 8px 18px; border-radius: 8px;
+    transform: rotate(-1.5deg); margin-bottom: 22px;
+  }
+  .sf-flow { display: flex; align-items: stretch; gap: 16px; justify-content: center; width: 100%; }
+  .sf-step {
+    flex: 1; max-width: 340px;
+    border: 4px solid var(--black); border-radius: 16px;
+    padding: 24px 26px 26px; background: white;
+    display: flex; flex-direction: column; gap: 10px; position: relative;
+  }
+  .sf-step.key { background: var(--yellow); transform: rotate(-1deg); }
+  .sf-num {
+    width: 46px; height: 46px; background: var(--black); color: var(--yellow);
+    border-radius: 10px; display: grid; place-items: center;
+    font-family: var(--font-display); font-size: 0.9rem; transform: rotate(-3deg);
+  }
+  .sf-step.key .sf-num { background: white; color: var(--fg); }
+  .sf-step h3 { font-family: var(--font-display); font-size: 1rem; color: var(--fg); margin: 4px 0 0; }
+  .sf-step p { font-family: var(--font-body); font-size: 0.66rem; color: var(--fg-mid); line-height: 1.45; margin: 0; }
+  .sf-step.key p { color: var(--fg); }
+  .sf-step p strong { color: var(--fg); font-weight: 700; }
+  .sf-arrow { align-self: center; }
+  .sf-arrow svg { width: 56px; height: 30px; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="86 Spec-First Loop">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <span class="sf-eyebrow">Build · The workflow</span>
+    <h1 class="llm-title">Don't start by coding. Start by <span class="hl">spec-ing</span></h1>
+    <p class="llm-lede">The mistake is to throw "build me an app" at the AI and hope. The pros do one step first: they write down exactly what they want, then hand that to the builder.</p>
+
+    <div class="llm-canvas">
+      <div class="sf-flow">
+
+        <div class="sf-step">
+          <div class="sf-num">1</div>
+          <h3>Idea</h3>
+          <p>A real problem you have, like <strong>"a tracker for my customer interviews."</strong></p>
+        </div>
+
+        <div class="sf-arrow">
+          <svg viewBox="0 0 70 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 16 Q22 12 44 16 Q60 19 66 15" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M56 7 L68 15 L56 23" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="sf-step key">
+          <div class="sf-num">2</div>
+          <h3>Spec</h3>
+          <p>Write the <strong>what</strong> with Claude: the pages, data and behaviour, as a markdown doc or HTML mockup. <strong>This is the work.</strong></p>
+        </div>
+
+        <div class="sf-arrow">
+          <svg viewBox="0 0 70 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 16 Q22 12 44 16 Q60 19 66 15" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M56 7 L68 15 L56 23" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="sf-step">
+          <div class="sf-num">3</div>
+          <h3>Build</h3>
+          <p>Hand the spec to <strong>Claude Code or Lovable.</strong> It scaffolds the whole thing from your doc.</p>
+        </div>
+
+        <div class="sf-arrow">
+          <svg viewBox="0 0 70 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 16 Q22 12 44 16 Q60 19 66 15" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M56 7 L68 15 L56 23" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="sf-step">
+          <div class="sf-num">4</div>
+          <h3>Iterate</h3>
+          <p>Try it, point at what's wrong, <strong>update the spec</strong>, regenerate. Repeat until it's right.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="llm-note"><strong>Why it works:</strong> a vague prompt gives vague software. A clear spec is the difference between a toy and a tool, and it keeps the AI on the rails as the project grows.</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

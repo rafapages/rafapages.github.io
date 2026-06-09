@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Examples — Show, don't just tell — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .ex-pad {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: 96px 140px 92px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+  .ex-head { display: flex; flex-direction: column; gap: 14px; }
+  .ex-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+  }
+  .ex-title {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    line-height: 0.96;
+    color: var(--fg);
+  }
+
+  .ex-flow {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 130px 0.95fr;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* the teaching set */
+  .ex-set {
+    border: 4px solid var(--black);
+    border-radius: 18px;
+    background: var(--gray1);
+    padding: 30px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transform: rotate(-0.5deg);
+    position: relative;
+  }
+  .ex-set-cap {
+    position: absolute;
+    top: -26px; left: 30px;
+    background: var(--white);
+    border: 4px solid var(--black);
+    border-radius: 10px;
+    padding: 8px 18px;
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+  }
+  /* one approved example = a complete pair (their message + your reply) */
+  .ex-pair {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "in   lab"
+      "reply reply";
+    align-items: start;
+    gap: 8px 14px;
+    background: var(--white);
+    border: 3px solid var(--black);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .ex-in {
+    grid-area: in;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--fg-muted);
+    line-height: 1.25;
+  }
+  .ex-reply {
+    grid-area: reply;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--fg);
+    line-height: 1.25;
+  }
+  .ex-lab {
+    grid-area: lab;
+    justify-self: end;
+    font-family: var(--font-display);
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+    border: 3px solid var(--black);
+    white-space: nowrap;
+    background: var(--yellow);
+    color: var(--fg);
+  }
+
+  .ex-arrow { display: grid; place-items: center; }
+  .ex-arrow svg { width: 116px; height: 56px; }
+  .ex-arrow-cap {
+    font-family: var(--font-display);
+    font-size: 0.5rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    text-align: center;
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+
+  /* the live case: a new message comes in, the model answers in your voice */
+  .ex-live {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: rotate(0.6deg);
+  }
+  .ex-card {
+    border: 4px solid var(--black);
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex; flex-direction: column;
+    gap: 8px;
+  }
+  .ex-card-cap {
+    font-family: var(--font-display);
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .ex-new { background: var(--gray1); }
+  .ex-new .ex-card-msg {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--fg);
+    line-height: 1.3;
+  }
+  .ex-answer { background: var(--black); border-color: var(--black); }
+  .ex-answer .ex-card-cap { color: var(--yellow); }
+  .ex-answer .ex-card-msg {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  .ex-tween { display: grid; place-items: center; }
+  .ex-tween svg { width: 30px; height: 34px; }
+
+  .ex-blob {
+    position: absolute; top: -50px; right: -80px;
+    width: 280px; height: 170px; z-index: 0;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="30 Examples">
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <svg class="ex-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="ex-pad">
+
+    <div class="ex-head">
+      <div class="ex-eyebrow">RICCE — the E is for Examples</div>
+      <h1 class="ex-title"><span class="hl">Show</span> it, don't just tell it.</h1>
+    </div>
+
+    <div class="ex-flow">
+
+      <div class="ex-set">
+        <span class="ex-set-cap">A few replies you've approved</span>
+        <div class="ex-pair">
+          <span class="ex-in">“Refund please — I never used it.”</span>
+          <span class="ex-lab">✓ approved</span>
+          <span class="ex-reply">↳ “Totally fair, Sam — refund's already on its way. Anything else I can fix?”</span>
+        </div>
+        <div class="ex-pair">
+          <span class="ex-in">“Found a bug, the export is broken.”</span>
+          <span class="ex-lab">✓ approved</span>
+          <span class="ex-reply">↳ “Ugh, thanks for flagging it. Fix ships today — here's a credit for the trouble.”</span>
+        </div>
+      </div>
+
+      <div class="ex-arrow">
+        <svg viewBox="0 0 116 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 28 Q54 20 100 28" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M86 17 L104 28 L86 39" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="ex-arrow-cap">learns<br/>your voice</span>
+      </div>
+
+      <div class="ex-live">
+        <div class="ex-card ex-new">
+          <span class="ex-card-cap">New message in</span>
+          <span class="ex-card-msg">“Cancelling — this never worked for us.”</span>
+        </div>
+        <div class="ex-tween">
+          <svg viewBox="0 0 30 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M15 4 L15 26" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M6 19 L15 29 L24 19" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="ex-card ex-answer">
+          <span class="ex-card-cap">Model's reply — in your voice</span>
+          <span class="ex-card-msg">“Gutted to see you go, and sorry it let you down. Tell me what broke and I'll make it right — or get you a clean refund today.”</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+</div>
+</body>
+</html>

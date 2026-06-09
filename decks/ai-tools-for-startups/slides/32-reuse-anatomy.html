@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Package it once — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .an-pad {
+    position: relative;
+    padding: 88px 120px 88px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    gap: 44px;
+    z-index: 2;
+    box-sizing: border-box;
+  }
+  .an-head { display: flex; flex-direction: column; gap: 14px; }
+  .an-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+  }
+  .an-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 0.96;
+    color: var(--fg);
+  }
+  .an-sub {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--fg-mid);
+    line-height: 1.45;
+    max-width: 1200px;
+  }
+
+  .an-stage {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 56px 1fr 56px 1fr 86px 1fr;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .an-part {
+    border: 3px solid var(--black);
+    border-radius: 18px;
+    background: var(--white);
+    padding: 30px 30px;
+    display: flex; flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+  }
+  .an-part:nth-child(3) { background: var(--gray1); }
+  .an-mono {
+    width: 60px; height: 60px;
+    background: var(--yellow);
+    border: 4px solid var(--black);
+    border-radius: 12px;
+    display: grid; place-items: center;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    line-height: 1;
+    color: var(--fg);
+    transform: rotate(-3deg);
+  }
+  .an-part h3 {
+    font-family: var(--font-display);
+    font-size: 0.95em;
+    line-height: 1.05;
+    color: var(--fg);
+  }
+  .an-part p {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--fg-mid);
+    line-height: 1.45;
+  }
+  .an-part p em { font-style: italic; color: var(--fg); font-weight: 700; }
+
+  .an-join {
+    display: grid; place-items: center;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--fg-muted);
+  }
+  .an-arrow { display: grid; place-items: center; }
+  .an-arrow svg { width: 64px; height: 40px; }
+
+  .an-result {
+    border: 4px solid var(--black);
+    border-radius: 18px;
+    background: var(--black);
+    color: var(--white);
+    padding: 30px 28px;
+    display: flex; flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+    transform: rotate(0.6deg);
+    min-width: 0;
+  }
+  .an-result .tag {
+    align-self: flex-start;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+  }
+  .an-result h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    line-height: 1.1;
+    color: var(--white);
+  }
+  .an-result p {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: #cfcfcf;
+    line-height: 1.45;
+  }
+
+  .an-blob {
+    position: absolute; top: -50px; right: -80px;
+    width: 280px; height: 170px; z-index: 0;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="32 Package it once">
+
+  <svg class="an-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <div class="an-pad">
+
+    <div class="an-head">
+      <div class="an-eyebrow">The shared idea</div>
+      <h1 class="an-title">Package it <span class="hl">once.</span> Reuse it forever.</h1>
+      <p class="an-sub">Whether you call it a GPT or a Skill, the recipe is the same three parts.</p>
+    </div>
+
+    <div class="an-stage">
+
+      <div class="an-part">
+        <div class="an-mono">I</div>
+        <h3>Instructions</h3>
+        <p>The how-to: role, rules, tone, the steps to follow.</p>
+      </div>
+
+      <div class="an-join">+</div>
+
+      <div class="an-part">
+        <div class="an-mono">K</div>
+        <h3>Knowledge</h3>
+        <p>The reference material: brand guides, rubrics, past examples.</p>
+      </div>
+
+      <div class="an-join">+</div>
+
+      <div class="an-part">
+        <div class="an-mono">A</div>
+        <h3>Actions</h3>
+        <p>The things it can <em>do</em>: read a file, search, fill a document.</p>
+      </div>
+
+      <div class="an-arrow">
+        <svg viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 20 Q30 14 54 20" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M42 11 L58 20 L42 29" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="an-result">
+        <span class="tag">The payoff</span>
+        <h3>A reusable assistant</h3>
+        <p>Set up once, call on anytime — no re-explaining.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+</div>
+</body>
+</html>

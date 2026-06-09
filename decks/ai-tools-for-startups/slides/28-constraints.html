@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Constraints — Tell it what NOT to do — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .con-pad {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+    padding: 96px 140px 92px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+  .con-head { display: flex; flex-direction: column; gap: 14px; }
+  .con-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+  }
+  .con-title {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    line-height: 0.96;
+    color: var(--fg);
+  }
+
+  .con-board {
+    flex: 1;
+    position: relative;
+    border: 4px solid var(--black);
+    border-radius: 18px;
+    background: var(--white);
+    padding: 46px 54px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    justify-content: center;
+    transform: rotate(-0.4deg);
+  }
+  .con-tab {
+    position: absolute;
+    top: -28px; left: 48px;
+    background: var(--yellow);
+    border: 4px solid var(--black);
+    border-radius: 10px;
+    padding: 10px 22px;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+  }
+
+  .con-rule {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+  .con-mark { flex: 0 0 auto; width: 46px; height: 46px; }
+  .con-text {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--fg);
+    line-height: 1.25;
+  }
+  .con-text span { color: var(--fg-muted); font-weight: 400; }
+  .con-rule + .con-rule {
+    border-top: 2px dashed var(--gray2);
+    padding-top: 22px;
+  }
+
+  .con-blob {
+    position: absolute; top: -50px; right: -80px;
+    width: 280px; height: 170px; z-index: 0;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="28 Constraints">
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <svg class="con-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="con-pad">
+
+    <div class="con-head">
+      <div class="con-eyebrow">RICCE — Constraints</div>
+      <h1 class="con-title">Tell it what<br> <span class="hl">NOT</span> to do.</h1>
+    </div>
+
+    <div class="con-board">
+      <span class="con-tab">The rules</span>
+
+      <div class="con-rule">
+        <svg class="con-mark" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="23" cy="23" r="18" stroke="#111" stroke-width="3" fill="none"/>
+          <path d="M11 11 L35 35" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <p class="con-text">Don't mention the user. <span>Speak about the work, not the person.</span></p>
+      </div>
+
+      <div class="con-rule">
+        <svg class="con-mark" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="23" cy="23" r="18" stroke="#111" stroke-width="3" fill="none"/>
+          <path d="M11 11 L35 35" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <p class="con-text">Keep every sentence short. <span>No rambling, no filler.</span></p>
+      </div>
+
+      <div class="con-rule">
+        <svg class="con-mark" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 25 L20 35 L37 13" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <p class="con-text">Use decimals in the score. <span>8.3, not "about an 8".</span></p>
+      </div>
+
+      <div class="con-rule">
+        <svg class="con-mark" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 25 L20 35 L37 13" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <p class="con-text">Grade in as much depth as possible. <span>This is where it gets useful.</span></p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+</div>
+</body>
+</html>

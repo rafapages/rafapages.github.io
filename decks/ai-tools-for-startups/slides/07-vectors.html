@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Vectors — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .vec-compare {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+  }
+
+  /* Dashed border groups the similar pair */
+  .vec-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 36px;
+    border: 3px dashed #bbb;
+    border-radius: 18px;
+    padding: 24px 28px 24px;
+    position: relative;
+  }
+  .vec-group-label {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    padding: 0 10px;
+    font-family: var(--font-display);
+    font-size: 0.42rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #aaa;
+    white-space: nowrap;
+  }
+
+  .vec-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .vec-label {
+    font-family: var(--font-display);
+    font-size: 0.48rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .vec-chip {
+    font-family: var(--font-display);
+    font-size: 1.0rem;
+    letter-spacing: 0.04em;
+    border: 4px solid var(--black);
+    border-radius: 14px;
+    padding: 16px 28px;
+    background: var(--white);
+    color: var(--fg);
+  }
+
+  .vec-bars { display: flex; flex-direction: column; gap: 9px; }
+  .vbar {
+    height: 13px;
+    border-radius: 3px;
+    width: 0;
+    animation: bar-grow 0.55s forwards cubic-bezier(.2,.8,.2,1);
+  }
+  /* fixed color per dimension — same slot, same color across all three words */
+  .vbar:nth-child(1) { background: #D94F2B; }
+  .vbar:nth-child(2) { background: #E87A30; }
+  .vbar:nth-child(3) { background: #FFE234; }
+  .vbar:nth-child(4) { background: #C9A227; }
+  .vbar:nth-child(5) { background: #E85D2B; }
+  .vbar:nth-child(6) { background: #F0A830; }
+
+  /* revenue — base pattern */
+  .revenue .vbar:nth-child(1) { animation-delay: 0.40s; --w: 195px; }
+  .revenue .vbar:nth-child(2) { animation-delay: 0.55s; --w:  85px; }
+  .revenue .vbar:nth-child(3) { animation-delay: 0.70s; --w: 235px; }
+  .revenue .vbar:nth-child(4) { animation-delay: 0.85s; --w:  55px; }
+  .revenue .vbar:nth-child(5) { animation-delay: 1.00s; --w: 170px; }
+  .revenue .vbar:nth-child(6) { animation-delay: 1.15s; --w: 130px; }
+
+  /* profit — nearly identical pattern */
+  .profit .vbar:nth-child(1) { animation-delay: 0.45s; --w: 185px; }
+  .profit .vbar:nth-child(2) { animation-delay: 0.60s; --w:  95px; }
+  .profit .vbar:nth-child(3) { animation-delay: 0.75s; --w: 220px; }
+  .profit .vbar:nth-child(4) { animation-delay: 0.90s; --w:  65px; }
+  .profit .vbar:nth-child(5) { animation-delay: 1.05s; --w: 180px; }
+  .profit .vbar:nth-child(6) { animation-delay: 1.20s; --w: 140px; }
+
+  /* banana — inverted / very different */
+  .banana .vbar:nth-child(1) { animation-delay: 0.50s; --w:  45px; }
+  .banana .vbar:nth-child(2) { animation-delay: 0.65s; --w: 225px; }
+  .banana .vbar:nth-child(3) { animation-delay: 0.80s; --w:  80px; }
+  .banana .vbar:nth-child(4) { animation-delay: 0.95s; --w: 200px; }
+  .banana .vbar:nth-child(5) { animation-delay: 1.10s; --w:  30px; }
+  .banana .vbar:nth-child(6) { animation-delay: 1.25s; --w: 255px; }
+
+  .vec-separator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    opacity: 0;
+    animation: fade-in 0.4s 1.5s forwards;
+  }
+  .sep-sym {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--fg-muted);
+  }
+  .sep-label {
+    font-family: var(--font-display);
+    font-size: 0.42rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    white-space: nowrap;
+  }
+
+  @keyframes bar-grow { to { width: var(--w); } }
+  @keyframes fade-in  { to { opacity: 1; } }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="7 Vectors">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">Similar words get similar numbers</h1>
+    <p class="llm-lede">Every token maps to a long list of numbers — an <strong>embedding</strong>. Words used in similar contexts get similar numbers and land close together; unrelated words land far apart.</p>
+
+    <div class="llm-canvas">
+      <div class="vec-compare">
+
+        <!-- Similar pair -->
+        <div class="vec-group">
+          <span class="vec-group-label">similar meaning → similar numbers</span>
+
+          <div class="vec-item revenue">
+            <span class="vec-label">word</span>
+            <div class="vec-chip">revenue</div>
+            <div class="vec-bars">
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+            </div>
+          </div>
+
+          <div class="vec-item profit">
+            <span class="vec-label">word</span>
+            <div class="vec-chip">profit</div>
+            <div class="vec-bars">
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+              <div class="vbar"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Separator -->
+        <div class="vec-separator">
+          <span class="sep-sym">≠</span>
+          <span class="sep-label">far apart</span>
+        </div>
+
+        <!-- Outlier -->
+        <div class="vec-item banana">
+          <span class="vec-label">word</span>
+          <div class="vec-chip">banana</div>
+          <div class="vec-bars">
+            <div class="vbar"></div>
+            <div class="vbar"></div>
+            <div class="vbar"></div>
+            <div class="vbar"></div>
+            <div class="vbar"></div>
+            <div class="vbar"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="llm-note"><strong>Meaning becomes geometry.</strong> The model "knows" revenue and profit are related without being told — it learned it from seeing them used in similar contexts.</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

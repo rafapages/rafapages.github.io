@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Writing The Spec — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .ws-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow);
+    align-self: flex-start; padding: 8px 18px; border-radius: 8px;
+    transform: rotate(-1.5deg); margin-bottom: 22px;
+  }
+  .ws-cols { display: flex; gap: 48px; width: 100%; align-self: stretch; align-items: stretch; min-height: 0; }
+
+  /* left: borderless checklist, rows spread to fill the height, ticks in sync with the doc */
+  .ws-col {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 4px 4px 4px 8px;
+  }
+  .ws-col h3 {
+    font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--fg-muted); margin: 0;
+  }
+  .ws-list { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; }
+  .ws-list li {
+    flex: 1; display: flex; align-items: center; gap: 18px;
+    font-family: var(--font-body); font-size: 0.78rem; color: var(--fg-mid); line-height: 1.35;
+    border-bottom: 2px solid var(--gray1);
+    opacity: 0.45; transition: opacity .35s;
+  }
+  .ws-list li:last-child { border-bottom: none; }
+  .ws-list li.done { opacity: 1; }
+  .ws-list li strong { color: var(--fg); font-weight: 700; }
+  .ws-tick {
+    width: 30px; height: 30px; flex-shrink: 0;
+    background: var(--gray1); border: 3px solid var(--black);
+    border-radius: 6px 14px 8px 12px / 10px 6px 12px 8px; transform: rotate(-8deg);
+    display: grid; place-items: center; transition: background .25s;
+  }
+  .ws-list li.done .ws-tick { background: var(--yellow); }
+  .ws-tick svg { width: 19px; height: 19px; opacity: 0; transform: scale(.4); transition: opacity .25s, transform .25s; }
+  .ws-list li.done .ws-tick svg { opacity: 1; transform: scale(1); }
+
+  /* right: the spec doc, filled in progressively */
+  .ws-doc {
+    flex: 0 0 44%; min-height: 0; overflow: hidden;
+    background: var(--gray1);
+    border: 4px solid var(--black); border-radius: 16px;
+    padding: 18px 24px; display: flex; flex-direction: column; gap: 3px;
+    font-family: var(--font-body); font-size: 0.6rem; line-height: 1.4; color: var(--fg-mid);
+  }
+  .ws-doc .line { opacity: 0; transform: translateY(4px); transition: opacity .25s ease, transform .25s ease; }
+  .ws-doc .line.show { opacity: 1; transform: none; }
+  .ws-doc .file {
+    font-family: var(--font-display); font-size: 0.54rem; letter-spacing: 0.12em;
+    color: var(--fg-muted); margin-bottom: 6px;
+  }
+  .ws-doc .h { font-family: var(--font-display); font-size: 0.68rem; color: var(--fg); margin: 4px 0 0; }
+  .ws-doc .b { color: var(--fg); font-weight: 700; }
+  .ws-doc .m { color: var(--fg-muted); }
+  .ws-caret {
+    display: inline-block; width: 8px; height: 1em; vertical-align: -2px;
+    background: var(--fg); margin-left: 3px; animation: wsBlink 1s steps(1) infinite;
+  }
+  @keyframes wsBlink { 50% { opacity: 0; } }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="87 Writing The Spec">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <span class="ws-eyebrow">Build · The real skill</span>
+    <h1 class="llm-title">A good spec is just <span class="hl">RICCE</span> for software</h1>
+    <p class="llm-lede">Same muscle you built for prompting: be explicit up front. Draft it <em>with</em> Claude. Describe the idea, let it ask you questions, and refine until the doc is unambiguous.</p>
+
+    <div class="llm-canvas">
+      <div class="ws-cols">
+
+        <div class="ws-col">
+          <h3>What a spec should pin down</h3>
+          <ul class="ws-list">
+            <li data-step="0"><span class="ws-tick"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 13 l4 4 L19 7" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>What it does:</strong> the one job, in a sentence.</span></li>
+            <li data-step="1"><span class="ws-tick"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 13 l4 4 L19 7" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Who uses it</strong> &amp; the screens they see.</span></li>
+            <li data-step="2"><span class="ws-tick"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 13 l4 4 L19 7" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>The data:</strong> what's stored, what's shown.</span></li>
+            <li data-step="3"><span class="ws-tick"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 13 l4 4 L19 7" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Look &amp; feel:</strong> style, references, tone.</span></li>
+            <li data-step="4"><span class="ws-tick"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 13 l4 4 L19 7" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Out of scope:</strong> what NOT to build yet.</span></li>
+          </ul>
+        </div>
+
+        <div class="ws-doc" id="ws-doc">
+          <div class="file line" data-step="intro">interview-tracker.md</div>
+          <div class="h line" data-step="intro"># Customer Interview Tracker</div>
+          <div class="line" data-step="0"><span class="b">Goal:</span> <span class="m">log &amp; tag user interviews; spot themes.</span></div>
+          <div class="h line" data-step="1">## Screens</div>
+          <div class="m line" data-step="1">1. List of interviews (date, person, tags)</div>
+          <div class="m line" data-step="1">2. Detail view with notes + key quotes</div>
+          <div class="h line" data-step="2">## Data</div>
+          <div class="m line" data-step="2">interview: name, company, date, notes, tags[]</div>
+          <div class="h line" data-step="3">## Style</div>
+          <div class="m line" data-step="3">clean, light, one accent colour. No login v1.</div>
+          <div class="h line" data-step="4">## Not now</div>
+          <div class="m line" data-step="4">auth, export, AI summaries</div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="llm-note"><strong>Keep the spec as the source of truth.</strong> When you want a change, change the doc, not a pile of follow-up chat messages. It's how the build stays coherent.</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+
+<script>
+(function(){
+  const doc = document.getElementById('ws-doc');
+  const order = ['intro','0','1','2','3','4'];
+  const caret = document.createElement('span');
+  caret.className = 'ws-caret';
+
+  let timers = [];
+  let stopped = false;
+  let running = false;
+  const wait = ms => new Promise(r => { const id = setTimeout(r, ms); timers.push(id); });
+
+  function reset(){
+    caret.remove();
+    doc.querySelectorAll('.line').forEach(l => l.classList.remove('show'));
+    document.querySelectorAll('.ws-list li').forEach(li => li.classList.remove('done'));
+  }
+
+  async function run(){
+    if(running) return;
+    running = true; stopped = false;
+    reset();
+    await wait(500);
+    for(const step of order){
+      if(stopped){ running = false; return; }
+      const lines = doc.querySelectorAll('.line[data-step="' + step + '"]');
+      for(const ln of lines){
+        ln.classList.add('show');
+        ln.appendChild(caret);   // blinking caret hops to the line being written
+        await wait(230);
+        if(stopped){ running = false; return; }
+      }
+      if(step !== 'intro'){
+        const li = document.querySelector('.ws-list li[data-step="' + step + '"]');
+        if(li) li.classList.add('done');
+        await wait(420);
+      } else {
+        await wait(350);
+      }
+    }
+    caret.remove();
+    running = false;
+  }
+
+  // lifecycle hooks (match the deck's animation pattern) — runs once, then stays static
+  window.startSpec = function(){ stopped = false; if(!running) run(); };
+  window.stopSpec  = function(){ stopped = true; timers.forEach(clearTimeout); timers = []; running = false; };
+
+  // autostart when opened standalone; Reveal calls startSpec() in the deck
+  if (typeof Reveal === 'undefined') run();
+})();
+</script>
+</body>
+</html>

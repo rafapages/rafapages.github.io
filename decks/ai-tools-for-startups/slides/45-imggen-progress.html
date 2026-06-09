@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Three Years of Progress — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .prog-row {
+    display: flex; gap: 20px;
+    width: 1480px; max-width: 100%;
+  }
+  .prog-cell {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .prog-year {
+    font-family: var(--font-display);
+    font-size: 1.1rem; color: var(--fg);
+    letter-spacing: 0.02em;
+  }
+  .prog-media {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
+    display: block;
+    object-fit: cover;
+  }
+  .prog-media.vid { background: #000; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="45 Pace of Progress">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">The same idea, <span class="hl">three years</span> apart</h1>
+    <p class="llm-lede">"A puppy as the Flash." Watch what happened to quality between 2022 and 2025 &mdash; this field moves faster than almost anything else in tech.</p>
+
+    <div class="llm-canvas">
+      <div class="prog-row">
+        <div class="prog-cell">
+          <span class="prog-year">2022</span>
+          <img class="prog-media" src="../assets/images/imggen/progress-2022.jpg" alt="A puppy dressed as the Flash, generated in 2022 — clumsy, distorted"/>
+        </div>
+        <div class="prog-cell">
+          <span class="prog-year">2023</span>
+          <img class="prog-media" src="../assets/images/imggen/progress-2023.jpg" alt="A puppy dressed as the Flash, generated in 2023 — sharp and convincing"/>
+        </div>
+        <div class="prog-cell">
+          <span class="prog-year">2025</span>
+          <video class="prog-media vid" src="../assets/video/puppy.mp4" autoplay loop muted playsinline></video>
+        </div>
+      </div>
+    </div>
+
+    <p class="llm-note">Whatever looks clumsy today &mdash; hands, text, consistency &mdash; assume it's <strong>months, not years</strong>, from being solved.</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

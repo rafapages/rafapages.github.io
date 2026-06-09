@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Why it does weird things — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .lim-grid {
+    display: flex; flex-wrap: wrap; gap: 26px;
+    justify-content: center; width: 100%; max-width: 1640px;
+  }
+  .lim-card {
+    width: 500px;
+    border: 4px solid var(--black);
+    border-radius: 14px;
+    padding: 28px 32px;
+    background: white;
+    display: flex; flex-direction: column; gap: 12px;
+    opacity: 0; transform: translateY(20px);
+    animation: lim-card-pop 0.55s forwards;
+  }
+  .lim-card:nth-child(1) { animation-delay: 0.12s; }
+  .lim-card:nth-child(2) { animation-delay: 0.24s; }
+  .lim-card:nth-child(3) { animation-delay: 0.36s; }
+  .lim-card:nth-child(4) { animation-delay: 0.48s; }
+  .lim-card:nth-child(5) { animation-delay: 0.60s; }
+  @keyframes lim-card-pop { to { opacity: 1; transform: none; } }
+
+  .lim-header { display: flex; align-items: center; gap: 16px; }
+  .lim-icon {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    width: 42px; height: 42px;
+    background: var(--black); color: var(--yellow);
+    display: grid; place-items: center;
+    border-radius: 8px; transform: rotate(-3deg); flex-shrink: 0;
+  }
+  .lim-card h3 { font-family: var(--font-display); font-size: 0.82rem; color: var(--fg); margin: 0; }
+  .lim-card p {
+    font-family: var(--font-body); font-size: 0.6rem;
+    color: var(--fg-muted); line-height: 1.5; margin: 0;
+  }
+  .lim-card p strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="43 Image-Gen Limits">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">So here's why it does <span class="hl">weird</span> things</h1>
+    <p class="llm-lede">Every quirk below falls straight out of "remove noise toward a plausible image." This is the slide that matters for using these tools at work.</p>
+
+    <div class="llm-canvas">
+      <div class="lim-grid">
+
+        <div class="lim-card">
+          <div class="lim-header"><div class="lim-icon">5</div><h3>Hands, text &amp; counting</h3></div>
+          <p>It matches the <strong>texture</strong> of a scene, not rules like "5 fingers" or correct spelling on a sign. Garbled text and extra fingers are the classic tell.</p>
+        </div>
+
+        <div class="lim-card">
+          <div class="lim-header"><div class="lim-icon">~</div><h3>Hard to control or repeat</h3></div>
+          <p>You're <strong>steering a cloud</strong>, not editing a canvas. Reproducing an exact thing, or changing one detail while keeping the rest, is genuinely difficult.</p>
+        </div>
+
+        <div class="lim-card">
+          <div class="lim-header"><div class="lim-icon">=</div><h3>Bias &amp; sameness</h3></div>
+          <p>"CEO," "beautiful," "doctor" reflect <strong>training-data patterns</strong>. Outputs drift toward an averaged, often stereotyped, house aesthetic.</p>
+        </div>
+
+        <div class="lim-card">
+          <div class="lim-header"><div class="lim-icon">&copy;</div><h3>Copyright &amp; provenance</h3></div>
+          <p>Trained on <strong>scraped images</strong>, including copyrighted and artists' work. Real legal and brand-safety questions for anything commercial &mdash; know your tool's licensing.</p>
+        </div>
+
+        <div class="lim-card">
+          <div class="lim-header"><div class="lim-icon">!</div><h3>No real-world facts</h3></div>
+          <p>It has <strong>no notion of truth</strong> &mdash; only what looks right. It will happily render a plausible-looking but fake product, logo, or "photo" of an event.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+</body>
+</html>

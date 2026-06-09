@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Campaign creator — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .rp-pad {
+    position: relative;
+    padding: 84px 130px 84px;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    gap: 34px;
+    z-index: 2;
+    box-sizing: border-box;
+  }
+  .rp-head { display: flex; flex-direction: column; gap: 12px; }
+  .rp-eyebrow { display: flex; align-items: center; gap: 22px; }
+  .rp-num {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--fg);
+    background: var(--yellow);
+    border: 4px solid var(--black);
+    border-radius: 14px;
+    padding: 8px 20px;
+    transform: rotate(-3deg);
+  }
+  .rp-title {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    line-height: 0.96;
+    color: var(--fg);
+  }
+  .rp-tag {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+    border: 2px solid var(--black);
+    border-radius: var(--r-pill);
+    padding: 8px 16px;
+  }
+  .rp-lede {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--fg-mid);
+    line-height: 1.4;
+    max-width: 1100px;
+  }
+
+  .rp-recipe {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    flex: 1;
+  }
+  .rp-card {
+    border: 3px solid var(--black);
+    border-radius: 16px;
+    background: var(--white);
+    padding: 26px 28px;
+    display: flex; flex-direction: column;
+    gap: 14px;
+  }
+  .rp-card:nth-child(2) { background: var(--gray1); }
+  .rp-mono {
+    width: 50px; height: 50px;
+    flex: none;
+    background: var(--yellow);
+    border: 3px solid var(--black);
+    border-radius: 11px;
+    display: grid; place-items: center;
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    color: var(--fg);
+    transform: rotate(-3deg);
+  }
+  .rp-row { display: flex; align-items: center; gap: 16px; }
+  .rp-lbl {
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .rp-card p {
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    color: var(--fg);
+    line-height: 1.45;
+  }
+
+  .rp-result {
+    border-left: 5px solid var(--black);
+    padding: 4px 0 4px 26px;
+    max-width: 1500px;
+  }
+  .rp-result .tag {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-mid);
+    margin-bottom: 8px;
+  }
+  .rp-result p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--fg);
+    line-height: 1.45;
+  }
+  .rp-result em.mk {
+    font-style: normal;
+    background: var(--yellow);
+    padding: 0 6px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .rp-blob {
+    position: absolute; top: -50px; right: -80px;
+    width: 280px; height: 170px; z-index: 0;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="35 Campaign creator">
+
+  <svg class="rp-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+
+  <div class="rp-pad">
+
+    <div class="rp-head">
+      <div class="rp-eyebrow">
+        <span class="rp-num">03</span>
+        <h1 class="rp-title">Campaign creator</h1>
+      </div>
+      <p class="rp-lede">From a one-line brief to a full first draft.</p>
+    </div>
+
+    <div class="rp-recipe">
+      <div class="rp-card">
+        <div class="rp-row">
+          <div class="rp-mono">I</div>
+          <span class="rp-lbl">Instructions</span>
+        </div>
+        <p>From a brief, give a tagline, three channel variants, and a calendar. Warm, plain-spoken, never salesy.</p>
+      </div>
+      <div class="rp-card">
+        <div class="rp-row">
+          <div class="rp-mono">K</div>
+          <span class="rp-lbl">Knowledge</span>
+        </div>
+        <p>Brand guidelines, tone-of-voice doc, campaigns that worked, the product catalogue.</p>
+      </div>
+      <div class="rp-card">
+        <div class="rp-row">
+          <div class="rp-mono">A</div>
+          <span class="rp-lbl">Actions</span>
+        </div>
+        <p>Search the web for trends, write copy, build a calendar in a spreadsheet.</p>
+      </div>
+    </div>
+
+    <div class="rp-result">
+      <div class="tag">Result</div>
+      <p>“Launch the summer collection, budget-conscious audience, three weeks” → an on-brand, multi-channel campaign draft in <em class="mk">minutes</em> instead of a blank-page afternoon.</p>
+    </div>
+
+  </div>
+</section>
+</div>
+</body>
+</html>

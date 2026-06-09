@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Trained on images paired with words — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .train-row { display: flex; flex-direction: column; gap: 26px; align-items: center; }
+  .train-track { display: flex; align-items: center; gap: 16px; }
+  .train-track .t-lbl {
+    width: 150px; font-family: var(--font-display);
+    font-size: 0.5rem; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .train-track .t-lbl.fwd { color: var(--fg); }
+  .train-track .t-lbl.rev { color: var(--fg); }
+  .mini {
+    width: 110px; height: 110px;
+    border: 3px solid var(--black); border-radius: 10px;
+    overflow: hidden; position: relative; background: var(--white);
+    display: grid; place-items: center;
+  }
+  .mini canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+  .tiny-arrow {
+    font-family: var(--font-body); font-size: 0.42rem;
+    color: var(--fg-muted); letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .cap-pair {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: cap-fade 0.6s 0.3s forwards;
+  }
+  @keyframes cap-fade { to { opacity: 1; } }
+  .cap-bracket {
+    font-family: var(--font-body); font-size: 0.42rem;
+    color: var(--fg-muted); letter-spacing: 0.06em;
+  }
+  .cap-text {
+    font-family: var(--font-display); font-size: 0.6rem;
+    color: var(--black); background: var(--yellow);
+    border: 3px solid var(--black); border-radius: 10px;
+    padding: 10px 18px;
+  }
+  .mini .pic {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-size: 56px; line-height: 1;
+    background: radial-gradient(circle at 50% 42%, #bfe3ff, #7fb0e8 55%, #3a6ea5);
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="39 Training Pairs">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="llm-pad">
+    <h1 class="llm-title">It learned from images paired with words</h1>
+    <p class="llm-lede">The part that makes prompting possible. It saw hundreds of millions of <strong>image + caption pairs</strong> &mdash; each picture noised step by step into static, with the caption attached the whole way. So it doesn't just learn to denoise; it learns to denoise <strong>toward the words</strong>.</p>
+
+    <div class="llm-canvas">
+      <div class="train-row">
+
+        <div class="train-track">
+          <span class="t-lbl fwd">Training &rarr;</span>
+          <div class="mini"><div class="pic">🐶</div></div>
+          <span class="tiny-arrow">+ noise &rarr;</span>
+          <div class="mini"><canvas width="32" height="32" data-noise="0.4"></canvas></div>
+          <span class="tiny-arrow">+ noise &rarr;</span>
+          <div class="mini"><canvas width="32" height="32" data-noise="0.75"></canvas></div>
+          <span class="tiny-arrow">+ noise &rarr;</span>
+          <div class="mini"><canvas width="32" height="32" data-noise="1"></canvas></div>
+        </div>
+
+        <div class="cap-pair">
+          <span class="cap-bracket">&mdash; caption stays attached the whole way &mdash;</span>
+          <span class="cap-text">"a corgi sitting in grass"</span>
+        </div>
+
+        <div class="train-track">
+          <span class="t-lbl rev">&larr; Generating</span>
+          <div class="mini"><div class="pic">🐶</div></div>
+          <span class="tiny-arrow">&larr; denoise</span>
+          <div class="mini"><canvas width="32" height="32" data-noise="0.4"></canvas></div>
+          <span class="tiny-arrow">&larr; denoise</span>
+          <div class="mini"><canvas width="32" height="32" data-noise="0.75"></canvas></div>
+          <span class="tiny-arrow">&larr; denoise</span>
+          <div class="mini"><canvas width="32" height="32" data-noise="1"></canvas></div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="llm-note">Millions of these pairs teach it which words go with which visual patterns &mdash; that learned link is exactly what <strong>your prompt pulls on</strong> later.</p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+<script>
+(function(){
+  var _interval = null;
+
+  function drawNoise(canvas, amount){
+    var ctx = canvas.getContext('2d');
+    var w = canvas.width, h = canvas.height;
+    var img = ctx.createImageData(w, h);
+    for (var i = 0; i < w * h; i++) {
+      var v = Math.random() * 255;
+      img.data[i*4] = v; img.data[i*4+1] = v; img.data[i*4+2] = v;
+      img.data[i*4+3] = Math.round(255 * amount);
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  function paint(){
+    document.querySelectorAll('canvas[data-noise]').forEach(function(c){
+      drawNoise(c, parseFloat(c.dataset.noise));
+    });
+  }
+
+  function startTraining(){
+    paint(); // static noise — painted once, not animated
+  }
+  function stopTraining(){}
+
+  window.startTraining = startTraining;
+  window.stopTraining = stopTraining;
+
+  if (typeof Reveal === 'undefined') {
+    document.addEventListener('DOMContentLoaded', startTraining);
+  }
+})();
+</script>
+</body>
+</html>
