@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>How I Actually Build — AI Tools for Startups</title>
+<link rel="stylesheet" href="../slide.css"/>
+<script defer src="../slide-scale.js"></script>
+<style>
+  .bf-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--black); background: var(--yellow);
+    align-self: flex-start; padding: 8px 18px; border-radius: 8px;
+    transform: rotate(-1.5deg); margin-bottom: 18px;
+  }
+  .bf-lede { max-width: 78%; margin-top: 10px; }
+
+  /* fixed-geometry stage: one SVG of connectors + absolutely-positioned nodes share a 1660×460 space */
+  .bf-canvas { width: 100%; display: flex; justify-content: center; margin-top: 64px; }
+  .bf-map { position: relative; width: 1660px; height: 460px; }
+  .bf-wires { position: absolute; inset: 0; width: 1660px; height: 460px; overflow: visible; }
+
+  .bf-line { fill: none; stroke: var(--black); stroke-width: 3; stroke-linecap: round; }
+  .bf-head { fill: none; stroke: var(--black); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity .25s ease; }
+  .bf-head.show { opacity: 1; }
+  /* the loop-back arc reads as "the cycle": same ink, with a yellow ghost running under it */
+  .bf-loop-glow { fill: none; stroke: var(--yellow); stroke-width: 12; stroke-linecap: round; opacity: 0; transition: opacity .4s ease; }
+  .bf-loop-glow.show { opacity: 1; }
+
+  /* nodes */
+  .bf-node {
+    position: absolute; width: 280px; box-sizing: border-box;
+    border: 4px solid var(--black); border-radius: 16px; background: var(--white);
+    padding: 28px 22px 20px; display: flex; flex-direction: column; gap: 7px;
+    opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease;
+  }
+  .bf-node.show { opacity: 1; transform: none; }
+  .bf-node.spec { background: var(--yellow); transform: translateY(10px) rotate(-1deg); }
+  .bf-node.spec.show { transform: rotate(-1deg); }
+  /* the optional design step gets a dashed border to read as conditional */
+  .bf-node.optional { border-style: dashed; }
+  .bf-chip {
+    position: absolute; top: -26px; left: 20px; padding: 6px 13px;
+    background: var(--black); color: var(--yellow);
+    font-family: var(--font-display); font-size: 0.46rem; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 3px solid var(--black); border-radius: 8px; transform: rotate(-3deg); white-space: nowrap;
+  }
+  .bf-node.spec .bf-chip { background: var(--white); color: var(--fg); }
+  .bf-node h3 { font-family: var(--font-display); font-size: 0.8rem; line-height: 1.04; color: var(--fg); margin: 0; }
+  .bf-node p { font-family: var(--font-body); font-size: 0.56rem; line-height: 1.4; color: var(--fg-mid); margin: 0; }
+  .bf-node.spec p { color: var(--fg); }
+  .bf-node p strong { color: var(--fg); font-weight: 700; }
+
+  /* the spec "page" doodle — appears at spec, re-appears at ship ("update the spec") */
+  .bf-doc { width: 28px; height: 34px; display: block; }
+  .bf-doc.pulse { animation: bfPulse .7s ease; }
+  @keyframes bfPulse { 0%{ transform: scale(1); } 40%{ transform: scale(1.22) rotate(-4deg); } 100%{ transform: scale(1); } }
+
+  /* the conditional marker inside the Design card — yellow-underlined eyebrow, distinct from the black tool chip */
+  .bf-when {
+    font-family: var(--font-display); font-size: 0.42rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--black); align-self: flex-start;
+    background: linear-gradient(var(--yellow), var(--yellow)) bottom left / 100% 6px no-repeat;
+    padding: 0 3px 2px;
+  }
+
+  /* branch labels */
+  .bf-flag {
+    position: absolute; font-family: var(--font-display);
+    font-size: 0.44rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--black); background: var(--white); padding: 4px 11px;
+    border: 2px solid var(--black); border-radius: 999px; white-space: nowrap;
+    opacity: 0; transition: opacity .35s ease;
+  }
+  .bf-flag.show { opacity: 1; }
+  .bf-flag.noui { left: 682px; top: 350px; transform: rotate(1.5deg); }
+
+  /* loop-back caption */
+  .bf-loop-cap {
+    position: absolute; left: 50%; top: 416px; transform: translateX(-50%);
+    font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.04em;
+    color: var(--black); background: var(--yellow);
+    padding: 8px 20px; border: 3px solid var(--black); border-radius: 999px;
+    white-space: nowrap; opacity: 0; transition: opacity .4s ease;
+  }
+  .bf-loop-cap.show { opacity: 1; }
+  .bf-loop-cap.beat { animation: bfBeat 1.4s ease 2; }
+  @keyframes bfBeat { 0%,100%{ transform: translateX(-50%) scale(1); } 50%{ transform: translateX(-50%) scale(1.05); } }
+
+  .bf-foot { font-family: var(--font-body); font-size: 0.72rem; color: var(--fg-mid); line-height: 1.4; display: flex; align-items: center; gap: 14px; margin-top: auto; }
+  .bf-foot .star { font-family: var(--font-display); font-size: 1.05rem; color: var(--fg); }
+  .bf-foot strong { color: var(--fg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+<section class="slide" data-screen-label="89 How I Actually Build">
+
+  <svg class="slide-blob" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M200 10 C248 4 300 30 308 72 C316 114 290 158 248 168 C206 178 156 162 132 128 C108 94 118 44 158 24 C172 16 186 12 200 10Z" fill="#FFE234"/>
+  </svg>
+
+  <div class="slide-pad">
+    <span class="bf-eyebrow">Build · My loop, end to end</span>
+    <h1 class="llm-title">How I <span class="hl">actually</span> build it</h1>
+    <p class="llm-lede bf-lede">One spec runs the whole thing. I draft it with Claude, hand it to a builder, and when the next feature shows up I bring the updated spec back and go around again.</p>
+
+    <div class="bf-canvas">
+      <div class="bf-map" id="bf-map">
+
+        <!-- connectors -->
+        <svg class="bf-wires" viewBox="0 0 1660 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- c1 TALK → SPEC -->
+          <path id="c1" class="bf-line" d="M280 125 H338"/>
+          <path id="c1h" class="bf-head" d="M330 117 L344 125 L330 133"/>
+          <!-- c2 SPEC → DESIGN -->
+          <path id="c2" class="bf-line" d="M625 125 H683"/>
+          <path id="c2h" class="bf-head" d="M675 117 L689 125 L675 133"/>
+          <!-- c3 DESIGN → CODE -->
+          <path id="c3" class="bf-line" d="M970 125 H1028"/>
+          <path id="c3h" class="bf-head" d="M1020 117 L1034 125 L1020 133"/>
+          <!-- cb bypass SPEC → CODE (no-UI, skips Design) -->
+          <path id="cb" class="bf-line" d="M600 220 C672 384 978 384 1050 220"/>
+          <path id="cbh" class="bf-head" d="M1041 230 L1051 219 L1061 230"/>
+          <!-- c4 CODE → SHIP -->
+          <path id="c4" class="bf-line" d="M1315 125 H1373"/>
+          <path id="c4h" class="bf-head" d="M1365 117 L1379 125 L1365 133"/>
+          <!-- c6 loop-back SHIP → TALK -->
+          <path id="c6g" class="bf-loop-glow" d="M1500 220 C1500 418 1360 436 1100 436 H560 C300 436 160 418 160 220"/>
+          <path id="c6"  class="bf-line"      d="M1500 220 C1500 418 1360 436 1100 436 H560 C300 436 160 418 160 220"/>
+          <path id="c6h" class="bf-head" d="M152 234 L160 218 L168 234"/>
+        </svg>
+
+        <!-- TALK -->
+        <div class="bf-node" id="n-talk" style="left:0; top:30px;">
+          <span class="bf-chip">Claude · chat</span>
+          <h3>Talk it through</h3>
+          <p>Concept, users, screens and key flows: <strong>back and forth</strong> until it's sharp.</p>
+        </div>
+
+        <!-- SPEC (hero) -->
+        <div class="bf-node spec" id="n-spec" style="left:345px; top:30px;">
+          <span class="bf-chip">Claude · writes it</span>
+          <h3>
+            <svg class="bf-doc" id="doc1" viewBox="0 0 28 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="float:right;">
+              <path d="M4 3 H18 L24 9 V31 H4 Z" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M18 3 V9 H24" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M8 16 H20 M8 21 H20 M8 26 H15" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Write the spec
+          </h3>
+          <p>Claude turns the talk into a <strong>markdown or HTML doc</strong>: the source of truth.</p>
+        </div>
+
+        <!-- DESIGN (optional) -->
+        <div class="bf-node optional" id="n-design" style="left:690px; top:30px;">
+          <span class="bf-chip">Claude · design</span>
+          <span class="bf-when">Only if it needs UI</span>
+          <h3>Polished prototype</h3>
+          <p>Spec → a <strong>professional-looking</strong> UI, passed on to the builder.</p>
+        </div>
+
+        <!-- CODE -->
+        <div class="bf-node" id="n-code" style="left:1035px; top:30px;">
+          <span class="bf-chip">Claude · code</span>
+          <h3>Build it for real</h3>
+          <p>It writes the thing; <strong>we iterate together</strong> to the final version.</p>
+        </div>
+
+        <!-- SHIP -->
+        <div class="bf-node" id="n-ship" style="left:1380px; top:30px;">
+          <span class="bf-chip">Done · for now</span>
+          <h3>
+            <svg class="bf-doc" id="doc2" viewBox="0 0 28 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="float:right;">
+              <path d="M4 3 H18 L24 9 V31 H4 Z" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M18 3 V9 H24" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M8 16 H20 M8 21 H20 M8 26 H15" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Ship + update spec
+          </h3>
+          <p>Working build. <strong>Update the spec</strong> and save it back in the repo.</p>
+        </div>
+
+        <!-- branch flag (the bare bypass line needs a label) -->
+        <span class="bf-flag noui" id="flag-noui">No UI → straight to code</span>
+
+        <!-- loop caption -->
+        <span class="bf-loop-cap" id="loop-cap">New feature? New spec, and around again.</span>
+
+      </div>
+    </div>
+
+    <p class="bf-foot">
+      <span class="star">★</span>
+      <span>The spec is the baton: the one thing that survives every hand-off, <br>and what lets the <strong>next</strong> loop start from somewhere, not from scratch.</span>
+    </p>
+  </div>
+
+  <div class="slide-brand">AI Tools for Startups</div>
+</section>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  // each connector = a line path (drawn via dashoffset) + an arrowhead (faded in)
+  const wires = [
+    {line:'c1', head:'c1h'},   // 0 TALK → SPEC
+    {line:'c2', head:'c2h'},   // 1 SPEC → DESIGN
+    {line:'c3', head:'c3h'},   // 2 DESIGN → CODE
+    {line:'cb', head:'cbh'},   // 3 SPEC → CODE (no-UI bypass)
+    {line:'c4', head:'c4h'},   // 4 CODE → SHIP
+    {line:'c6', head:'c6h', glow:'c6g'}  // 5 loop-back
+  ];
+
+  let timers = [];
+  let stopped = false, running = false;
+  const wait = ms => new Promise(r => { const id = setTimeout(r, ms); timers.push(id); });
+
+  function prime(){
+    // hide every line by setting its dash gap to the full path length
+    wires.forEach(w => {
+      const p = $(w.line);
+      const len = p.getTotalLength();
+      p.style.transition = 'none';
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      $(w.head).classList.remove('show');
+      if(w.glow) $(w.glow).classList.remove('show');
+    });
+    void $('bf-map').offsetWidth; // force reflow so priming sticks before animating
+  }
+
+  function draw(w, ms){
+    const p = $(w.line);
+    p.style.transition = 'stroke-dashoffset ' + ms + 'ms ease';
+    p.style.strokeDashoffset = 0;
+    if(w.glow) $(w.glow).classList.add('show');
+    const t = setTimeout(() => $(w.head).classList.add('show'), Math.max(0, ms - 80));
+    timers.push(t);
+  }
+
+  function reset(){
+    ['n-talk','n-spec','n-design','n-code','n-ship'].forEach(id => $(id).classList.remove('show'));
+    ['flag-noui'].forEach(id => $(id).classList.remove('show'));
+    $('loop-cap').classList.remove('show','beat');
+    $('doc1').classList.remove('pulse');
+    $('doc2').classList.remove('pulse');
+    prime();
+  }
+
+  const show = id => $(id).classList.add('show');
+
+  async function run(){
+    if(running) return;
+    running = true; stopped = false;
+    reset();
+    await wait(450); if(stopped){ running=false; return; }
+
+    show('n-talk');
+    await wait(500); if(stopped){ running=false; return; }
+
+    draw(wires[0], 420);                              // TALK → SPEC
+    await wait(500); if(stopped){ running=false; return; }
+    show('n-spec'); $('doc1').classList.add('pulse');
+    await wait(650); if(stopped){ running=false; return; }
+
+    // the fork leaves the spec two ways
+    draw(wires[1], 360);                              // SPEC → DESIGN
+    await wait(420); if(stopped){ running=false; return; }
+    show('n-design');
+    await wait(420); if(stopped){ running=false; return; }
+    draw(wires[2], 360);                              // DESIGN → CODE
+
+    $('flag-noui').classList.add('show');
+    draw(wires[3], 760);                              // SPEC → CODE (skips Design)
+    await wait(820); if(stopped){ running=false; return; }
+
+    show('n-code');
+    await wait(600); if(stopped){ running=false; return; }
+
+    draw(wires[4], 420);                              // CODE → SHIP
+    await wait(500); if(stopped){ running=false; return; }
+    show('n-ship'); $('doc2').classList.add('pulse');
+    await wait(700); if(stopped){ running=false; return; }
+
+    // close the loop
+    draw(wires[5], 1100);                             // SHIP → TALK
+    await wait(720); if(stopped){ running=false; return; }
+    $('loop-cap').classList.add('show');
+    await wait(450); if(stopped){ running=false; return; }
+    $('loop-cap').classList.add('beat');
+
+    running = false;
+  }
+
+  // lifecycle hooks — match the deck's animation pattern
+  window.startBuildLoop = function(){ stopped = false; if(!running) run(); };
+  window.stopBuildLoop  = function(){
+    stopped = true; timers.forEach(clearTimeout); timers = []; running = false;
+  };
+
+  // autostart standalone; Reveal calls startBuildLoop() in the deck
+  function boot(){ if (typeof Reveal === 'undefined') run(); }
+  if(document.readyState === 'complete' || document.readyState === 'interactive'){
+    setTimeout(boot, 60);
+  } else {
+    window.addEventListener('DOMContentLoaded', boot);
+  }
+})();
+</script>
+</body>
+</html>
