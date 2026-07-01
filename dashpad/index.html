@@ -148,7 +148,6 @@
         <span>DashPad</span>
       </a>
       <div class="dp-nav__links">
-        <a href="#features" class="dp-nav__link">Features</a>
         <a href="#privacy" class="dp-nav__link">Privacy</a>
         <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener" class="dp-nav__link">GitHub</a>
         <a href="#" class="dp-btn-pill">Get the app</a>
@@ -250,19 +249,13 @@
           </div>
         </div>
 
-        <!-- Idle device -->
+        <!-- Presence detection screenshot -->
         <div style="position:relative;">
           <div class="dp-glow" style="--glow-color:rgba(246,201,68,.4);"></div>
-          <div class="dp-device">
-            <div class="dp-device__notch"></div>
-            <div class="dp-device__screen">
-              <div class="scr scr-idle" aria-label="Idle clock screen">
-                <div class="clock">9:41</div>
-                <div class="date">TUESDAY · JUNE 29</div>
-              </div>
-            </div>
+          <div style="position:relative;z-index:1;padding:14px;border-radius:32px;background:#0b0b0d;box-shadow:0 0 0 1px rgba(255,255,255,.14),inset 0 0 0 1px rgba(255,255,255,.04),0 30px 60px -24px rgba(0,0,0,.6);">
+            <img src="uploads/presence.jpeg" alt="DashPad presence settings showing on-device person detection" style="display:block;width:100%;height:auto;border-radius:18px;">
           </div>
-          <p class="dp-caption">idle screen · room empty</p>
+          <p class="dp-caption">person detection · in Settings</p>
         </div>
       </div>
     </div>
@@ -274,126 +267,29 @@
     <div class="dp-privacy-wash"></div>
 
     <div class="dp-wrap" style="position:relative;">
-      <div class="dp-split" data-reveal-stagger>
-        <div>
-          <p class="dp-eyebrow">Privacy</p>
-          <h2 class="dp-h2" style="margin-bottom:22px;">It isn't a setting. It's the architecture.</h2>
-          <p class="dp-lead" style="max-width:460px;">DashPad is built so your camera data physically can't go anywhere — not because we promise, but because there's nowhere for it to go.</p>
-        </div>
-
-        <!-- Detection visual -->
-        <div style="position:relative;">
-          <div style="border-radius:20px;overflow:hidden;background:#08080a;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 30px 60px -24px rgba(0,0,0,.6);">
-            <svg viewBox="0 0 600 400" width="100%" height="100%" style="display:block;">
-              <rect width="600" height="400" fill="#08080a"></rect>
-              <ellipse cx="300" cy="150" rx="58" ry="64" fill="rgba(255,255,255,.08)"></ellipse>
-              <path d="M170 400 Q210 230 300 238 Q390 230 430 400Z" fill="rgba(255,255,255,.06)"></path>
-              <rect x="186" y="70" width="228" height="300" rx="6" fill="none" stroke="#22c55e" stroke-width="3"></rect>
-              <rect x="186" y="44" width="150" height="24" rx="3" fill="#22c55e"></rect>
-              <text x="196" y="61" font-family="'JetBrains Mono',monospace" font-size="14" fill="#08080a" font-weight="600">person 0.94</text>
-              <circle cx="40" cy="36" r="6" fill="#22c55e"><animate attributeName="opacity" values="1;.2;1" dur="2s" repeatCount="indefinite"></animate></circle>
-              <text x="56" y="41" font-family="'JetBrains Mono',monospace" font-size="14" fill="rgba(255,255,255,.6)">CAM · 3s sample</text>
-              <text x="560" y="384" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="13" fill="rgba(252,75,127,.85)">frame discarded →</text>
-            </svg>
-          </div>
-          <p class="dp-caption" style="margin-top:14px;">on-device · in-memory · never stored</p>
-        </div>
+      <div class="dp-privacy-intro" data-reveal>
+        <p class="dp-eyebrow">Privacy</p>
+        <h2 class="dp-h2" style="margin-bottom:22px;">Private by <span class="dp-gtext">default.</span></h2>
+        <p class="dp-lead">Nothing from the camera ever leaves the iPad.</p>
       </div>
 
-      <div class="dp-privacy-grid" style="margin-top:72px;" data-reveal-stagger>
-        <div class="dp-point">
-          <span class="dp-point__num">01</span>
-          <div><h4>Nothing is stored.</h4><p>Frames are analyzed in memory and discarded the instant the check is done.</p></div>
+      <div class="dp-privacy-grid" style="margin-top:64px;" data-reveal-stagger>
+        <div class="dp-ptile">
+          <span class="dp-ptile__dot"></span>
+          <div><h4>Not stored</h4><p>Frames are checked in memory, then discarded.</p></div>
         </div>
-        <div class="dp-point">
-          <span class="dp-point__num">02</span>
-          <div><h4>Nothing is transmitted.</h4><p>The app makes no outbound requests of its own. Only the dashboard you point it at touches the network.</p></div>
+        <div class="dp-ptile">
+          <span class="dp-ptile__dot"></span>
+          <div><h4>Not sent</h4><p>The app makes no network requests of its own.</p></div>
         </div>
-        <div class="dp-point">
-          <span class="dp-point__num">03</span>
-          <div><h4>Nothing is tracked.</h4><p>No analytics, no crash SDKs, no telemetry, no third-party frameworks of any kind.</p></div>
+        <div class="dp-ptile">
+          <span class="dp-ptile__dot"></span>
+          <div><h4>Not tracked</h4><p>No analytics, no telemetry, no third-party SDKs.</p></div>
         </div>
-        <div class="dp-point">
-          <span class="dp-point__num">04</span>
-          <div><h4>Nothing is hidden.</h4><p>The full source is public — anyone can verify exactly what the camera pipeline does.</p></div>
+        <div class="dp-ptile">
+          <span class="dp-ptile__dot"></span>
+          <div><h4>Verifiable</h4><p>The source is public, so you can confirm it yourself.</p></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════ FEATURES (bento) ═══════════ -->
-  <section id="features" class="dp-section">
-    <div class="dp-wrap">
-      <div style="margin-bottom:54px;max-width:620px;" data-reveal>
-        <h2 class="dp-h2" style="margin-bottom:16px;">Everything a wall-mounted dashboard needs.</h2>
-        <p class="dp-lead">Built for one job and tuned for it — from the lock screen to the last line of injected CSS.</p>
-      </div>
-
-      <div class="dp-bento" data-reveal-stagger>
-
-        <!-- Big tile: inject CSS/JS -->
-        <div class="dp-tile dp-tile--dark dp-tile--feature b2">
-          <div class="dp-tile__wash"></div>
-          <div style="position:relative;">
-            <h3 style="font-size:20px;">Make any page kiosk-ready.</h3>
-            <p style="color:rgba(255,255,255,.6);max-width:340px;">Inject your own CSS and JavaScript to hide headers, scale text for across-the-room reading, or strip anything you don't want on the wall.</p>
-          </div>
-          <div class="dp-code">
-            <div><span class="tok-sel">header</span><span class="tok-punc">, </span><span class="tok-sel">.toolbar</span> <span class="tok-punc">{</span> <span class="tok-prop">display</span><span class="tok-punc">:</span> none<span class="tok-punc">; }</span></div>
-            <div><span class="tok-sel">body</span> <span class="tok-punc">{</span> <span class="tok-prop">font-size</span><span class="tok-punc">:</span> <span class="tok-num">22px</span><span class="tok-punc">; }</span></div>
-          </div>
-        </div>
-
-        <!-- Full-screen -->
-        <div class="dp-tile b2">
-          <svg class="dp-tile__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
-          <div>
-            <h3>Full-screen, no chrome.</h3>
-            <p>Any URL, edge to edge. No address bar, no buttons, no browser to escape into. Scroll-bounce, text selection and long-press menus all off.</p>
-          </div>
-        </div>
-
-        <!-- Idle -->
-        <div class="dp-tile dp-tile--sm">
-          <svg class="dp-tile__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-          <div>
-            <h3>Smart idle screens.</h3>
-            <p>A clean clock, solid black to save power, or any page as a screensaver.</p>
-          </div>
-        </div>
-
-        <!-- Lock -->
-        <div class="dp-tile dp-tile--sm">
-          <svg class="dp-tile__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 018 0v4"></path></svg>
-          <div>
-            <h3>Locks to the app.</h3>
-            <p>Guided Access in a tap. A secret corner-tap + PIN gets you back to settings.</p>
-          </div>
-        </div>
-
-        <!-- Tune (wide) -->
-        <div class="dp-tile b2">
-          <svg class="dp-tile__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-          <div>
-            <h3>Tune it to your room.</h3>
-            <p>Separate brightness for active and idle. Day and night sampling rates. Detection sensitivity. A dark-room threshold so it leaves the camera alone at night.</p>
-          </div>
-        </div>
-
-        <!-- Favourites (full width) -->
-        <div class="dp-tile--accent b4">
-          <div style="max-width:560px;">
-            <h3>Favourites &amp; quick switching.</h3>
-            <p>Save the dashboards you use most and swap your home page in a single swipe.</p>
-          </div>
-          <div class="dp-swatches">
-            <div class="dp-swatch dp-swatch--1"></div>
-            <div class="dp-swatch dp-swatch--2"></div>
-            <div class="dp-swatch dp-swatch--3"></div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
