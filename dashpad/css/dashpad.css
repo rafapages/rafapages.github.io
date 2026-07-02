@@ -348,7 +348,18 @@ body {
   background: var(--surface-1);
   overflow: hidden;
 }
-.dp-blob__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Blur the morphing shapes with CSS rather than an in-SVG feGaussianBlur.
+   Safari/WebKit miscomputes SVG filter regions under preserveAspectRatio="none"
+   scaling and won't re-run the filter every SMIL frame, which left the blobs
+   clipped or frozen there. CSS blur works in screen pixels and re-renders each
+   frame, so it stays soft and animated across browsers. overflow:visible lets
+   the shapes bleed past the viewBox before .dp-blob__inner clips the composite. */
+.dp-blob__svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  overflow: visible;
+  filter: blur(90px);
+  -webkit-filter: blur(90px);
+}
 .dp-blob__svg--dodge { mix-blend-mode: color-dodge; }
 
 /* Legibility scrims layered over the blob */
