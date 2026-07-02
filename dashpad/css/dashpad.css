@@ -634,3 +634,59 @@ body {
     transition: none;
   }
 }
+
+/* ── 8. Legal / prose pages (privacy policy, etc.) ─────────────────────── */
+.dp-page { padding-top: 72px; }
+.dp-prose {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 88px 24px 120px;
+}
+.dp-prose__title {
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.dp-prose__updated {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: rgba(255, 255, 255, .42);
+}
+.dp-prose__lead {
+  margin-top: 28px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.dp-prose h2 {
+  margin-top: 44px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.015em;
+  color: var(--ink);
+}
+.dp-prose p {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, .6);
+}
+.dp-prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.dp-prose a:hover { color: #fff; }
+.dp-prose__divider {
+  margin-top: 44px;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.dp-prose__foot {
+  margin-top: 28px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, .45);
+}
