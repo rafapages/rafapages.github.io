@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Recolor an animated gradient card and export self-contained, dependency-free HTML. Free tool by Rafa Pagés, based on Marina Budarina's Figma design.">
+<meta name="author" content="Rafa Pages">
+<meta name="keywords" content="gradient generator, animated gradient, CSS gradient, SVG animation, gradient card, blob gradient, design tool, free tool">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0b0b0c">
+
+<title>Gradient Studio — Animated Gradient Card Generator</title>
+<link rel="canonical" href="https://rafapages.com/gradient-studio/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Gradient Studio — Animated Gradient Card Generator" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Gradient Studio" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:description" content="Recolor an animated gradient card and export self-contained, dependency-free HTML. Free tool, no attribution required." />
+<meta property="og:image" content="https://rafapages.com/img/rafa_electro_new_logo.jpg" />
+<meta property="og:url" content="https://rafapages.com/gradient-studio/" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Gradient Studio — Animated Gradient Card Generator" />
+<meta property="twitter:description" content="Recolor an animated gradient card and export self-contained, dependency-free HTML. Free tool, no attribution required." />
+<meta property="twitter:image" content="https://rafapages.com/img/rafa_electro_new_logo.jpg" />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Gradient Studio",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "description": "Recolor a three-blob animated gradient card and export self-contained HTML with no dependencies, no build step, and no external assets.",
+  "url": "https://rafapages.com/gradient-studio/",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Rafael Pagés",
+    "url": "https://rafapages.com"
+  }
+}
+</script>
+
+<link rel="icon" href="../rp.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/ab904bb842.js" crossorigin="anonymous"></script>
+<style>
+  :root { --bg:#0b0b0c; --panel:#16181b; --line:#2a2e33; --text:#e8eaed; --muted:#9aa0a6; --accent:#6c8cff; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; min-height:100%; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    padding: 32px; display:flex; flex-direction:column; align-items:center; gap:28px;
+  }
+  .back-home {
+    align-self:flex-start; color:var(--muted); font-size:13px; text-decoration:none;
+    margin-bottom:-8px;
+  }
+  .back-home:hover { color:var(--text); }
+  h1 {
+    font-family:'Bungee', system-ui, sans-serif; font-weight:400; margin:0;
+    font-size:clamp(32px, 6vw, 56px); letter-spacing:.5px; text-align:center;
+    background:linear-gradient(90deg, #F6C944, #FC4B7F, #6c8cff);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .sub { color:var(--muted); font-size:13px; margin-top:-14px; }
+  .credit { color:var(--muted); font-size:13px; margin-top:-16px; }
+  .credit a { color:var(--accent); text-decoration:none; }
+  .credit a:hover { text-decoration:underline; }
+
+  .controls { display:flex; gap:18px; flex-wrap:wrap; justify-content:center; }
+  .swatch {
+    background: var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:14px 16px; width:200px;
+  }
+  .swatch label { display:block; font-size:12px; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:.6px; }
+  .row { display:flex; align-items:center; gap:10px; }
+  input[type=color] {
+    -webkit-appearance:none; appearance:none; border:none; background:none;
+    width:46px; height:46px; border-radius:10px; cursor:pointer; padding:0;
+  }
+  input[type=color]::-webkit-color-swatch-wrapper { padding:0; }
+  input[type=color]::-webkit-color-swatch { border:1px solid var(--line); border-radius:10px; }
+  input[type=text] {
+    flex:1; background:#0e1013; border:1px solid var(--line); color:var(--text);
+    border-radius:9px; padding:10px 11px; font:13px ui-monospace, SFMono-Regular, Menlo, monospace;
+    text-transform:uppercase; min-width:0;
+  }
+  input[type=text]:focus, input[type=color]:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
+
+  .preview-wrap { display:flex; flex-direction:column; align-items:center; gap:14px; }
+
+  /* --- card (shared look) --- */
+  .gradient-card { position:relative; width:612px; height:367px; max-width:88vw; aspect-ratio:612/367;
+    border-radius:40px; background:#141516; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.55); }
+  /* Blur in CSS, not via an in-SVG feGaussianBlur: Safari/WebKit miscomputes SVG
+     filter regions when the card is stretched to a different aspect ratio (and can
+     freeze the filter mid-animation), which left the blobs clipped or static there.
+     CSS blur works in screen pixels and re-renders every frame across browsers. */
+  .gradient-card .layer { position:absolute; inset:0; width:100%; height:100%; overflow:visible;
+    filter:blur(90px); -webkit-filter:blur(90px); }
+  .gradient-card .border { position:absolute; inset:0; border:10px solid #fff; border-radius:40px;
+    box-sizing:border-box; pointer-events:none; }
+  @media (prefers-reduced-motion: reduce) { .gradient-card animate { display:none; } }
+
+  .actions { display:flex; gap:12px; align-items:center; }
+  button {
+    background:var(--accent); color:#fff; border:none; border-radius:10px; padding:11px 18px;
+    font-size:14px; font-weight:600; cursor:pointer;
+  }
+  button.secondary { background:transparent; border:1px solid var(--line); color:var(--text); }
+  button:hover { filter:brightness(1.08); }
+
+  .output { width:min(860px, 92vw); display:none; flex-direction:column; gap:10px; }
+  .output.show { display:flex; }
+  .output .bar { display:flex; justify-content:space-between; align-items:center; }
+  .output .bar span { color:var(--muted); font-size:13px; }
+  textarea {
+    width:100%; height:240px; background:#0e1013; color:#cdd3da; border:1px solid var(--line);
+    border-radius:12px; padding:14px; font:12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; resize:vertical;
+  }
+  .hint { color:var(--muted); font-size:12px; }
+
+  /* --- spread the word --- */
+  .cta {
+    width:min(860px, 92vw); background:var(--panel); border:1px solid var(--line);
+    border-radius:14px; padding:20px 24px; display:flex; align-items:center;
+    justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .cta h2 { font-size:15px; margin:0 0 4px; }
+  .cta p { font-size:13.5px; color:var(--muted); margin:0; max-width:520px; }
+  .cta p a { color:var(--accent); text-decoration:none; }
+  .cta p a:hover { text-decoration:underline; }
+  .cta .tag-me { font-size:20px; }
+  .cta-uses { list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; max-width:520px; }
+  .cta-uses li { display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--muted); }
+  .cta-uses-logo { width:18px; height:18px; border-radius:5px; object-fit:cover; flex-shrink:0; }
+  .cta-uses a { color:var(--accent); text-decoration:none; font-weight:600; }
+  .cta-uses a:hover { text-decoration:underline; }
+
+  /* --- documentation --- */
+  details.docs {
+    width:min(860px, 92vw); background:var(--panel); border:1px solid var(--line);
+    border-radius:14px; overflow:hidden;
+  }
+  details.docs > summary {
+    list-style:none; cursor:pointer; padding:16px 20px; font-size:15px; font-weight:600;
+    display:flex; align-items:center; gap:10px; user-select:none;
+  }
+  details.docs > summary::-webkit-details-marker { display:none; }
+  details.docs > summary .chev { transition:transform .2s; color:var(--muted); }
+  details.docs[open] > summary .chev { transform:rotate(90deg); }
+  details.docs > summary .tag { margin-left:auto; font-weight:400; font-size:12px; color:var(--muted); }
+  .doc-body { padding:4px 24px 24px; border-top:1px solid var(--line); }
+  .doc-body h3 { font-size:14px; margin:22px 0 8px; color:var(--accent); letter-spacing:.3px; }
+  .doc-body p, .doc-body li { font-size:13.5px; line-height:1.65; color:#c8ccd1; }
+  .doc-body code { background:#0e1013; border:1px solid var(--line); border-radius:5px;
+    padding:1px 6px; font:12px ui-monospace, Menlo, monospace; color:#e6c07b; }
+  .doc-body pre { background:#0e1013; border:1px solid var(--line); border-radius:10px;
+    padding:14px; overflow-x:auto; }
+  .doc-body pre code { background:none; border:none; padding:0; color:#cdd3da; line-height:1.55; }
+  .doc-body ul { padding-left:20px; }
+  .doc-body .pipeline { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:6px 0 4px; }
+  .doc-body .pipeline .step { background:#0e1013; border:1px solid var(--line); border-radius:8px;
+    padding:7px 11px; font-size:12px; }
+  .doc-body .pipeline .arr { color:var(--muted); }
+  .keyframes { display:flex; gap:14px; flex-wrap:wrap; margin-top:10px; }
+  .keyframes figure { margin:0; }
+  .keyframes .mini { width:200px; height:120px; border-radius:14px; background:#141516;
+    overflow:hidden; position:relative; border:4px solid #fff; box-sizing:border-box; }
+  .keyframes .mini .layer { position:absolute; inset:0; width:100%; height:100%; overflow:visible;
+    filter:blur(30px); -webkit-filter:blur(30px); }
+  .keyframes figcaption { font-size:12px; color:var(--muted); text-align:center; margin-top:6px; }
+
+  /* --- footer --- */
+  .site-footer { width:min(860px, 92vw); border-top:1px solid var(--line); padding-top:20px; margin-top:4px; }
+  .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .footer-social { list-style:none; display:flex; gap:18px; margin:0; padding:0; }
+  .footer-social a { color:var(--muted); font-size:18px; transition:color .2s; }
+  .footer-social a:hover { color:var(--text); }
+  .footer-copy { font-size:12px; color:var(--muted); }
+  .footer-copy a { color:var(--muted); text-decoration:underline; }
+  .footer-copy a:hover { color:var(--text); }
+</style>
+</head>
+<body>
+  <a class="back-home" href="https://rafapages.com">← rafapages.com</a>
+  <h1>Gradient Studio</h1>
+  <p class="sub">Recolor the three blobs, preview the animation, then generate standalone HTML.</p>
+  <p class="credit">Original design by <a href="https://x.com/marina_uiux" target="_blank" rel="noopener noreferrer">Marina Budarina</a>, Figma Community file "Animated gradients"</p>
+
+  <div class="controls" id="controls"></div>
+
+  <div class="preview-wrap">
+    <div class="gradient-card" id="card" role="img" aria-label="Animated gradient preview">
+      <div class="border"></div>
+    </div>
+    <div class="actions">
+      <button id="generate">Generate HTML</button>
+      <button class="secondary" id="reset">Reset colors</button>
+    </div>
+  </div>
+
+  <div class="output" id="output">
+    <div class="bar">
+      <span>Standalone animation HTML, ready to paste into a <code>.html</code> file:</span>
+      <div class="actions">
+        <button class="secondary" id="copy">Copy</button>
+        <button id="download">Download .html</button>
+      </div>
+    </div>
+    <textarea id="code" spellcheck="false" readonly></textarea>
+    <p class="hint">The generated file is fully self-contained (no dependencies, no external assets).</p>
+  </div>
+
+  <div class="cta">
+    <div>
+      <h2>Made something with this?</h2>
+      <p>It's free to use, no attribution required. If you ship it somewhere, tag it, and I'll feature it here.</p>
+      <ul class="cta-uses">
+        <li>
+          <img src="../dashpad/uploads/dplogo.webp" alt="" class="cta-uses-logo">
+          <a href="https://rafapages.com/dashpad/" target="_blank" rel="noopener noreferrer">DashPad</a> uses this gradient in its hero
+        </li>
+      </ul>
+    </div>
+    <div class="tag-me">🏷️ tag it, I'm looking</div>
+  </div>
+
+  <details class="docs">
+    <summary><span class="chev">▶</span> How it works <span class="tag">technical notes</span></summary>
+    <div class="doc-body">
+
+      <h3>Quick start</h3>
+      <ul>
+        <li>Pick a color for each of the three blobs above (color wheel or hex input); the preview
+        updates live.</li>
+        <li>Click <strong>Generate HTML</strong> to get a complete, self-contained document with your
+        colors baked in.</li>
+        <li><strong>Copy</strong> the code into an existing page, or <strong>Download</strong> it as a
+        standalone <code>.html</code> file.</li>
+      </ul>
+
+      <h3>Using it on your site</h3>
+      <p>The output has no dependencies: no JS libraries, no build step, no external images or fonts.
+      Drop the <code>&lt;div class="gradient-card"&gt;…&lt;/div&gt;</code> block and its
+      <code>&lt;style&gt;</code> straight into any page. To resize it, just override the
+      <code>width</code>/<code>height</code> on <code>.gradient-card</code>; the SVG paths scale with
+      it since <code>preserveAspectRatio="none"</code> stretches to fill.</p>
+
+      <h3>Browser support & performance</h3>
+      <p>The animation is SMIL (native SVG <code>&lt;animate&gt;</code>), supported in every modern
+      browser (Chrome, Safari, Firefox, Edge) with no JavaScript running after page load. It respects
+      <code>prefers-reduced-motion</code> by disabling the animation for users who've asked for less
+      motion. The blur is a CSS <code>filter</code>, so it's GPU-accelerated like any other CSS effect.</p>
+
+      <h3>License & credit</h3>
+      <p>Free to use for anything, commercial included, no attribution required. The design itself is
+      from Marina Budarina's Figma Community file; credit to her (
+      <a href="https://x.com/marina_uiux" target="_blank" rel="noopener noreferrer">@marina_uiux</a>)
+      is appreciated if you're sharing where it came from.</p>
+
+      <h3>The technical deep dive</h3>
+      <p>Curious how a Figma file becomes an animated SVG? Here's the full pipeline.</p>
+
+      <h3>1 · Where the artwork comes from</h3>
+      <p>The animation originates from a Figma Community file, <em>“Animated gradients”</em>. The
+      design is three frames of one card, each a snapshot of a soft gradient mid-motion. Figma's
+      <strong>Smart Animate</strong> tweens between them, so the three frames are really keyframes of
+      a single loop.</p>
+      <div class="pipeline">
+        <span class="step">.fig file (ZIP)</span><span class="arr">→</span>
+        <span class="step">canvas.fig</span><span class="arr">→</span>
+        <span class="step">DEFLATE schema + ZSTD node tree</span><span class="arr">→</span>
+        <span class="step">Kiwi decode</span><span class="arr">→</span>
+        <span class="step">vector paths + transforms</span><span class="arr">→</span>
+        <span class="step">SVG morph</span>
+      </div>
+      <p>A <code>.fig</code> is a ZIP. Inside, <code>canvas.fig</code> is Figma's binary
+      <strong>fig-kiwi</strong> container: an 8-byte <code>fig-kiwi</code> magic, a version, then
+      length-prefixed chunks. Chunk&nbsp;1 is the compiled <a>Kiwi</a> schema (raw DEFLATE); chunk&nbsp;2
+      is the document's node tree (<strong>Zstandard</strong>-compressed in newer files). Decoding the
+      schema lets you decode the message into a tree of nodes: frames, groups, and vectors.</p>
+
+      <h3>2 · The three keyframes</h3>
+      <p>These are rendered live below from the same path data the studio uses, not images, but the
+      actual decoded vectors drawn statically:</p>
+      <div class="keyframes" id="docKeyframes"></div>
+
+      <h3>3 · Anatomy of one card</h3>
+      <p>Each frame is a 612×367 card (40px corners, a 10px inside white stroke) over a
+      <code>#141516</code> base. Inside are <strong>two stacked layers</strong>, each holding the same
+      three blob shapes:</p>
+      <ul>
+        <li><strong>Base layer</strong>: the blobs drawn normally.</li>
+        <li><strong>Dodge layer</strong>: the same blobs again, composited with
+        <code>mix-blend-mode: color-dodge</code>, which is what blows out the highlights and gives the
+        gradient its glow.</li>
+      </ul>
+      <p>Every blob is just a filled Bézier path under a heavy blur. In Figma the group carries a
+      <code>FOREGROUND_BLUR</code> of <code>radius: 180</code>, i.e. a blur radius of <code>90</code>.
+      The blur is applied in <strong>CSS</strong> on each layer (<code>filter: blur(90px)</code>) rather
+      than with an in-SVG <code>feGaussianBlur</code>. Safari/WebKit miscomputes SVG filter regions when
+      the card is stretched to a different aspect ratio (and can freeze the filter mid-animation), which
+      leaves the blobs clipped or static; CSS blur works in screen pixels and re-renders every frame, so
+      it stays correct and portable across browsers.</p>
+
+      <h3>4 · Extracting the geometry</h3>
+      <p>Each vector's <code>fillGeometry</code> points at a <em>commands blob</em>, a little binary
+      path program: one tag byte (<code>1</code>=move, <code>4</code>=cubic, close at the end) followed
+      by <code>float32</code> coordinate pairs. Decoding it yields an SVG path. The blob's coordinates
+      are local to the vector, so each point is run through the vector's transform and then its group's
+      transform to land in the frame's coordinate space (0–612 × 0–367):</p>
+      <pre><code>framePoint = groupTransform( vectorTransform( localPoint ) )</code></pre>
+      <p>The transforms here are pure translations, which is exactly why the blobs appear to glide:
+      Smart Animate is just moving the same shapes around between frames.</p>
+
+      <h3>5 · How the morph runs in the browser</h3>
+      <p>No JavaScript animation here, it's SMIL. Each blob is one <code>&lt;path&gt;</code> with an
+      <code>&lt;animate&gt;</code> on its <code>d</code> attribute, cycling through all three frames and
+      back to the first:</p>
+      <pre><code>&lt;path fill="#F6C944" d="…frame 1…"&gt;
+  &lt;animate attributeName="d" dur="13.5s" repeatCount="indefinite"
+    calcMode="spline" keyTimes="0;0.333;0.666;1"
+    keySplines="0.45 0 0.25 1; 0.45 0 0.25 1; 0.45 0 0.25 1"
+    values="…f1…;…f2…;…f3…;…f1…" /&gt;
+&lt;/path&gt;</code></pre>
+      <p>Path interpolation only works if every <code>values</code> entry has the <em>same command
+      structure</em>. Because the blobs are the same shapes translated, their command counts match
+      across frames (7 / 6 / 9 commands for the three blobs), so the browser interpolates each control
+      point linearly, reproducing Smart Animate exactly. The <code>keySplines</code> apply an
+      ease-in-out to each segment.</p>
+
+      <h3>6 · What the studio does</h3>
+      <p>The page embeds the decoded path data for all three frames. Changing a color re-renders the two
+      SVG layers with the new fills (each blob's color is shared between the base and dodge layers, as
+      in the source). <strong>Generate HTML</strong> assembles a complete, dependency-free document with
+      your colors baked into the paths, the exact same markup you see in the preview.</p>
+
+    </div>
+  </details>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-social">
+        <li><a href="https://twitter.com/rafamolone" target="_blank" rel="noopener noreferrer" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a></li>
+        <li><a href="https://linkedin.com/in/rafapages/en" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+        <li><a href="https://rafapages.medium.com" target="_blank" rel="noopener noreferrer" title="Medium"><i class="fa-brands fa-medium"></i></a></li>
+        <li><a href="https://github.com/rafapages" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fa-brands fa-github"></i></a></li>
+        <li><a href="https://scholar.google.com/citations?user=V5G2vyIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" title="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a></li>
+      </ul>
+      <span class="footer-copy">Made by <a href="https://rafapages.com">Rafa Pagés</a></span>
+    </div>
+  </footer>
+
+<script>
+const DATA = {"base":{"F1":["M52.662 313.686C-10.117 308.094 -35.486 166.585 3.643 64.647C41.788 -34.727 74.212 27.765 221.218 5.868C185.958 31.392 454.272 64.647 421.163 96.045C388.054 127.444 232.827 197.984 193.698 223.361C154.569 248.738 115.440 319.277 52.662 313.686Z","M599.932 203.765C679.432 171.765 636.432 144.265 556.932 -1.235C513.932 -28.235 433.432 -42.235 387.932 -1.235C342.432 39.765 415.432 110.265 415.432 167.265C415.432 224.265 520.432 235.765 599.932 203.765Z","M158.309 348.477C100.114 287.203 161.016 293.384 230.038 211.148C232.925 223.421 245.358 236.464 271.993 190.455C305.286 132.944 338.579 169.493 390.278 181.855C441.977 194.217 479.060 211.148 477.977 271.347C476.894 331.546 450.909 321.603 390.278 348.477C329.647 375.352 345.887 387.714 271.993 404.914C198.098 422.113 216.504 409.751 158.309 348.477Z"],"F2":["M287.662 452.686C224.883 447.094 199.514 305.585 238.643 203.647C276.788 104.273 309.212 166.765 456.218 144.868C420.958 170.392 689.272 203.647 656.163 235.045C623.054 266.444 467.827 336.984 428.698 362.361C389.569 387.738 350.440 458.277 287.662 452.686Z","M216.932 217.765C296.432 185.765 253.432 158.265 173.932 12.765C130.932 -14.235 50.432 -28.235 4.932 12.765C-40.568 53.765 32.432 124.265 32.432 181.265C32.432 238.265 137.432 249.765 216.932 217.765Z","M42.309 205.477C-15.886 144.203 45.016 150.384 114.038 68.148C116.925 80.421 129.358 93.464 155.993 47.455C189.286 -10.056 222.579 26.493 274.278 38.855C325.977 51.217 363.060 68.148 361.977 128.347C360.894 188.546 334.909 178.603 274.278 205.477C213.647 232.352 229.887 244.714 155.993 261.914C82.098 279.113 100.504 266.751 42.309 205.477Z"],"F3":["M187.421 441.710C129.505 436.551 106.100 305.998 142.199 211.951C177.390 120.271 207.302 177.925 342.923 157.723C310.394 181.271 557.927 211.951 527.383 240.919C496.838 269.887 353.633 334.966 317.535 358.378C281.436 381.790 245.338 446.869 187.421 441.710Z","M682.485 204.900C764.281 171.911 720.039 143.560 638.243 -6.439C594.002 -34.274 511.177 -48.706 464.363 -6.439C417.549 35.829 492.657 108.509 492.657 167.272C492.657 226.034 600.689 237.890 682.485 204.900Z","M-44.584 305.035C-90.563 256.840 -42.445 261.702 12.088 197.018C14.369 206.671 24.193 216.930 45.236 180.741C71.541 135.505 97.845 164.253 138.692 173.977C179.539 183.701 208.837 197.018 207.982 244.368C207.126 291.718 186.596 283.897 138.692 305.035C90.788 326.174 103.619 335.897 45.236 349.426C-13.147 362.955 1.395 353.231 -44.584 305.035Z"]},"dodge":{"F1":["M52.662 313.686C-10.117 308.094 -35.486 166.585 3.643 64.647C41.788 -34.727 74.212 27.765 221.218 5.868C185.958 31.392 454.272 64.647 421.163 96.045C388.054 127.444 232.827 197.984 193.698 223.361C154.569 248.738 115.440 319.277 52.662 313.686Z","M599.932 203.765C679.432 171.765 636.432 144.265 556.932 -1.235C513.932 -28.235 433.432 -42.235 387.932 -1.235C342.432 39.765 415.432 110.265 415.432 167.265C415.432 224.265 520.432 235.765 599.932 203.765Z","M158.309 348.477C100.114 287.203 161.016 293.384 230.038 211.148C232.925 223.421 245.358 236.464 271.993 190.455C305.286 132.944 338.579 169.493 390.278 181.855C441.977 194.218 479.060 211.148 477.977 271.347C476.894 331.546 450.909 321.603 390.278 348.477C329.647 375.352 345.887 387.714 271.993 404.914C198.098 422.113 216.504 409.751 158.309 348.477Z"],"F2":["M309.662 381.770C246.883 377.675 221.514 274.054 260.643 199.409C298.788 126.642 331.212 172.402 478.218 156.368C442.958 175.058 711.272 199.409 678.163 222.401C645.054 245.393 489.827 297.046 450.698 315.629C411.569 334.211 372.440 385.864 309.662 381.770Z","M165.932 217.765C245.432 185.765 202.432 158.265 122.932 12.765C79.932 -14.235 -0.568 -28.235 -46.068 12.765C-91.568 53.765 -18.568 124.265 -18.568 181.265C-18.568 238.265 86.432 249.765 165.932 217.765Z","M305.601 357.044C261.657 310.786 307.644 315.452 359.763 253.369C361.943 262.634 371.332 272.481 391.443 237.747C416.583 194.329 441.723 221.922 480.761 231.254C519.799 240.587 547.800 253.369 546.983 298.816C546.165 344.262 526.544 336.755 480.761 357.044C434.978 377.333 447.241 386.665 391.443 399.650C335.646 412.635 349.544 403.302 305.601 357.044Z"],"F3":["M112.419 381.648C16.464 375.389 -22.313 216.990 37.495 102.885C95.799 -8.350 145.358 61.601 370.052 37.091C316.160 65.661 726.270 102.885 675.663 138.032C625.057 173.178 387.798 252.137 327.990 280.542C268.182 308.948 208.374 387.907 112.419 381.648Z","M372.367 171.274C429.949 148.078 398.804 128.144 341.222 22.676C310.077 3.105 251.771 -7.044 218.815 22.676C185.859 52.396 238.733 103.499 238.733 144.816C238.733 186.133 314.785 194.469 372.367 171.274Z","M-3.399 142.044C-47.343 95.786 -1.356 100.452 50.763 38.369C52.943 47.634 62.332 57.481 82.443 22.747C107.583 -20.671 132.723 6.922 171.761 16.254C210.799 25.587 238.800 38.369 237.983 83.816C237.165 129.262 217.544 121.755 171.761 142.044C125.978 162.333 138.241 171.665 82.443 184.650C26.646 197.635 40.544 188.302 -3.399 142.044Z"]},"fills":["#F6C944","#FC4B7F","#FC4B7F"]};
+const FRAMES = ['F1','F2','F3'];
+const DUR = '13.5s', KT = '0;0.333;0.666;1', SP = '0.45 0 0.25 1';
+const SPLINES = [SP,SP,SP].join(';');
+
+let colors = DATA.fills.slice();   // [blob0, blob1, blob2]
+
+function animPath(layer, i, fill){
+  const vals = FRAMES.map(f => DATA[layer][f][i]);
+  const d1 = vals[0];
+  return '      <path fill="'+fill+'" d="'+d1+'">\n' +
+         '        <animate attributeName="d" dur="'+DUR+'" repeatCount="indefinite"\n' +
+         '          calcMode="spline" keyTimes="'+KT+'" keySplines="'+SPLINES+'"\n' +
+         '          values="'+vals.concat(d1).join(';')+'" />\n' +
+         '      </path>';
+}
+function layerSvg(layer, blend){
+  const style = blend ? ' style="mix-blend-mode: color-dodge;"' : '';
+  const paths = [0,1,2].map(i => animPath(layer, i, colors[i])).join('\n');
+  return '  <svg class="layer" viewBox="0 0 612 367" preserveAspectRatio="none"\n' +
+         '       xmlns="http://www.w3.org/2000/svg"'+style+'>\n' +
+         '    <g>\n' + paths + '\n    </g>\n  </svg>';
+}
+function cardInner(){
+  return layerSvg('base',false) + '\n' + layerSvg('dodge',true);
+}
+
+function renderPreview(){
+  const card = document.getElementById('card');
+  card.innerHTML = cardInner() + '\n    <div class="border"></div>';
+}
+
+function standaloneDoc(){
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8" />\n' +
+'<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n' +
+'<title>Animated Gradient</title>\n<style>\n' +
+'  html, body { height:100%; margin:0; }\n' +
+'  body { display:grid; place-items:center; background:#0b0b0c; }\n' +
+'  .gradient-card { position:relative; width:612px; height:367px; max-width:90vw; aspect-ratio:612/367;\n' +
+'    border-radius:40px; background:#141516; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.55); }\n' +
+'  /* Blur in CSS (not an in-SVG feGaussianBlur) so it renders and stays animated in\n' +
+'     Safari even if the card is stretched to a different aspect ratio. */\n' +
+'  .gradient-card .layer { position:absolute; inset:0; width:100%; height:100%; overflow:visible;\n' +
+'    filter:blur(90px); -webkit-filter:blur(90px); }\n' +
+'  .gradient-card .border { position:absolute; inset:0; border:10px solid #fff; border-radius:40px;\n' +
+'    box-sizing:border-box; pointer-events:none; }\n' +
+'  @media (prefers-reduced-motion: reduce) { .gradient-card animate { display:none; } }\n' +
+'<\/style>\n<\/head>\n<body>\n  <div class="gradient-card" role="img" aria-label="Animated gradient">\n' +
+cardInner() + '\n    <div class="border"></div>\n  <\/div>\n<\/body>\n<\/html>\n';
+}
+
+// ---- controls ----
+const NAMES = ['Blob 1','Blob 2','Blob 3'];
+function buildControls(){
+  const wrap = document.getElementById('controls');
+  wrap.innerHTML = '';
+  colors.forEach((c, i) => {
+    const div = document.createElement('div');
+    div.className = 'swatch';
+    div.innerHTML = '<label>'+NAMES[i]+'</label>' +
+      '<div class="row">' +
+      '<input type="color" data-i="'+i+'" value="'+c+'">' +
+      '<input type="text" data-i="'+i+'" value="'+c.toUpperCase()+'" maxlength="7">' +
+      '</div>';
+    wrap.appendChild(div);
+  });
+  wrap.querySelectorAll('input[type=color]').forEach(el => {
+    el.addEventListener('input', e => setColor(+e.target.dataset.i, e.target.value, 'color'));
+  });
+  wrap.querySelectorAll('input[type=text]').forEach(el => {
+    el.addEventListener('input', e => {
+      let v = e.target.value.trim();
+      if (!v.startsWith('#')) v = '#'+v;
+      if (/^#[0-9a-fA-F]{6}$/.test(v)) setColor(+e.target.dataset.i, v, 'text');
+    });
+  });
+}
+function setColor(i, val, src){
+  colors[i] = val;
+  const sw = document.querySelectorAll('.swatch')[i];
+  if (src !== 'color') sw.querySelector('input[type=color]').value = val;
+  if (src !== 'text')  sw.querySelector('input[type=text]').value = val.toUpperCase();
+  renderPreview();
+  renderKeyframes();
+}
+
+document.getElementById('generate').addEventListener('click', () => {
+  document.getElementById('code').value = standaloneDoc();
+  document.getElementById('output').classList.add('show');
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('reset').addEventListener('click', () => {
+  colors = DATA.fills.slice(); buildControls(); renderPreview();
+});
+document.getElementById('copy').addEventListener('click', async () => {
+  const ta = document.getElementById('code');
+  await navigator.clipboard.writeText(ta.value);
+  const b = document.getElementById('copy'); const t = b.textContent;
+  b.textContent = 'Copied!'; setTimeout(()=>b.textContent=t, 1200);
+});
+document.getElementById('download').addEventListener('click', () => {
+  const blob = new Blob([document.getElementById('code').value], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'animated-gradient.html';
+  a.click(); URL.revokeObjectURL(a.href);
+});
+
+// --- static keyframe thumbnails in the docs ---
+function staticLayer(frame, layer, blend){
+  const style = blend ? ' style="mix-blend-mode: color-dodge;"' : '';
+  const paths = [0,1,2].map(i =>
+    '<path fill="'+colors[i]+'" d="'+DATA[layer][frame][i]+'" />').join('');
+  return '<svg class="layer" viewBox="0 0 612 367" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"'+style+'>'+
+    '<g>'+paths+'</g></svg>';
+}
+function renderKeyframes(){
+  const wrap = document.getElementById('docKeyframes');
+  if (!wrap) return;
+  wrap.innerHTML = FRAMES.map((f, n) =>
+    '<figure><div class="mini">' +
+      staticLayer(f,'base',false) + staticLayer(f,'dodge',true) +
+    '</div><figcaption>Frame '+(n+1)+'</figcaption></figure>'
+  ).join('');
+}
+
+buildControls();
+renderPreview();
+renderKeyframes();
+</script>
+<!-- 100% privacy-first analytics -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+</body>
+</html>
