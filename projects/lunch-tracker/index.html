@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="A real-world vibe coding project — from a dinner-planning problem to a live Home Assistant dashboard card, built with Claude and vanilla JS.">
+  <meta name="description" content="A real-world vibe coding project, from a dinner-planning problem to a live Home Assistant dashboard card, built with Claude and vanilla JS.">
   <meta name="author" content="Rafa Pages">
 
   <title>Building an AI-Powered School Lunch Tracker — Rafa Pagés</title>
@@ -13,7 +13,7 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Building an AI-Powered School Lunch Tracker with Claude and Home Assistant — Rafa Pagés" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="A real-world vibe coding project — from a dinner-planning problem to a live Home Assistant dashboard card." />
+  <meta property="og:description" content="A real-world vibe coding project, from a dinner-planning problem to a live Home Assistant dashboard card." />
   <meta property="og:image" content="https://rafapages.com/img/rafa_electro_new_logo.jpg" />
   <meta property="og:url" content="https://rafapages.com/projects/lunch-tracker/" />
   <meta property="twitter:card" content="summary_large_image" />
@@ -104,7 +104,7 @@
       <hr class="cs-rule">
 
       <h2>The Web App</h2>
-      <p>The app is a single HTML file — no framework, no build step, no server. It lives in Home Assistant's static file folder, which means it's always accessible from the local network without running anything separately. You open it, upload the two PDFs, and hit a button.</p>
+      <p>The app is a single HTML file: no framework, no build step, no server. It lives in Home Assistant's static file folder, which means it's always accessible from the local network without running anything separately. You open it, upload the two PDFs, and hit a button.</p>
 
       <div class="cs-img-inline">
         <img src="img/input.jpg" alt="The web app before processing, with two input fields for the PDFs and a button to process them" class="img-fluid" style="border-radius:6px;">
@@ -112,11 +112,11 @@
       </div>
 
       <h3>PDF Parsing with Claude</h3>
-      <p>The trickiest part of the project was reliably extracting meal data from the school PDFs. Each school has a different format, and the layouts are inconsistent — tables with day numbers at the bottom of cells, bilingual content in Spanish and English, special event days with no standard format.</p>
+      <p>The trickiest part of the project was reliably extracting meal data from the school PDFs. Each school has a different format, and the layouts are inconsistent: tables with day numbers at the bottom of cells, bilingual content in Spanish and English, special event days with no standard format.</p>
       <p>The final approach uses Claude's vision capabilities to read each PDF directly. The prompt instructs Claude to read the table cell by cell, extract only the Spanish meal names, and verify that no entries fall on weekends.</p>
-      <p>That last step is the key one. Because the day number appears at the bottom of each cell rather than the top, Claude can drift by one when reading — associating a meal with the previous day's number instead of the current one. Checking for weekend entries is a reliable way to catch this: if a meal lands on a Saturday or Sunday, the whole sequence has shifted and needs correcting.</p>
+      <p>That last step is the key one. Because the day number appears at the bottom of each cell rather than the top, Claude can drift by one when reading, associating a meal with the previous day's number instead of the current one. Checking for weekend entries is a reliable way to catch this: if a meal lands on a Saturday or Sunday, the whole sequence has shifted and needs correcting.</p>
       <div class="cs-callout">
-        <p>To be honest, I'm not completely sure the prompt will work 100% of the time, so I added an optional text box to pass additional instructions to Claude — for example: "This month there is a special national dish day for Greece, which has a different format."</p>
+        <p>To be honest, I'm not completely sure the prompt will work 100% of the time, so I added an optional text box to pass additional instructions to Claude, for example: "This month there is a special national dish day for Greece, which has a different format."</p>
       </div>
 
       <h3>The Calendar View</h3>
@@ -128,7 +128,7 @@
       </div>
 
       <h3>Settings Panel</h3>
-      <p>All configuration — Anthropic API key, kid names, PDF upload, Home Assistant URL and token, and the optional free-text field for extra instructions — lives behind a collapsible settings panel. The default view is just the calendar. The app feels like a dashboard first and a tool second.</p>
+      <p>All configuration (Anthropic API key, kid names, PDF upload, Home Assistant URL and token, and the optional free-text field for extra instructions) lives behind a collapsible settings panel. The default view is just the calendar. The app feels like a dashboard first and a tool second.</p>
 
       <hr class="cs-rule">
 
@@ -137,7 +137,7 @@
 
       <h3>How the Data Flows</h3>
       <p>The web app encodes the JSON data as base64 and calls a <code>shell_command</code> defined in HA's <code>configuration.yaml</code>. That command runs a one-line Python snippet that decodes the data and writes it to a file called <code>lunch_data.json</code> in HA's <code>www</code> folder.</p>
-      <p>Four <code>command_line</code> sensors — <code>lunch_kid1_today</code>, <code>lunch_kid2_today</code>, <code>lunch_kid1_tomorrow</code>, and <code>lunch_kid2_tomorrow</code> — read from that file daily, look up the relevant date, and expose the meal as a standard HA sensor state. These are plain sensors that any card, automation, or notification can read from.</p>
+      <p>Four <code>command_line</code> sensors (<code>lunch_kid1_today</code>, <code>lunch_kid2_today</code>, <code>lunch_kid1_tomorrow</code>, and <code>lunch_kid2_tomorrow</code>) read from that file daily, look up the relevant date, and expose the meal as a standard HA sensor state. These are plain sensors that any card, automation, or notification can read from.</p>
 
       <pre><code class="language-yaml">command_line:
   - sensor:
@@ -153,7 +153,7 @@
         "</code></pre>
 
       <h3>The Midnight Automation</h3>
-      <p>A simple HA automation runs at 00:01 every night and calls <code>homeassistant.update_entity</code> on all four sensors. This ensures they always reflect the correct day — today's lunch flips to the new day at midnight, not at some arbitrary time based on when HA last restarted.</p>
+      <p>A simple HA automation runs at 00:01 every night and calls <code>homeassistant.update_entity</code> on all four sensors. This ensures they always reflect the correct day: today's lunch flips to the new day at midnight, not at some arbitrary time based on when HA last restarted.</p>
 
       <pre><code class="language-yaml">alias: Update school lunch data
 trigger:
@@ -169,7 +169,7 @@ action:
         - sensor.lunch_kid2_tomorrow</code></pre>
 
       <h3>The Dashboard Cards</h3>
-      <p>Two Lovelace cards sit on the main dashboard — one for today, one for tomorrow. Each uses <code>vertical-stack-in-card</code> with <code>mushroom-template-card</code> components styled to look like a single unified card. The header shows the date in Spanish, with the cutlery icon turning grey on non-school days. Each kid gets their own row with name and meal.</p>
+      <p>Two Lovelace cards sit on the main dashboard: one for today, one for tomorrow. Each uses <code>vertical-stack-in-card</code> with <code>mushroom-template-card</code> components styled to look like a single unified card. The header shows the date in Spanish, with the cutlery icon turning grey on non-school days. Each kid gets their own row with name and meal.</p>
       <p>Tapping either card opens the full web app, so manual edits and reprocessing are always one tap away.</p>
 
       <div class="cs-img-inline">
@@ -181,11 +181,11 @@ action:
 
       <h2>What I Learned</h2>
       <ul>
-        <li><strong>PDF parsing is harder than it looks.</strong> The most persistent bug was Claude associating meal content with the wrong day number, because the number appears at the bottom of each cell rather than the top. The fix was a weekend verification step — if a meal lands on a Saturday or Sunday, the whole sequence has shifted and needs correcting.</li>
+        <li><strong>PDF parsing is harder than it looks.</strong> The most persistent bug was Claude associating meal content with the wrong day number, because the number appears at the bottom of each cell rather than the top. The fix was a weekend verification step: if a meal lands on a Saturday or Sunday, the whole sequence has shifted and needs correcting.</li>
         <li><strong>Prompt engineering is iterative.</strong> Each version of the extraction prompt was a direct response to a specific failure mode. The final prompt is more specific than I would have written upfront, but it was shaped by real failures.</li>
-        <li><strong>Home Assistant's <code>configuration.yaml</code> still matters.</strong> Some things — shell commands, <code>command_line</code> sensors — can't be done through the UI and require editing config files directly. That's not a complaint, just something to be aware of when planning an integration.</li>
+        <li><strong>Home Assistant's <code>configuration.yaml</code> still matters.</strong> Some things (shell commands, <code>command_line</code> sensors) can't be done through the UI and require editing config files directly. That's not a complaint, just something to be aware of when planning an integration.</li>
         <li><strong>The 255-character limit on <code>input_text</code> helpers is a real constraint.</strong> We went through a few approaches before landing on the <code>shell_command</code> + file approach, which is cleaner anyway.</li>
-        <li><strong>Vibe coding works best as a collaboration.</strong> The best results came from describing the problem clearly, reviewing what was built, and being specific about what was wrong. For me, as someone new to this kind of project, that feedback loop was the whole thing — I wasn't writing code, I was steering. Claude.ai was better for the iterative UI and prompt work, while Claude Code was more useful when thinking through architecture.</li>
+        <li><strong>Vibe coding works best as a collaboration.</strong> The best results came from describing the problem clearly, reviewing what was built, and being specific about what was wrong. For me, as someone new to this kind of project, that feedback loop was the whole thing: I wasn't writing code, I was steering. Claude.ai was better for the iterative UI and prompt work, while Claude Code was more useful when thinking through architecture.</li>
       </ul>
 
       <hr class="cs-rule">
@@ -193,7 +193,7 @@ action:
       <h2>The Result</h2>
       <p>Once a month, I spend about two minutes uploading PDFs and hitting a button. From that point, the dashboard shows today's and tomorrow's lunches for both kids automatically, every day, on every device in the house.</p>
       <p>The dinner warnings have already saved me from serving salmon or green beans twice in one day more than once. Small problem, satisfying solution.</p>
-      <p>The next step is probably a dinner planner that actively suggests what to cook based on what to avoid — but that's a project for another month.</p>
+      <p>The next step is probably a dinner planner that actively suggests what to cook based on what to avoid, but that's a project for another month.</p>
 
 
     </article>
