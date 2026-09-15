@@ -541,20 +541,6 @@ body {
 .dp-footer__brand span { font-size: 15px; font-weight: 700; letter-spacing: -.02em; }
 .dp-footer__nav { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .dp-footer__nav a { font-size: 14px; color: rgba(255, 255, 255, .55); text-decoration: none; }
-.dp-footer-soon { font-size: 14px; color: rgba(255, 255, 255, .4); cursor: default; }
-.dp-footer-soon em {
-  font-style: normal;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .42);
-  border: 1px solid rgba(255, 255, 255, .18);
-  border-radius: 5px;
-  padding: 1px 5px;
-  margin-left: 5px;
-  vertical-align: 1px;
-}
 .dp-footer__fine {
   max-width: 1140px;
   margin: 16px auto 0;
@@ -690,3 +676,100 @@ body {
   font-size: 14px;
   color: rgba(255, 255, 255, .45);
 }
+
+/* ── 9. Guides (long-form articles under /dashpad/guides/) ─────────────── */
+/* Builds on .dp-prose; add .dp-guide to the same <main>. */
+.dp-guide h2 { margin-top: 56px; font-size: 24px; scroll-margin-top: 96px; }
+.dp-guide h3 {
+  margin-top: 32px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+.dp-guide ul,
+.dp-guide ol { margin-top: 14px; padding-left: 22px; }
+.dp-guide li {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, .6);
+}
+.dp-guide li::marker { color: rgba(255, 255, 255, .35); }
+.dp-guide strong { color: var(--ink); font-weight: 600; }
+.dp-guide code {
+  font-family: var(--font-mono);
+  font-size: .88em;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--surface-3);
+}
+.dp-guide pre {
+  margin-top: 16px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+}
+.dp-guide pre code { padding: 0; background: none; font-size: 13.5px; line-height: 1.6; }
+.dp-guide figure { margin-top: 28px; }
+.dp-guide figure img { display: block; width: 100%; height: auto; border-radius: 16px; }
+.dp-guide figcaption {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, .42);
+}
+
+/* Short answer box at the top of a guide */
+.dp-answer {
+  margin-top: 28px;
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+}
+.dp-answer > :first-child { margin-top: 0; }
+
+/* On-page table of contents */
+.dp-toc {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.dp-toc p { margin-top: 0; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .42); }
+.dp-toc ol { margin-top: 10px; }
+.dp-toc li { margin-top: 4px; font-size: 15px; }
+.dp-prose .dp-toc a { text-decoration: none; color: rgba(255, 255, 255, .7); }
+.dp-prose .dp-toc a:hover { color: #fff; }
+
+/* Comparison tables; wrap in .dp-table so wide tables scroll, not the page */
+.dp-table { margin-top: 20px; overflow-x: auto; }
+.dp-table table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.dp-table th,
+.dp-table td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  color: rgba(255, 255, 255, .65);
+}
+.dp-table th { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.dp-table thead th { border-bottom-color: var(--line-strong); }
+
+/* Draft placeholders: visible only while a guide is being written.
+   A guide must contain none of these before its robots meta flips to index. */
+.dp-draft {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 1px dashed rgba(246, 201, 68, .5);
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--brand-yellow);
+}
+.dp-prose .dp-draft p,
+.dp-prose .dp-draft li { font-size: 13px; color: var(--brand-yellow); }
+.dp-draft > :first-child { margin-top: 0; }

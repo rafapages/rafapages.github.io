@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- DRAFT: verify the claim in this description against Fully Kiosk's current docs before shipping -->
+<meta name="description" content="Fully Kiosk Browser is not available for iPad. Why iOS rules it out, what an iPad can do instead, and when a cheap Android tablet running Fully Kiosk is the better choice.">
+<meta name="author" content="Rafa Pagés">
+<!-- DRAFT: flip to "index, follow" only when every .dp-draft block is gone, then add this URL to /sitemap.xml -->
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0e0f10">
+
+<title>Fully Kiosk Browser for iPad: Your Actual Options | DashPad</title>
+<link rel="canonical" href="https://www.rafapages.com/dashpad/guides/fully-kiosk-browser-ipad/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Fully Kiosk Browser for iPad: what your actual options are" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="DashPad" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:description" content="Why Fully Kiosk does not exist on iOS, what an iPad can do instead, and when the Android route is the better answer." />
+<!-- DRAFT: replace with a dedicated 1200x630 image -->
+<meta property="og:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://www.rafapages.com/dashpad/guides/fully-kiosk-browser-ipad/" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fully Kiosk Browser for iPad: what your actual options are" />
+<meta name="twitter:description" content="Why Fully Kiosk does not exist on iOS, what an iPad can do instead, and when the Android route is the better answer." />
+<meta name="twitter:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
+
+<link rel="icon" href="../../uploads/dplogo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/dashpad.css">
+</head>
+
+<body>
+
+<div class="dp dp-page">
+
+  <nav class="dp-nav">
+    <div class="dp-nav__inner">
+      <a href="../../" class="dp-nav__brand">
+        <img src="../../uploads/dplogo.webp" alt="DashPad">
+        <span>DashPad</span>
+      </a>
+      <div class="dp-nav__links">
+        <a href="../../privacy.html" class="dp-nav__link">Privacy</a>
+        <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener" class="dp-nav__link">GitHub</a>
+        <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank" rel="noopener" class="dp-btn-pill">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="dp-prose dp-guide">
+    <p class="dp-eyebrow">Guide</p>
+    <h1 class="dp-prose__title">Fully Kiosk Browser for iPad: what your actual options are</h1>
+    <p class="dp-prose__updated">Last updated: <!-- DRAFT: publish date, and bump only on real content changes --></p>
+
+    <!-- 1. The direct answer, in the first two sentences -->
+    <div class="dp-answer">
+      <div class="dp-draft">
+        <p>DRAFT, first two sentences: Fully Kiosk does not exist on iOS and will not, because iOS does not grant the device-level permissions it depends on. Then one line on what to do instead. Verify Fully Kiosk's current platform list and feature set before writing; do not describe it from memory.</p>
+      </div>
+    </div>
+
+    <nav class="dp-toc" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+        <li><a href="#why-not">Why Fully Kiosk is not on iOS</a></li>
+        <li><a href="#ipad-options">What you can do on an iPad instead</a></li>
+        <li><a href="#comparison">Feature comparison</a></li>
+        <li><a href="#use-fully-kiosk">Use Fully Kiosk if...</a></li>
+        <li><a href="#use-ipad">Use an iPad if...</a></li>
+        <li><a href="#dashpad">Where DashPad fits</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="why-not">Why Fully Kiosk is not on iOS</h2>
+    <div class="dp-draft">
+      <p>DRAFT: concretely, what Android lets a kiosk app do that iOS forbids (device owner / launcher replacement, screen and power control, background services, hardware sensors, remote admin). This is the section that earns the links.</p>
+    </div>
+
+    <h2 id="ipad-options">What you can do on an iPad instead</h2>
+    <div class="dp-draft">
+      <p>DRAFT: Guided Access, Safari full screen / home screen web app, MDM Single App Mode, dedicated kiosk apps including DashPad. Honest table of what each can and cannot do.</p>
+    </div>
+    <div class="dp-table">
+      <table>
+        <thead>
+          <tr><th>Option</th><th>Cost</th><th>Locks to one app</th><th>Screen on/off control</th><th>Survives reboot</th><th>Setup effort</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="6"><span class="dp-draft" style="display:inline-block;margin:0;">DRAFT: Guided Access, Safari / web app, MDM Single App Mode, kiosk apps (DashPad and others)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="comparison">Feature comparison</h2>
+    <div class="dp-draft">
+      <p>DRAFT: Fully Kiosk on Android vs the realistic iPad options. Include the rows where the iPad loses: remote admin REST API, MQTT, motion detection tuning, screensaver media, device-level control.</p>
+    </div>
+    <div class="dp-table">
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Fully Kiosk (Android)</th><th>Guided Access</th><th>MDM Single App Mode</th><th>DashPad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5"><span class="dp-draft" style="display:inline-block;margin:0;">DRAFT: rows, verified</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="use-fully-kiosk">Use Fully Kiosk if...</h2>
+    <div class="dp-draft">
+      <p>DRAFT: a real recommendation for the Android route. Spare Android tablet, or still buying hardware: Fully Kiosk on a cheap Android tablet is often the better answer. Say so plainly.</p>
+    </div>
+
+    <h2 id="use-ipad">Use an iPad if...</h2>
+    <div class="dp-draft">
+      <p>DRAFT: screen quality, an iPad already in a drawer, the household is on iOS, longer software support on some models. Link up to the <a href="../ipad-home-assistant-wall-dashboard/">pillar guide</a> for the full setup.</p>
+    </div>
+    <p>Setting one up: <a href="../ipad-home-assistant-wall-dashboard/">how to use an old iPad as a Home Assistant wall dashboard</a>.</p>
+
+    <h2 id="dashpad">Where DashPad fits</h2>
+    <div class="dp-draft">
+      <p>DRAFT: one honest paragraph. What it does, what it deliberately does not do, the price. No "better than" framing. Link across to <a href="../../">/dashpad/</a>.</p>
+    </div>
+
+    <hr class="dp-prose__divider">
+    <p class="dp-prose__foot">Spotted something out of date about Fully Kiosk or iOS? Reach me at <a href="mailto:dashpad@rafapages.com">dashpad@rafapages.com</a>.</p>
+  </main>
+
+  <footer class="dp-footer">
+    <div class="dp-footer__bar">
+      <div class="dp-footer__brand">
+        <img src="../../uploads/dplogo.webp" alt="DashPad">
+        <span>DashPad</span>
+      </div>
+      <nav class="dp-footer__nav">
+        <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener">GitHub</a>
+        <a href="../../privacy.html">Privacy</a>
+        <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank" rel="noopener">App Store</a>
+      </nav>
+    </div>
+    <div class="dp-footer__fine">
+      <p>Made with ☕️ by Rafa Pagés with Home Assistant in mind © 2026.</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- 100% privacy-first analytics; auto-events records outbound clicks (e.g. App Store) -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<script async src="https://scripts.simpleanalyticscdn.com/auto-events.js"></script>
+</body>
+</html>

@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Canonical host is https://www.rafapages.com (see CNAME; GitHub Pages
+  redirects the apex). Every <loc> must match the page's rel="canonical".
+  Directories use a trailing slash.
+
+  DashPad guides: add a <url> here when a guide ships (i.e. when its
+  robots meta flips from noindex to index), with <lastmod> set to the date
+  the content last meaningfully changed. Do not list noindex drafts.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.rafapages.com/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.rafapages.com/research.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://www.rafapages.com/blocks.html</loc>
+  </url>
+  <url>
+    <loc>https://www.rafapages.com/projects/lunch-tracker/</loc>
+  </url>
+  <url>
+    <loc>https://www.rafapages.com/gradient-studio/</loc>
+  </url>
+
+  <!-- DashPad -->
+  <url>
+    <loc>https://www.rafapages.com/dashpad/</loc>
+  </url>
+  <url>
+    <loc>https://www.rafapages.com/dashpad/privacy.html</loc>
+  </url>
+
+  <!-- DashPad guides (add as they ship)
+  <url>
+    <loc>https://www.rafapages.com/dashpad/guides/ipad-home-assistant-wall-dashboard/</loc>
+    <lastmod>YYYY-MM-DD</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rafapages.com/dashpad/guides/fully-kiosk-browser-ipad/</loc>
+    <lastmod>YYYY-MM-DD</lastmod>
+  </url>
+  -->
 </urlset>
