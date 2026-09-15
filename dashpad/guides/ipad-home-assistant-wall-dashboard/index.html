@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Turn an old iPad into a Home Assistant wall dashboard: which models still work, mounting, keeping it powered safely, locking it down, managing the screen and designing the layout.">
+<meta name="author" content="Rafa Pagés">
+<!-- DRAFT: flip to "index, follow" only when every .dp-draft block is gone, then add this URL to /sitemap.xml -->
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0e0f10">
+
+<title>Use an Old iPad as a Home Assistant Wall Dashboard | DashPad</title>
+<link rel="canonical" href="https://www.rafapages.com/dashpad/guides/ipad-home-assistant-wall-dashboard/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="How to use an old iPad as a Home Assistant wall dashboard" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="DashPad" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:description" content="Which old iPads still work, how to mount and power one permanently, how to lock it down, and how to build a dashboard that looks right on it." />
+<!-- DRAFT: replace with a real photo of the wall-mounted iPad, 1200x630 -->
+<meta property="og:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://www.rafapages.com/dashpad/guides/ipad-home-assistant-wall-dashboard/" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How to use an old iPad as a Home Assistant wall dashboard" />
+<meta name="twitter:description" content="Which old iPads still work, how to mount and power one permanently, how to lock it down, and how to build a dashboard that looks right on it." />
+<meta name="twitter:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
+
+<link rel="icon" href="../../uploads/dplogo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/dashpad.css">
+</head>
+
+<body>
+
+<div class="dp dp-page">
+
+  <nav class="dp-nav">
+    <div class="dp-nav__inner">
+      <a href="../../" class="dp-nav__brand">
+        <img src="../../uploads/dplogo.webp" alt="DashPad">
+        <span>DashPad</span>
+      </a>
+      <div class="dp-nav__links">
+        <a href="../../privacy.html" class="dp-nav__link">Privacy</a>
+        <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener" class="dp-nav__link">GitHub</a>
+        <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank" rel="noopener" class="dp-btn-pill">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="dp-prose dp-guide">
+    <p class="dp-eyebrow">Guide</p>
+    <h1 class="dp-prose__title">How to use an old iPad as a Home Assistant wall dashboard</h1>
+    <p class="dp-prose__updated">Last updated: <!-- DRAFT: publish date, and bump only on real content changes --></p>
+
+    <!-- 1. The short answer: first 100 words, no personal story before it -->
+    <div class="dp-answer">
+      <div class="dp-draft">
+        <p>DRAFT, the short answer (under 100 words): which iPads work, what you need (mount, power, a way to lock it to one app), roughly what it costs. Primary query: "old iPad as home assistant dashboard".</p>
+      </div>
+    </div>
+
+    <nav class="dp-toc" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+        <li><a href="#which-ipads">Which old iPads are actually usable</a></li>
+        <li><a href="#mounting">Mounting</a></li>
+        <li><a href="#power">Power</a></li>
+        <li><a href="#locking-it-down">Locking it down</a></li>
+        <li><a href="#screen">Screen management</a></li>
+        <li><a href="#dashboard">Building the dashboard itself</a></li>
+        <li><a href="#my-setup">What I actually run</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="which-ipads">Which old iPads are actually usable</h2>
+    <div class="dp-draft">
+      <p>DRAFT: model by model, with the iOS/iPadOS version floor that matters (current HA frontend in Safari/WebKit, HA Companion app minimum, DashPad's own minimum). This is the section people bookmark, so make it a table.</p>
+    </div>
+    <div class="dp-table">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Max iPadOS</th><th>HA dashboard in browser</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4"><span class="dp-draft" style="display:inline-block;margin:0;">DRAFT: rows</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="mounting">Mounting</h2>
+    <div class="dp-draft">
+      <p>DRAFT: flush wall mounts, magnetic mounts, ledge/stand options. Cable routing. What to do if you cannot run power inside the wall.</p>
+    </div>
+
+    <h2 id="power">Power</h2>
+    <div class="dp-draft">
+      <p>DRAFT: leaving an iPad plugged in permanently, battery swelling risk, charge limiting, USB-C vs Lightning, PoE adapters.</p>
+    </div>
+    <p>More detail: <a href="../ipad-wall-dashboard-power/">keeping a wall-mounted iPad permanently powered</a>.</p>
+
+    <h2 id="locking-it-down">Locking it down</h2>
+    <div class="dp-draft">
+      <p>DRAFT: Guided Access, Single App Mode via MDM, kiosk browsers. Honest about what iOS does and does not permit. If you are coming from Android and Fully Kiosk, point to the comparison guide.</p>
+    </div>
+    <p>More detail: <a href="../ipad-guided-access-kiosk/">Guided Access vs a kiosk app</a>, and <a href="../fully-kiosk-browser-ipad/">Fully Kiosk Browser for iPad: what your actual options are</a>.</p>
+
+    <h2 id="screen">Screen management</h2>
+    <div class="dp-draft">
+      <p>DRAFT: always-on vs sleeping, burn-in, presence detection options (HA automations with a sensor, mmWave, camera-based). DashPad belongs here as one of several approaches, mentioned once, with a link to <a href="../../">/dashpad/</a>.</p>
+    </div>
+    <p>More detail: <a href="../ipad-dashboard-burn-in/">preventing screen burn-in</a> and <a href="../wall-tablet-presence-detection/">presence detection for wall tablets</a>.</p>
+
+    <h2 id="dashboard">Building the dashboard itself</h2>
+    <div class="dp-draft">
+      <p>DRAFT: dashboard layout for a fixed landscape screen, touch target sizing, kiosk-mode YAML (as a code block).</p>
+    </div>
+    <p>More detail: <a href="../home-assistant-dashboard-ipad-layout/">designing a Home Assistant dashboard for an iPad</a>.</p>
+
+    <h2 id="my-setup">What I actually run</h2>
+    <div class="dp-draft">
+      <p>DRAFT: short, specific, honest. The hardware, mount, power, app, dashboard. Include what still annoys me about it. Real photo (figure + figcaption), not stock. Second and last DashPad mention.</p>
+    </div>
+
+    <hr class="dp-prose__divider">
+    <p class="dp-prose__foot">Questions or corrections? Reach me at <a href="mailto:dashpad@rafapages.com">dashpad@rafapages.com</a>.</p>
+  </main>
+
+  <footer class="dp-footer">
+    <div class="dp-footer__bar">
+      <div class="dp-footer__brand">
+        <img src="../../uploads/dplogo.webp" alt="DashPad">
+        <span>DashPad</span>
+      </div>
+      <nav class="dp-footer__nav">
+        <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener">GitHub</a>
+        <a href="../../privacy.html">Privacy</a>
+        <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank" rel="noopener">App Store</a>
+      </nav>
+    </div>
+    <div class="dp-footer__fine">
+      <p>Made with ☕️ by Rafa Pagés with Home Assistant in mind © 2026.</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- 100% privacy-first analytics; auto-events records outbound clicks (e.g. App Store) -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<script async src="https://scripts.simpleanalyticscdn.com/auto-events.js"></script>
+</body>
+</html>
