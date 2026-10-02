@@ -1,7 +1,7 @@
 /* ── Project / case study page styles ── */
 
 .cs-container {
-  max-width: 680px;
+  max-width: 740px;
   margin: 0 auto;
   padding: 0 1.25rem;
 }
@@ -45,6 +45,7 @@
 }
 
 .cs-subtitle {
+  text-wrap: pretty;
   font-size: 1.05rem;
   color: #777;
   font-weight: 300;
@@ -88,6 +89,11 @@
   margin-top: 2rem;
   margin-bottom: 0.5rem;
   letter-spacing: 0.01em;
+}
+
+.cs-body p,
+.cs-body li {
+  text-wrap: pretty; /* avoid single-word last lines */
 }
 
 .cs-body p {
@@ -175,16 +181,40 @@
 }
 
 /* Wide image breakout */
+/* Breaks out up to 15rem per side, but never past the viewport (1.5rem gutter) */
 .cs-img-wide {
-  margin-left: -15rem;
-  margin-right: -15rem;
+  margin-left: calc(-1 * clamp(0px, (100vw - 100%) / 2 - 1.5rem, 15rem));
+  margin-right: calc(-1 * clamp(0px, (100vw - 100%) / 2 - 1.5rem, 15rem));
   margin-top: 1.5rem;
   margin-bottom: 0;
 }
-.cs-img-wide img {
+.cs-img-wide img,
+.cs-img-wide video {
   width: 100%;
   display: block;
   border-radius: 6px;
+}
+/* Hero image: wide breakout, cropped to 16:9 */
+.cs-hero {
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+.cs-hero img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 50% 80%;
+}
+/* Vertical video embed (YouTube Shorts) */
+.cs-video {
+  max-width: 320px;
+  margin: 1.75rem auto 2rem;
+}
+.cs-video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 0;
+  border-radius: 10px;
 }
 .cs-img-caption {
   font-size: 0.75rem;
@@ -240,6 +270,51 @@
   font-size: 0.875rem;
   color: #444;
   font-weight: 300;
+}
+
+/* Blog index */
+.blog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 5rem;
+}
+.blog-item {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.blog-item:first-child {
+  padding-top: 0;
+}
+.blog-date {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 0.4rem;
+}
+.blog-item-title {
+  font-family: 'Bungee', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.blog-item-title a {
+  color: #111;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.blog-item-title a:hover {
+  color: #2d68f6;
+  text-decoration: none;
+}
+.blog-item-desc {
+  font-size: 0.975rem;
+  color: #555;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0;
 }
 
 @media (max-width: 576px) {

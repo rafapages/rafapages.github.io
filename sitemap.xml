@@ -19,10 +19,21 @@
     <loc>https://www.rafapages.com/blocks.html</loc>
   </url>
   <url>
-    <loc>https://www.rafapages.com/projects/lunch-tracker/</loc>
+    <loc>https://www.rafapages.com/gradient-studio/</loc>
+  </url>
+
+  <!-- Blog -->
+  <url>
+    <loc>https://www.rafapages.com/blog/</loc>
+    <lastmod>2026-10-02</lastmod>
   </url>
   <url>
-    <loc>https://www.rafapages.com/gradient-studio/</loc>
+    <loc>https://www.rafapages.com/blog/you-might-already-own-a-homepad/</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rafapages.com/blog/lunch-tracker/</loc>
+    <lastmod>2026-10-02</lastmod>
   </url>
 
   <!-- DashPad -->

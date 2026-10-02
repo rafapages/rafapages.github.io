@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The iPad was already looking at the room. How a house renovation, an old iPad and a battery problem turned into DashPad, a privacy-first Home Assistant kiosk app.">
+  <meta name="author" content="Rafa Pagés">
+
+  <title>You Might Already Own a HomePad. Kind of. | Rafa Pagés</title>
+  <link rel="canonical" href="https://www.rafapages.com/blog/you-might-already-own-a-homepad/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="You Might Already Own a HomePad. Kind of." />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="The iPad was already looking at the room. How a house renovation, an old iPad and a battery problem turned into an app." />
+  <meta property="og:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://www.rafapages.com/blog/you-might-already-own-a-homepad/" />
+  <meta property="article:published_time" content="2026-10-02" />
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "You Might Already Own a HomePad. Kind of.",
+    "description": "The iPad was already looking at the room. How a house renovation, an old iPad and a battery problem turned into an app.",
+    "datePublished": "2026-10-02",
+    "url": "https://www.rafapages.com/blog/you-might-already-own-a-homepad/",
+    "mainEntityOfPage": "https://www.rafapages.com/blog/you-might-already-own-a-homepad/",
+    "image": "https://www.rafapages.com/dashpad/social-preview.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Rafael Pagés",
+      "alternateName": "Rafa Pagés",
+      "url": "https://www.rafapages.com"
+    }
+  }
+  </script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/main.css" rel="stylesheet">
+  <link rel="icon" href="../../rp.ico">
+
+  <script src="https://kit.fontawesome.com/ab904bb842.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link href="../../css/project.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="site-nav scrolled" id="site-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-name" href="/">Rafa Pagés</a>
+      <div class="nav-links">
+        <a href="/#products">Products</a>
+        <a href="/#speaking">Speaking</a>
+        <a href="/research.html">Research</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     ARTICLE
+     ============================================================ -->
+<main>
+  <div class="cs-container">
+
+    <a href="/blog/" class="cs-back">← All posts</a>
+
+    <div class="cs-header">
+      <p class="cs-kicker"><time datetime="2026-10-02">October 2, 2026</time> · Launch</p>
+      <h1 class="cs-title">You Might Already Own a HomePad. Kind of.</h1>
+      <p class="cs-subtitle">How I turned and old iPad into a Home Assistant dashboard that only runs when someone is in front of it.</p>
+      <div class="cs-meta">
+        <span class="cs-tag">iOS</span>
+        <span class="cs-tag">Home Assistant</span>
+        <span class="cs-tag">Smart Home</span>
+        <span class="cs-tag">Dashboard</span>
+      </div>
+    </div>
+
+    <div class="cs-img-wide cs-hero">
+      <img src="img/dashboard.jpeg" alt="DashPad running on an iPad on a stand, showing a Home Assistant dashboard with the time, temperatures, a music player, lights, blinds and a calendar">
+    </div>
+
+    <article class="cs-body">
+
+      <p>You've probably heard the rumour about Apple launching the "HomePad": a screen that lives in your home, shows your smart home at a glance, and knows when someone is standing in front of it.</p>
+      <p>Good news: you might already own one. It's the old iPad you stopped using a couple of years ago 😃.</p>
+      <p>OK, not quite. But let me tell you about the app I built.</p>
+
+      <hr class="cs-rule">
+
+      <h2>Starting From Scratch</h2>
+      <p>Most people get into the smart home rabbit hole one smart bulb at a time. I got into it because I had the perfect opportunity to start fresh: we fully renovated a house. But I knew nothing about smart homes.</p>
+      <p>This meant I had to learn about the protocol craziness, watch dozens of YouTube tutorials, and spend days on Amazon and AliExpress looking for devices. I ended up where everyone seems to end up: Home Assistant. And I love it!</p>
+      <p>Months later I had relays behind the switches, blinds that roll up and down automatically, appliances that talked to each other, and a bunch of cool automations. All following a single rule: the house had to also work as a dumb house. The final touch was a modern-looking dashboard accessible from all the family devices. But without a permanent location in the house.</p>
+
+      <hr class="cs-rule">
+
+      <h2>An Old iPad and Three Bad Options</h2>
+      <p>If you want to use a tablet as a dashboard the HA community is pretty clear about this: buy a cheap Android tablet and use Fully Kiosk. But I already had an old iPad, working and unused, and buying new hardware to do a job it could already do felt wrong. On iOS, though, there was no easy way to turn it into a dedicated display.</p>
+      <p>I could either leave it on all day, glowing in an empty room all night. I could pay for an iOS kiosk app, but most are quite expensive as they are built for retail displays. Or I could do it the proper Home Assistant way: a presence sensor, an automation, and a notification sent to the iPad so the screen turns on. That works, but seemed overcomplicated.</p>
+      <p>The iPad has a front camera, why not use that instead?</p>
+
+      <hr class="cs-rule">
+
+      <h2>Watching Without Watching</h2>
+      <p>So I decided to build my own kiosk app, using the camera as a built-in presence sensor.</p>
+
+      <div class="cs-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/QXoBq97Vv_8" title="DashPad: turn your old iPad into a Home Assistant presence-aware dashboard" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p>The obvious approach would have been to run the video from the front camera non-stop, process each frame locally using Apple's Vision framework to see if there is a person in front of the iPad or not. However, that meant a lot of processing, the camera light turned on all day, and basically a surveillance machine instead of a home dashboard.</p>
+      <p>The solution was:</p>
+      <p><strong>Photos, not video.</strong> Nobody walks into a room in less than a few seconds, so the app doesn't need a feed. It starts the camera, waits for exposure to settle, takes one video frame and shuts the camera down. The camera is on for a couple of seconds per check, and all locally processed images are discarded automatically right after. That alone fixed most of the power problem, and the indicator now blinks briefly instead of staying on. It looks like what it is: an occasional check.</p>
+
+      <div class="cs-img-inline">
+        <img src="/dashpad/uploads/presence.jpeg" alt="DashPad's Presence settings screen, showing the last camera frame with a detected person, the measured luminance, the dark threshold and the time since the last sample" class="img-fluid" style="border-radius:6px;">
+        <p class="cs-img-caption">The Presence screen: the last frame checked, how bright it was, and the threshold below which detection doesn't run.</p>
+      </div>
+
+      <p><strong>Figure out when it is dark.</strong> The first thing the app does with each frame is measure its brightness. If the room is dark, no detection runs, and the app checks much less often until the lights come on.</p>
+
+      <hr class="cs-rule">
+
+      <h2>The Trust Problem</h2>
+      <p>When I showed it to friends and other Home Assistant users, I realised there were more old iPads in drawers than I would have expected. iPads are great, and even though people keep them for many years, they end up being replaced by a faster and more modern one. But repurposing the old one was exciting! That is when I started thinking about releasing it, and the hard part turned out to have nothing to do with code.</p>
+      <p>I would be asking people to install an app from a developer they had never heard of and leave it running at home with the camera pointed into the room. "Everything stays on your device" appears in every App Store description, but who trusts that? And Home Assistant users chose to run their own setup precisely so they would not have to trust someone else's cloud. My word was never going to be enough.</p>
+      <p>So I made two decisions.</p>
+      <p><strong>No trackers at all.</strong> No analytics, no crash reporting, no performance monitoring. If anything leaves the device, even something harmless, we're back to "trust me". So the only network traffic the app makes is loading the page you gave it. And if I want to know how people use it, I'll have to ask them.</p>
+      <p><strong>The code is public.</strong> Anyone can read what the camera pipeline does: a photo is taken into memory, measured, checked for a person and thrown away. Nothing saved, nothing logged, nothing uploaded. This also means that you can download it and build it yourself, improve it, contribute to it or use it for a personal project.</p>
+
+      <hr class="cs-rule">
+
+      <h2>Where It Is Now</h2>
+      <p>DashPad has been on the <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank" rel="noopener">App Store</a> for two months. I posted it on r/homeassistant, the response was much better than I expected, and more than sixty people have bought it since, almost all of them from that one post. The source is on <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener">GitHub</a> and free for personal use. The App Store version is for people who would rather not build it themselves.</p>
+      <p>If you have an old iPad doing nothing and a dashboard stuck in a browser tab, that is exactly who I built it for.</p>
+
+      <div class="cs-img-wide">
+        <video src="vid/dashpad-website.mp4" poster="vid/dashpad-website.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of the DashPad website, showing the landing page and the app's setup screens on an iPad"></video>
+        <p class="cs-img-caption">The DashPad website.</p>
+      </div>
+
+      <p>You can find out more on the <a href="/dashpad/">DashPad website</a>. And if you try it, I would love to hear your feedback: what works, what doesn't, and what you would like it to do next. Write to me at <a href="mailto:dashpad@rafapages.com">dashpad@rafapages.com</a>.</p>
+
+    </article>
+
+  </div>
+</main>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<!-- FOOTER -->
+<div id="site-footer"></div>
+<script src="../../js/footer.js"></script>
+
+
+<!-- Scripts -->
+<script src="../../vendor/jquery/jquery.min.js"></script>
+<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  window.addEventListener('scroll', function () {
+    const nav = document.getElementById('site-nav');
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Lightbox
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  const overlayImg = document.createElement('img');
+  overlay.appendChild(overlayImg);
+  document.body.appendChild(overlay);
+
+  document.querySelectorAll('.cs-img-wide img, .cs-img-inline img').forEach(img => {
+    img.addEventListener('click', () => {
+      overlayImg.src = img.src;
+      overlayImg.alt = img.alt;
+      overlay.classList.add('active');
+    });
+  });
+
+  overlay.addEventListener('click', () => overlay.classList.remove('active'));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') overlay.classList.remove('active');
+  });
+</script>
+
+<!-- 100% privacy-first analytics -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
+</body>
+</html>
