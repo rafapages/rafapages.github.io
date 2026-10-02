@@ -1,0 +1,31 @@
+# Rafa Pagés
+
+> Personal site of Rafael (Rafa) Pagés: entrepreneur working on product, AI and spatial computing. Co-founder and CEO of Volograms, PhD in computer vision, with 25+ papers and patents in 3D reconstruction and volumetric capture. Also builds side projects, including the DashPad iPad app.
+
+## Main pages
+
+- [Home](https://www.rafapages.com/): bio, products, speaking, side projects and contact
+- [Research](https://www.rafapages.com/research.html): publications and patents in computer vision, 3D reconstruction and volumetric capture
+
+## Blog
+
+- [Blog index](https://www.rafapages.com/blog/): notes on building things on the side
+- [You Might Already Own a HomePad. Kind of.](https://www.rafapages.com/blog/you-might-already-own-a-homepad/): how an old iPad became a Home Assistant dashboard that only runs when someone is in front of it, and the launch of DashPad
+- [Building an AI-Powered School Lunch Tracker with Claude and Home Assistant](https://www.rafapages.com/blog/lunch-tracker/): parsing school lunch PDFs with Claude and showing the meals on a Home Assistant dashboard
+
+## DashPad
+
+- [DashPad](https://www.rafapages.com/dashpad/): full-screen kiosk browser for iPad that wakes when someone walks in and rests when the room is empty; presence detection runs on-device
+- [Privacy policy](https://www.rafapages.com/dashpad/privacy.html): no data collection, no analytics, no third-party services
+- [Source code](https://github.com/rafapages/dashpad)
+
+## Tools
+
+- [Gradient Studio](https://www.rafapages.com/gradient-studio/): recolor an animated gradient card and export self-contained HTML
+
+## Elsewhere
+
+- [LinkedIn](https://linkedin.com/in/rafapages/en)
+- [GitHub](https://github.com/rafapages)
+- [Google Scholar](https://scholar.google.com/citations?user=V5G2vyIAAAAJ&hl=en&oi=ao)
+- [Volograms](https://volograms.com)
