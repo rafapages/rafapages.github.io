@@ -17,7 +17,7 @@ Three main HTML pages:
 - `research.html` — Academic publications list with hover video previews (long-form, ~1350 lines)
 - `blocks.html` — Gallery/media showcase
 
-**Blog** (`blog/`): `blog/index.html` lists posts newest first; each post lives at `blog/<slug>/index.html` and uses the `cs-*` article styles from `css/project.css`. Adding a post means: the post page (with `BlogPosting` JSON-LD), an entry in `blog/index.html`, and a `<url>` in `sitemap.xml`. Post URLs are permanent. `projects/lunch-tracker/` and `lunch-tracker.html` are redirect stubs to `blog/lunch-tracker/`; keep them.
+**Blog** (`blog/`): `blog/index.html` lists posts newest first; each post lives at `blog/<slug>/index.html` and uses the `cs-*` article styles from `css/project.css`. Adding a post means: the post page (with `BlogPosting` JSON-LD), an entry in `blog/index.html`, an `<item>` in `blog/feed.xml` (RSS, newest first; bump `lastBuildDate`), and a `<url>` in `sitemap.xml`. The "Elsewhere" section in `blog/index.html` links to older Medium posts (thumbnails in `blog/img/medium/`); those stay out of the feed and sitemap. Post URLs are permanent. `projects/lunch-tracker/` and `lunch-tracker.html` are redirect stubs to `blog/lunch-tracker/`; keep them.
 
 **Styling:**
 - `css/main.css` — Primary custom styles (responsive breakpoint at 768px, card hover effects, video wrappers)
