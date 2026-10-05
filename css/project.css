@@ -374,3 +374,87 @@ body {
 body > main {
   flex: 1 0 auto;
 }
+
+/* Elsewhere: external posts (Medium) */
+.blog-list {
+  margin-bottom: 4rem;
+}
+.ext-section {
+  margin-bottom: 5rem;
+}
+.ext-heading {
+  font-family: 'Bungee', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+.ext-intro {
+  font-size: 0.95rem;
+  color: #777;
+  font-weight: 300;
+  margin-bottom: 1.75rem;
+}
+.ext-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.5rem;
+}
+.ext-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.ext-link:hover {
+  text-decoration: none;
+}
+.ext-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #f5f5f5;
+  margin-bottom: 0.75rem;
+  filter: grayscale(25%);
+  transition: filter 0.2s;
+}
+.ext-link:hover .ext-thumb {
+  filter: none;
+}
+.ext-meta {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 0.25rem;
+}
+.ext-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #333;
+  transition: color 0.2s;
+}
+.ext-link:hover .ext-title {
+  color: #2d68f6;
+}
+.ext-more {
+  font-size: 0.9rem;
+  color: #2d68f6;
+  text-decoration: none;
+}
+.ext-more:hover {
+  text-decoration: underline;
+}
+@media (max-width: 576px) {
+  .ext-list {
+    grid-template-columns: 1fr;
+  }
+}

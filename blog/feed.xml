@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rafa Pagés</title>
+    <link>https://www.rafapages.com/blog/</link>
+    <atom:link href="https://www.rafapages.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Notes on building things on the side, and what shipping them taught me.</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 02 Oct 2026 10:53:30 GMT</lastBuildDate>
+    <image>
+      <url>https://www.rafapages.com/img/rafa_electro_new_logo.jpg</url>
+      <title>Rafa Pagés</title>
+      <link>https://www.rafapages.com/blog/</link>
+    </image>
+
+    <!-- Newest first. Adding a post: copy an <item>, update lastBuildDate. -->
+
+    <item>
+      <title>You Might Already Own a HomePad. Kind of.</title>
+      <link>https://www.rafapages.com/blog/you-might-already-own-a-homepad/</link>
+      <guid isPermaLink="true">https://www.rafapages.com/blog/you-might-already-own-a-homepad/</guid>
+      <pubDate>Fri, 02 Oct 2026 10:53:30 GMT</pubDate>
+      <description><![CDATA[<p><img src="https://www.rafapages.com/blog/you-might-already-own-a-homepad/img/social.jpg" alt="DashPad running on an iPad on a stand, showing a Home Assistant dashboard"></p><p>How a house renovation, an old iPad and a battery problem turned into DashPad, and why the hard part had nothing to do with code.</p>]]></description>
+      <enclosure url="https://www.rafapages.com/blog/you-might-already-own-a-homepad/img/social.jpg" length="71060" type="image/jpeg" />
+    </item>
+
+    <item>
+      <title>Building an AI-Powered School Lunch Tracker with Claude and Home Assistant</title>
+      <link>https://www.rafapages.com/blog/lunch-tracker/</link>
+      <guid isPermaLink="true">https://www.rafapages.com/blog/lunch-tracker/</guid>
+      <pubDate>Wed, 18 Mar 2026 09:00:00 GMT</pubDate>
+      <description><![CDATA[<p><img src="https://www.rafapages.com/blog/lunch-tracker/img/calendar.jpg" alt="The lunch tracker calendar view with both kids' meals side by side"></p><p>From a dinner-planning problem to a live calendar on my dashboard. A real vibe-coding project.</p>]]></description>
+      <enclosure url="https://www.rafapages.com/blog/lunch-tracker/img/calendar.jpg" length="449295" type="image/jpeg" />
+    </item>
+
+  </channel>
+</rss>

@@ -31,6 +31,11 @@
             <i class="fa-brands fa-google-scholar"></i>
           </a>
         </li>
+        <li class="list-inline-item">
+          <a href="/blog/feed.xml" title="RSS feed">
+            <i class="fa-solid fa-rss"></i>
+          </a>
+        </li>
       </ul>
       <span class="footer-copy">© Rafael Pagés</span>
     </div>
