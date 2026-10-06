@@ -1534,3 +1534,468 @@ a.talk-entry-title:hover {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+
+
+/* ============================================================
+   WORK SHOWCASE  (Built at Volograms · Built hands-on)
+   Shared card component so solo builds and Volograms products
+   get the same visual weight. Gallery behaviour: js/showcase.js
+   ============================================================ */
+
+/* Eyebrow: the quiet "AI as the …" thread on every section */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #999;
+  margin-bottom: 0.6rem;
+}
+
+.section-eyebrow::before {
+  content: "";
+  width: 1.4rem;
+  height: 0.45rem;
+  border-radius: 0.6em 0.2em;
+  background: rgba(255, 220, 0, 0.7);
+}
+
+.research-callout .section-eyebrow {
+  display: flex;
+}
+
+.section-subtitle--lead {
+  font-size: 1rem;
+  color: #555;
+  max-width: 640px;
+  margin-bottom: 0;
+}
+
+.section-subtitle--lead a {
+  color: #111;
+  font-weight: 400;
+  border-bottom: 1px solid #ccc;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.section-subtitle--lead a:hover {
+  color: #2d68f6;
+  border-color: #2d68f6;
+}
+
+.work-stats {
+  flex-wrap: wrap;
+  row-gap: 1.25rem;
+  margin-top: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+/* --- Card ---------------------------------------------------- */
+.showcase {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: box-shadow 0.25s ease;
+}
+
+.showcase:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+}
+
+.showcase-grid {
+  margin: 0 -0.75rem;
+}
+
+.showcase-col {
+  display: flex;
+  padding: 0 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Featured: full-width split, media 7 / body 5 */
+.showcase--feature {
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .showcase--feature {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+  }
+  .showcase--feature.showcase--flip {
+    grid-template-columns: 5fr 7fr;
+  }
+  .showcase--flip .sc-media { order: 2; }
+  .showcase--flip .sc-body  { order: 1; }
+  .showcase--feature .sc-body {
+    padding: 2.25rem 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .showcase--feature .sc-name {
+    font-size: 1.5rem;
+  }
+  .showcase--feature .sc-media {
+    border-right: 1px solid #f0f0f0;
+  }
+  .showcase--feature.showcase--flip .sc-media {
+    border-right: 0;
+    border-left: 1px solid #f0f0f0;
+  }
+}
+
+/* --- Gallery ------------------------------------------------- */
+.sc-media {
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+}
+
+.sc-frame {
+  position: relative;
+}
+
+.sc-stage {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  aspect-ratio: 16 / 9;
+  background: #f5f5f5;
+}
+
+.sc-stage::-webkit-scrollbar { display: none; }
+
+.showcase--feature .sc-stage {
+  aspect-ratio: 16 / 10;
+}
+
+@media (min-width: 992px) {
+  .showcase--feature .sc-media { justify-content: center; }
+}
+
+.sc-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: start;
+  display: block;
+}
+
+.sc-slide.is-broken,
+.sc-slide.is-hidden {
+  display: none;
+}
+
+.sc-caption {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  margin: 0;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: #111;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+  border-radius: 100px;
+  padding: 2px 10px;
+  pointer-events: none;
+}
+
+.sc-caption:empty { display: none; }
+
+.sc-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-size: 0.95rem;
+  line-height: 1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.sc-nav--prev { left: 0.6rem; }
+.sc-nav--next { right: 0.6rem; }
+.sc-nav:hover { color: #2d68f6; }
+
+.sc-frame:hover .sc-nav,
+.sc-nav:focus-visible { opacity: 1; }
+
+@media (hover: none) {
+  .sc-nav { display: none; }
+}
+
+.sc-thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 0.6rem 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sc-thumb {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  opacity: 0.55;
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.sc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sc-thumb:hover { opacity: 0.85; }
+
+.sc-thumb.is-active {
+  opacity: 1;
+  border-color: #111;
+}
+
+.sc-thumb--blank {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.sc-thumb--video::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.6rem;
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Fallback covers (no imagery yet) */
+.sc-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.sc-cover-name {
+  font-family: 'Bungee', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1;
+  color: #111;
+}
+
+.sc-cover-sub {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #555;
+}
+
+.sc-cover--sea {
+  background:
+    repeating-linear-gradient(170deg, rgba(255, 255, 255, 0.35) 0 2px, transparent 2px 22px),
+    #dceaf3;
+}
+
+.sc-cover--logo {
+  background: #f5f5f5;
+}
+
+.sc-cover-logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Body ---------------------------------------------------- */
+.sc-body {
+  padding: 1.4rem 1.4rem 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sc-kicker {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #aaa;
+  margin-bottom: 0.25rem;
+}
+
+.sc-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.sc-name a {
+  color: #111;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.sc-name a:hover { color: #2d68f6; }
+
+.sc-desc {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+/* "The AI" / "AI did" line: the AI thread inside each card */
+.sc-ai,
+.sc-role {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin-bottom: 0.75rem;
+}
+
+.sc-ai {
+  color: #111;
+  background: rgba(255, 220, 0, 0.12);
+  border-left: 3px solid rgba(255, 220, 0, 0.8);
+  border-radius: 0 6px 6px 0;
+  padding: 0.45rem 0.7rem;
+}
+
+.sc-role {
+  color: #555;
+}
+
+.sc-ai-label,
+.sc-role-label {
+  display: inline-block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #888;
+  margin-right: 0.5rem;
+}
+
+.sc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.sc-links a {
+  font-size: 0.75rem;
+  color: #555;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 2px 11px;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.sc-links a:hover {
+  color: #2d68f6;
+  border-color: #2d68f6;
+}
+
+/* AR Quick Look only works on iOS/iPadOS Safari */
+.sc-link-ar { display: none; }
+.is-ios .sc-link-ar { display: inline-block; }
+
+/* --- How I build + footnote --------------------------------- */
+.how-i-build {
+  margin-top: 1rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px dashed #ddd;
+  border-radius: 12px;
+  max-width: 760px;
+}
+
+.how-i-build p:last-child {
+  margin: 0;
+  color: #555;
+  font-weight: 300;
+}
+
+.work-footnote {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: #999;
+  font-weight: 300;
+}
+
+.work-footnote strong {
+  color: #555;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .sc-body { padding: 1.15rem 1.1rem 1.1rem; }
+  .work-stats { gap: 1.5rem; }
+  .work-stats .stat-number { font-size: 1.5rem; }
+}
+
+/* ============================================================
+   DRAFT MODE  (open the page with ?draft)
+   .todo = placeholder copy, links, stats and slides. Hidden on
+   the live site; outlined in yellow while editing.
+   ============================================================ */
+html:not(.draft) .todo { display: none !important; }
+
+html.draft .todo {
+  outline: 2px dashed rgba(230, 190, 0, 0.9);
+  outline-offset: 2px;
+  background-color: rgba(255, 220, 0, 0.12);
+}
+
+.sc-slide--todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #777;
+  padding: 1rem;
+}
+
+.sc-slide--todo code {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+/* Research stats wrap on small screens (fixes horizontal scroll at 390px) */
+@media (max-width: 576px) {
+  .research-stats { flex-wrap: wrap; gap: 1.5rem; }
+}

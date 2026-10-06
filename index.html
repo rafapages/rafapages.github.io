@@ -60,6 +60,13 @@
 </head>
 
 <body id="page-top">
+<script>
+  // ?draft shows placeholders (.todo). is-ios enables AR Quick Look links.
+  (function (h) {
+    if (/[?&]draft\b/.test(location.search)) h.classList.add('draft');
+    if (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) h.classList.add('is-ios');
+  })(document.documentElement);
+</script>
 
 <!-- ============================================================
      NAV
@@ -69,7 +76,7 @@
     <div class="nav-inner">
       <a class="nav-name" href="#page-top">Rafa Pagés</a>
       <div class="nav-links">
-        <a href="#products">Products</a>
+        <a href="#products">Work</a>
         <a href="./research.html">Research</a>
         <a href="./blog/">Blog</a>
         <a href="#speaking">Speaking</a>
@@ -117,180 +124,142 @@
 
 
 <!-- ============================================================
-     PRODUCTS
+     BUILT AT VOLOGRAMS  (AI as the product)
+     ------------------------------------------------------------
+     Showcase cards: one featured row (full width) + a 2-up grid.
+     Each card has a swipeable gallery: drop more <img>/<video>
+     slides into .sc-stage and thumbnails are built automatically.
+     Images that fail to load are skipped, so you can reference a
+     file before it exists.
+
+     Anything with class="todo" is a placeholder: hidden on the live
+     site, visible (yellow dashed) when you open the page with ?draft
+     e.g. http://localhost:8000/?draft
      ============================================================ -->
-<section id="products" class="content-section">
+<section id="products" class="content-section work-section">
   <div class="container">
-    <h2 class="section-title">Products</h2>
-    <p class="section-subtitle">Built from zero with a small team: strategy, design, tech, go-to-market, the lot.</p>
+    <p class="section-eyebrow">AI as the product</p>
+    <h2 class="section-title">Built at Volograms</h2>
+    <p class="section-subtitle section-subtitle--lead">
+      I co-founded <a href="https://volograms.com" target="_blank">Volograms</a>, a 3D generative AI company, and led product across a cross-functional team of 20+.
+      Three products, from research paper to market.
+    </p>
 
-    <div class="row product-row">
+    <!-- Stat row: same style as the research stats. Verify every figure against the CV. -->
+    <div class="research-stats work-stats">
+      <div class="research-stat">
+        <span class="stat-number">3</span>
+        <span class="stat-label">products shipped</span>
+      </div>
+      <div class="research-stat">
+        <span class="stat-number">3M+</span>
+        <span class="stat-label">models processed</span>
+      </div>
+      <div class="research-stat">
+        <span class="stat-number">20+</span>
+        <span class="stat-label">person team led</span>
+      </div>
+      <div class="research-stat">
+        <span class="stat-number">AWE</span>
+        <span class="stat-label">Best AI Product 2022</span>
+      </div>
+      <div class="research-stat todo">
+        <span class="stat-number">€3.5M+</span>
+        <span class="stat-label">raised (verify)</span>
+      </div>
+    </div>
 
-      <div class="col-md-4 product-col">
-        <div class="product-card">
-          <div class="product-card-media">
-            <img src="img/products/volu.jpg" alt="Volu app screenshots">
-          </div>
-          <div class="product-card-body">
-            <h3 class="product-name">
-              <a href="https://volograms.com/volu" target="_blank">Volu</a>
-            </h3>
-            <p class="product-tags">
-              <span class="tag">iOS</span>
-              <span class="tag">B2C</span>
-            </p>
-            <p class="product-desc">The first mobile app for volumetric video capture. Took this from concept to the App Store. Over 3M models processed. AWE Auggie Award for Best AI Product.</p>
-          </div>
+    <!-- ── Volu (featured) ─────────────────────────────────────── -->
+    <article class="showcase showcase--feature">
+      <div class="sc-media" data-gallery>
+        <div class="sc-stage">
+          <img class="sc-slide" src="img/products/volu.jpg" alt="Volu app screenshots" data-caption="App Store screenshots">
+          <!-- Add more slides, e.g.:
+          <img class="sc-slide" src="img/products/volu-capture.jpg" alt="..." data-caption="Capture from a single phone camera">
+          <video class="sc-slide" src="vid/volu-demo.mp4" poster="img/products/volu-demo.jpg" muted loop playsinline preload="none" data-caption="Demo"></video>
+          -->
+          <div class="sc-slide sc-slide--todo todo">Capture flow screenshot<br><code>img/products/volu-capture.jpg</code></div>
+          <div class="sc-slide sc-slide--todo todo">Short demo video<br><code>vid/volu-demo.mp4</code></div>
         </div>
       </div>
+      <div class="sc-body">
+        <p class="sc-kicker">Volograms · Consumer app</p>
+        <h3 class="sc-name"><a href="https://volograms.com/volu" target="_blank">Volu</a></h3>
+        <p class="product-tags">
+          <span class="tag">iOS</span>
+          <span class="tag">B2C</span>
+          <span class="tag">Generative 3D</span>
+        </p>
+        <p class="sc-ai"><span class="sc-ai-label">The AI</span>Reconstructs a 3D person from a single phone camera.</p>
+        <p class="sc-desc">The first mobile app for volumetric video capture. Over 3M models processed. AWE Auggie Award for Best AI Product.</p>
+        <p class="sc-role"><span class="sc-role-label">My role</span>Took it from concept to the App Store.<span class="todo"> [Optional: how generative AI prototyping was used during development]</span></p>
+        <div class="sc-links">
+          <a href="https://volograms.com/volu" target="_blank">Website ↗</a>
+          <a href="#" class="todo" target="_blank">App Store ↗</a>
+          <a href="rafa.usdz" rel="ar" class="sc-link-ar">View a vologram in AR</a>
+          <a href="https://edition.cnn.com/2021/10/20/tech/volograms-volu-app-ireland-spc-intl/index.html" target="_blank">CNN ↗</a>
+        </div>
+      </div>
+    </article>
 
-      <div class="col-md-4 product-col">
-        <div class="product-card">
-          <div class="product-card-media">
-            <img src="img/products/vologram-messages.jpg" alt="Vologram Messages WebAR demo">
+    <div class="row showcase-grid">
+
+      <!-- ── Vologram Messages ─────────────────────────────────── -->
+      <div class="col-md-6 showcase-col">
+        <article class="showcase">
+          <div class="sc-media" data-gallery>
+            <div class="sc-stage">
+              <img class="sc-slide" src="img/products/vologram-messages.jpg" alt="Vologram Messages WebAR demo" data-caption="A hologram opened from a link">
+              <div class="sc-slide sc-slide--todo todo">Recording / upload screen<br><code>img/products/messages-create.jpg</code></div>
+              <div class="sc-slide sc-slide--todo todo">Brand campaign example<br><code>img/products/messages-brand.jpg</code></div>
+            </div>
           </div>
-          <div class="product-card-body">
-            <h3 class="product-name">
-              <a href="https://volograms.com/vologram-messages" target="_blank">Vologram Messages</a>
-            </h3>
+          <div class="sc-body">
+            <p class="sc-kicker">Volograms · Brands</p>
+            <h3 class="sc-name"><a href="https://volograms.com/vologram-messages" target="_blank">Vologram Messages</a></h3>
             <p class="product-tags">
               <span class="tag">WebAR</span>
               <span class="tag">B2B</span>
             </p>
-
-            <p class="product-desc">Holograms delivered as a link, no app required. Built to turn our core AI tech into a revenue-generating product. Used by global brands including HUGO BOSS and Mars Wrigley.</p>
+            <p class="sc-ai"><span class="sc-ai-label">The AI</span>Turns a regular phone video into a 3D hologram.<span class="todo"> [confirm wording]</span></p>
+            <p class="sc-desc">Holograms delivered as a link, no app required. Built to turn our core AI tech into a revenue-generating product. Used by global brands including HUGO BOSS and Mars Wrigley.</p>
+            <p class="sc-role todo"><span class="sc-role-label">My role</span>[e.g. defined the product, designed the flow, ran the launch]</p>
+            <div class="sc-links">
+              <a href="https://volograms.com/vologram-messages" target="_blank">Website ↗</a>
+              <a href="https://80.lv/articles/volograms-introduced-vologram-messages-to-turn-videos-into-3d-holograms" target="_blank">80.lv ↗</a>
+              <a href="#" class="todo" target="_blank">Live demo ↗</a>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
 
-      <div class="col-md-4 product-col">
-        <div class="product-card">
-          <div class="product-card-media">
-            <img src="img/products/vologram-studio.jpg" alt="Vologram Studio multi-camera capture">
+      <!-- ── Vologram Studio ───────────────────────────────────── -->
+      <div class="col-md-6 showcase-col">
+        <article class="showcase">
+          <div class="sc-media" data-gallery>
+            <div class="sc-stage">
+              <img class="sc-slide" src="img/products/vologram-studio.jpg" alt="Vologram Studio multi-camera capture" data-caption="Multi-camera capture">
+              <div class="sc-slide sc-slide--todo todo">Final 3D asset in a scene<br><code>img/products/studio-asset.jpg</code></div>
+              <div class="sc-slide sc-slide--todo todo">Sports / virtual production use<br><code>img/products/studio-use.jpg</code></div>
+            </div>
           </div>
-          <div class="product-card-body">
-            <h3 class="product-name">Vologram Studio</h3>
+          <div class="sc-body">
+            <p class="sc-kicker">Volograms · Studios &amp; sports</p>
+            <h3 class="sc-name">Vologram Studio</h3>
             <p class="product-tags">
               <span class="tag">Multi-camera</span>
               <span class="tag">B2B</span>
             </p>
-            <p class="product-desc">Multi-camera volumetric capture, in or out of the studio. High-end 3D assets for XR, virtual production, and sports. From a research paper to a full business.</p>
-          </div>
-        </div>
-      </div>
-
-      <!--
-        ── ADD A PRODUCT ──────────────────────────────────────────
-        Copy this block and fill in your details.
-
-        For the card background, either:
-          a) Use one of the existing gradient classes:
-             product-media-volu / product-media-messages / product-media-studio
-          b) Add a new one in main.css:
-             .product-media-myapp { background: linear-gradient(135deg, #fef3e2, #fde8c0); }
-          c) Replace the <div class="product-card-media ..."> with an image:
-             <div class="product-card-media" style="padding:0">
-               <img src="img/products/myapp.jpg" style="width:100%;height:100%;object-fit:cover">
-             </div>
-
-        <div class="col-md-4 product-col">
-          <div class="product-card">
-            <div class="product-card-media product-media-myapp">
-              <span class="product-initial">AB</span>
-            </div>
-            <div class="product-card-body">
-              <h3 class="product-name">
-                <a href="https://..." target="_blank">App Name</a>
-              </h3>
-              <p class="product-tags">
-                <span class="tag">iOS</span>
-                <span class="tag">Healthcare</span>
-              </p>
-              <p class="product-desc">One or two sentences describing what it does and the impact it had.</p>
+            <p class="sc-ai"><span class="sc-ai-label">The AI</span>Computer vision fuses footage from many cameras into one 3D asset.<span class="todo"> [confirm wording]</span></p>
+            <p class="sc-desc">Multi-camera volumetric capture, in or out of the studio. High-end 3D assets for XR, virtual production, and sports. From a research paper to a full business.</p>
+            <p class="sc-role todo"><span class="sc-role-label">My role</span>[role in going from research paper to business]</p>
+            <div class="sc-links">
+              <a href="#" class="todo" target="_blank">The paper ↗</a>
+              <a href="https://www.irishtimes.com/business/innovation/volograms-making-beckett-come-to-life-with-augmented-reality-1.4012575" target="_blank">Irish Times ↗</a>
             </div>
           </div>
-        </div>
-      -->
-
-    </div>
-  </div>
-</section>
-
-<!-- zigzag divider -->
-<div class="doodle-divider" aria-hidden="true">
-  <img src="img/doodles/zigzag.svg" alt="">
-</div>
-
-<!-- ============================================================
-     MAKING / SIDE PROJECTS
-     ============================================================ -->
-<section id="making" class="content-section making-section">
-  <div class="container">
-    <h2 class="section-title">Making</h2>
-    <p class="section-subtitle">Always building something on the side. Some serious, some just because.</p>
-
-    <div class="row making-grid">
-      <div class="col-6 col-md-3 making-col">
-        <div class="making-card">
-          <img src="img/logos/LCI-logo-sm.png" alt="Let's Crush It logo" class="making-logo">
-          <h3 class="making-name"><a href="https://letscrush.it" target="_blank">Let's Crush It</a></h3>
-          <p class="making-desc">iOS productivity app that helps you crush your goals, build habits, track progress, track momentum, and actually follow through.</p>
-        </div>
+        </article>
       </div>
-
-      <div class="col-6 col-md-3 making-col">
-        <div class="making-card">
-          <img src="dashpad/uploads/dplogo.webp" alt="DashPad logo" class="making-logo">
-          <h3 class="making-name"><a href="./dashpad/">DashPad</a></h3>
-          <p class="making-desc">Turns an iPad into a smart dashboard that wakes on presence. Detection runs locally: privacy-first by design.</p>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-3 making-col">
-        <div class="making-card">
-          <span class="making-icon">🍽️</span>
-          <h3 class="making-name"><a href="./blog/lunch-tracker/">AI School Lunch Tracker</a></h3>
-          <p class="making-desc">Claude parses school lunch PDFs → custom web calendar → Home Assistant dashboard. Built it so I never accidentally cook the same thing they had for lunch.</p>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-3 making-col">
-        <div class="making-card">
-          <img src="img/logos/logo-eyeQoala.png" alt="eyeQoala logo" class="making-logo making-logo--wide">
-          <h3 class="making-name"><a href="#" target="_blank">eyeQoala</a></h3>
-          <p class="making-desc">3D startup, circa 2011. Didn't make it as a business, but won Best Startup at Yuzz and got us dreaming about spatial computing before it was a thing.</p>
-        </div>
-      </div>
-
-      <!-- Paused for now, might pick it back up.
-      <div class="col-6 col-md-3 making-col">
-        <div class="making-card">
-          <span class="making-icon">🥽</span>
-          <h3 class="making-name"><a href="https://eirmersive.com" target="_blank">Eirmersive</a></h3>
-          <p class="making-desc">Founding member of Ireland's XR industry association. Ran the community newsletter and helped build the network from the ground up.</p>
-        </div>
-      </div>
-      -->
-
-
-
-
-
-      <!--
-        ── ADD A SIDE PROJECT ───────────────────────────────────────
-        Copy a col block above and fill in:
-          - making-icon: any emoji that fits the project
-          - making-name: project name (wrap in <a> if it has a URL)
-          - making-desc: one sentence about it
-
-        <div class="col-6 col-md-3 making-col">
-          <div class="making-card">
-            <span class="making-icon">✨</span>
-            <h3 class="making-name"><a href="https://..." target="_blank">My thing</a></h3>
-            <p class="making-desc">What it is and why it exists.</p>
-          </div>
-        </div>
-      -->
 
     </div>
   </div>
@@ -298,10 +267,10 @@
 
 
 <!-- ============================================================
-     PRESS
+     PRESS  (moved up: the coverage is about Volograms)
      ============================================================ -->
 <section id="press" class="press-section">
-  <p class="press-label">Featured in</p>
+  <p class="press-label">Volograms, featured in</p>
   <div class="press-marquee">
     <div class="press-logos">
       <a href="https://www.wired.com/story/hottest-startups-in-dublin-2022/" target="_blank" class="press-item" data-pub="WIRED" data-title="The Hottest Startups in Dublin">
@@ -344,6 +313,204 @@
 
 
 <!-- ============================================================
+     BUILT HANDS-ON  (AI as the workflow)
+     Same showcase cards as the Volograms section, on purpose:
+     solo builds get the same visual weight.
+     ============================================================ -->
+<section id="making" class="content-section work-section">
+  <div class="container">
+    <p class="section-eyebrow">AI as the workflow</p>
+    <h2 class="section-title">Built hands-on</h2>
+    <p class="section-subtitle section-subtitle--lead">Apps and tools I designed, built and shipped on my own, with AI in the loop from first prototype to App Store.</p>
+
+    <!-- Stat row: only figures that hold up. -->
+    <div class="research-stats work-stats">
+      <div class="research-stat">
+        <span class="stat-number">3</span>
+        <span class="stat-label">apps on the App Store</span>
+      </div>
+      <div class="research-stat">
+        <span class="stat-number">1</span>
+        <span class="stat-label">open-source app</span>
+      </div>
+      <div class="research-stat todo">
+        <span class="stat-number">[X] wks</span>
+        <span class="stat-label">MadiCam, idea to App Store</span>
+      </div>
+      <div class="research-stat todo">
+        <span class="stat-number">[N]</span>
+        <span class="stat-label">projects shipped since 2025</span>
+      </div>
+    </div>
+
+    <!-- ── MadiCam (featured) ───────────────────────────────── -->
+    <article class="showcase showcase--feature showcase--flip">
+      <div class="sc-media" data-gallery>
+        <div class="sc-stage">
+          <!-- Drop real screenshots in img/products/ and they appear automatically. -->
+          <img class="sc-slide" src="img/products/madicam-1.jpg" alt="MadiCam capture screen" data-caption="Capture screen">
+          <img class="sc-slide" src="img/products/madicam-2.jpg" alt="MadiCam in a dive housing" data-caption="In the housing, underwater">
+          <img class="sc-slide" src="img/products/madicam-3.jpg" alt="MadiCam settings" data-caption="Settings">
+          <!-- Fallback cover: shown while there are no screenshots. Delete once images exist. -->
+          <div class="sc-slide sc-cover sc-cover--sea" data-caption="MadiCam">
+            <span class="sc-cover-name">MadiCam</span>
+            <span class="sc-cover-sub">Underwater Camera</span>
+          </div>
+        </div>
+      </div>
+      <div class="sc-body">
+        <p class="sc-kicker">Solo · New · October 2026</p>
+        <h3 class="sc-name"><a href="#" target="_blank">MadiCam Underwater Camera</a></h3>
+        <p class="product-tags">
+          <span class="tag">iOS</span>
+          <span class="tag">B2C</span>
+          <span class="tag">Native SwiftUI</span>
+        </p>
+        <p class="sc-desc">An iPhone camera for touchscreen dive housings. Oversized controls you can hit with gloves on, haptic feedback, and photo and video on separate buttons. Built on native iOS components.</p>
+        <p class="sc-ai todo"><span class="sc-ai-label">AI did</span>[e.g. wrote most of the SwiftUI and AVFoundation code from my spec]</p>
+        <p class="sc-role todo"><span class="sc-role-label">Timeline</span>Idea to App Store in [X weeks], on my own.</p>
+        <div class="sc-links">
+          <a href="#" class="todo" target="_blank">App Store ↗</a>
+          <a href="#" class="todo" target="_blank">Website ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="row showcase-grid">
+
+      <!-- ── Let's Crush It ────────────────────────────────── -->
+      <div class="col-md-6 showcase-col">
+        <article class="showcase">
+          <div class="sc-media" data-gallery>
+            <div class="sc-stage">
+              <img class="sc-slide" src="img/products/lci-1.jpg" alt="Let's Crush It goals screen" data-caption="Goals">
+              <img class="sc-slide" src="img/products/lci-2.jpg" alt="Let's Crush It habits screen" data-caption="Habits">
+              <div class="sc-slide sc-cover sc-cover--logo" data-caption="Let's Crush It">
+                <img src="img/logos/LCI-logo-sm.png" alt="" class="sc-cover-logo">
+              </div>
+            </div>
+          </div>
+          <div class="sc-body">
+            <p class="sc-kicker">Solo · Productivity</p>
+            <h3 class="sc-name"><a href="https://letscrush.it" target="_blank">Let's Crush It</a></h3>
+            <p class="product-tags">
+              <span class="tag">iOS</span>
+              <span class="tag">B2C</span>
+            </p>
+            <!-- WEB-13: copy repeats "track" and echoes the app name. Rafa to rewrite. -->
+            <p class="sc-desc">iOS productivity app that helps you crush your goals, build habits, track progress, track momentum, and actually follow through.</p>
+            <p class="sc-ai todo"><span class="sc-ai-label">AI did</span>[specific contribution]</p>
+            <div class="sc-links">
+              <a href="https://letscrush.it" target="_blank">Website ↗</a>
+              <a href="#" class="todo" target="_blank">App Store ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── DashPad ───────────────────────────────────────── -->
+      <div class="col-md-6 showcase-col">
+        <article class="showcase">
+          <div class="sc-media" data-gallery>
+            <div class="sc-stage">
+              <video class="sc-slide" src="dashpad/uploads/videos/dashpad.mp4" poster="dashpad/uploads/videos/dashpad-poster.jpg" muted loop playsinline preload="none" aria-label="DashPad in use" data-caption="Wakes when you walk up"></video>
+              <img class="sc-slide" src="dashpad/uploads/presence.jpeg" alt="DashPad presence settings" data-caption="On-device presence detection">
+              <img class="sc-slide" src="blog/you-might-already-own-a-homepad/vid/dashpad-website.jpg" alt="DashPad website" data-caption="Website">
+            </div>
+          </div>
+          <div class="sc-body">
+            <p class="sc-kicker">Solo · Open source</p>
+            <h3 class="sc-name"><a href="./dashpad/">DashPad</a></h3>
+            <p class="product-tags">
+              <span class="tag">iPadOS</span>
+              <span class="tag">Open source</span>
+              <span class="tag">Home Assistant</span>
+            </p>
+            <p class="sc-desc">Turns an iPad into a smart dashboard that wakes on presence. Detection runs locally: privacy-first by design.</p>
+            <p class="sc-ai todo"><span class="sc-ai-label">AI did</span>[specific contribution]</p>
+            <div class="sc-links">
+              <a href="./dashpad/">Website</a>
+              <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank">App Store ↗</a>
+              <a href="https://github.com/rafapages/dashpad" target="_blank">GitHub ↗</a>
+              <a href="./blog/you-might-already-own-a-homepad/">Launch post</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── AI School Lunch Tracker ───────────────────────── -->
+      <div class="col-md-6 showcase-col">
+        <article class="showcase">
+          <div class="sc-media" data-gallery>
+            <div class="sc-stage">
+              <img class="sc-slide" src="blog/lunch-tracker/img/widget.jpg" alt="Lunch widget on the Home Assistant dashboard" data-caption="Dashboard widget">
+              <img class="sc-slide" src="blog/lunch-tracker/img/menus.jpg" alt="School lunch menu PDFs" data-caption="Input: the school's PDF menus">
+              <img class="sc-slide" src="blog/lunch-tracker/img/calendar.jpg" alt="Lunch calendar web view" data-caption="Output: a web calendar">
+            </div>
+          </div>
+          <div class="sc-body">
+            <p class="sc-kicker">Solo · Home</p>
+            <h3 class="sc-name"><a href="./blog/lunch-tracker/">AI School Lunch Tracker</a></h3>
+            <p class="product-tags">
+              <span class="tag">Web</span>
+              <span class="tag">Home Assistant</span>
+            </p>
+            <p class="sc-ai"><span class="sc-ai-label">AI did</span>Claude reads the school's PDF menus and turns them into structured data.</p>
+            <p class="sc-desc">School lunch PDFs → custom web calendar → Home Assistant dashboard. Built it so I never accidentally cook the same thing they had for lunch.</p>
+            <div class="sc-links">
+              <a href="./blog/lunch-tracker/">How I built it</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Home lab ──────────────────────────────────────── -->
+      <div class="col-md-6 showcase-col">
+        <article class="showcase">
+          <div class="sc-media" data-gallery>
+            <div class="sc-stage">
+              <img class="sc-slide" src="blog/you-might-already-own-a-homepad/img/dashboard.jpeg" alt="Home Assistant dashboard on an iPad" data-caption="Wall dashboard">
+              <img class="sc-slide" src="img/products/homelab-sensors.jpg" alt="DIY sensors" data-caption="DIY sensors">
+              <img class="sc-slide" src="img/products/homelab-automations.jpg" alt="Automations" data-caption="Automations">
+              <div class="sc-slide sc-slide--todo todo">Sensor / automation photos<br><code>img/products/homelab-*.jpg</code></div>
+            </div>
+          </div>
+          <div class="sc-body">
+            <p class="sc-kicker">Solo · Ongoing</p>
+            <h3 class="sc-name">Home lab</h3>
+            <p class="product-tags">
+              <span class="tag">Home Assistant</span>
+              <span class="tag">Hardware</span>
+            </p>
+            <p class="sc-desc">My own sensors, automations and dashboards on Home Assistant, started while renovating the house. The testbed where DashPad and the lunch tracker were born.</p>
+            <p class="sc-ai todo"><span class="sc-ai-label">AI did</span>[specific contribution]</p>
+            <div class="sc-links">
+              <a href="./blog/you-might-already-own-a-homepad/">Blog</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+
+    <!-- ── How I build (WEB-04). Hidden until the placeholders are filled: remove "todo". ── -->
+    <div class="how-i-build todo">
+      <p class="section-eyebrow">How I build</p>
+      <p>I prototype with [Claude, Claude Code, Cursor...], put it in front of real users fast, and ship. MadiCam went from idea to the App Store in [X weeks], on my own. At Volograms I used the same loop to test features before committing the team to them.</p>
+    </div>
+
+    <p class="work-footnote">Before all this: <strong>eyeQoala</strong>, a 3D startup circa 2011. Didn't make it as a business, but won Best Startup at Yuzz and got us dreaming about spatial computing before it was a thing.</p>
+
+  </div>
+</section>
+
+
+<!-- zigzag divider -->
+<div class="doodle-divider" aria-hidden="true">
+  <img src="img/doodles/zigzag.svg" alt="">
+</div>
+
+<!-- ============================================================
      RESEARCH
      ============================================================ -->
 <section id="research" class="research-section">
@@ -351,6 +518,7 @@
 
     <div class="research-callout">
       <img class="section-doodle" src="img/doodles/wavy.svg" alt="" aria-hidden="true">
+      <p class="section-eyebrow">AI as the science</p>
       <h2 class="section-title">Research</h2>
       <p class="research-desc">
         I've been working in <mark class="highlight">3D reconstruction</mark>, volumetric capture,
@@ -460,6 +628,7 @@
      ============================================================ -->
 <section id="speaking" class="content-section">
   <div class="container">
+    <p class="section-eyebrow">AI as the subject</p>
     <h2 class="section-title">Speaking</h2>
     <p class="section-subtitle">AI, spatial computing, entrepreneurship, idea validation... 
       I lecture at <a href="https://www.ie.edu/" target="_blank">IE University</a>'s MBA programs and have given talks and workshops at 
@@ -508,6 +677,7 @@
 <!-- FOOTER -->
 <div id="site-footer"></div>
 <script src="js/footer.js"></script>
+<script src="js/showcase.js"></script>
 
 
 <!-- Scripts -->
