@@ -1594,62 +1594,204 @@ a.talk-entry-title:hover {
   margin-bottom: 2.5rem;
 }
 
-/* --- Card ---------------------------------------------------- */
-.showcase {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+/* --- Spotlight ---------------------------------------------
+   One project large (.spot-stage), all projects as thumbnails
+   below (.spot-rail, built by js/showcase.js). Every .spot sits
+   in the same grid cell, so the card keeps the height of the
+   tallest project and nothing jumps when switching.            */
+.spot-stage {
+  display: grid;
   border: 1px solid #ececec;
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
-  transition: box-shadow 0.25s ease;
 }
 
-.showcase:hover {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+.spot {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #fff;
+  transition: opacity 0.3s ease, visibility 0.3s;
 }
 
-.showcase-grid {
-  margin: 0 -0.75rem;
-}
+/* Before JS runs (or without it) every project simply stacks */
+.spotlight:not(.is-ready) .spot { grid-area: auto; }
+.spotlight:not(.is-ready) .spot + .spot { border-top: 1px solid #ececec; }
 
-.showcase-col {
-  display: flex;
-  padding: 0 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Featured: full-width split, media 7 / body 5 */
-.showcase--feature {
-  margin-bottom: 1.5rem;
+.spotlight.is-ready .spot:not(.is-active) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @media (min-width: 992px) {
-  .showcase--feature {
-    display: grid;
+  .spot {
     grid-template-columns: 7fr 5fr;
   }
-  .showcase--feature.showcase--flip {
-    grid-template-columns: 5fr 7fr;
-  }
-  .showcase--flip .sc-media { order: 2; }
-  .showcase--flip .sc-body  { order: 1; }
-  .showcase--feature .sc-body {
-    padding: 2.25rem 2.25rem 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .showcase--feature .sc-name {
-    font-size: 1.5rem;
-  }
-  .showcase--feature .sc-media {
+  /* Image fills the full height of the card (no grey bands) */
+  .spot .sc-media {
     border-right: 1px solid #f0f0f0;
   }
-  .showcase--feature.showcase--flip .sc-media {
-    border-right: 0;
-    border-left: 1px solid #f0f0f0;
+  .spot .sc-frame {
+    flex: 1;
+    display: flex;
+  }
+  .spot .sc-stage {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 360px;
+  }
+  .spot .sc-body {
+    padding: 2.25rem 2.25rem 2rem;
+    justify-content: center;
+  }
+  .spot .sc-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* prev / next + counter under the links */
+.spot-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  font-size: 0.72rem;
+  color: #999;
+}
+
+.spot-step button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #111;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.spot-step button:hover {
+  color: #2d68f6;
+  border-color: #2d68f6;
+}
+
+.spot-step span { margin-left: 0.35rem; }
+
+/* Thumbnail rail */
+.spot-rail {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.spot-thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 6px 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.spot-thumb-img {
+  aspect-ratio: 16 / 10;
+  border-radius: 7px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.spot-thumb-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.spot-thumb-img > .sc-cover {
+  width: 100%;
+  height: 100%;
+}
+
+.spot-thumb-img .sc-cover-name { font-size: 1rem; }
+.spot-thumb-img .sc-cover-sub { display: none; }
+.spot-thumb-img .sc-cover-logo { width: 40%; height: auto; border-radius: 22%; }
+
+.spot-thumb-kicker {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #aaa;
+  line-height: 1.3;
+}
+
+.spot-thumb-name {
+  display: inline;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #555;
+  transition: color 0.2s;
+}
+
+/* Hover: same treatment as other cards on the site
+   (soft border + light shadow, text goes brand blue). No opacity fades. */
+.spot-thumb:hover {
+  border-color: #ececec;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.spot-thumb:hover .spot-thumb-name { color: #2d68f6; }
+
+.spot-thumb:focus:not(:focus-visible) { outline: none; }
+
+.spot-thumb:focus-visible {
+  outline: 2px solid #2d68f6;
+  outline-offset: 2px;
+}
+
+/* Selected: quiet off-white tile, name gets the yellow marker */
+.spot-thumb.is-active {
+  background: #fafafa;
+  border-color: #f0f0f0;
+  box-shadow: none;
+  cursor: default;
+}
+
+.spot-thumb.is-active .spot-thumb-name {
+  color: #111;
+  background: linear-gradient(to right, rgba(255, 220, 0, 0.2), rgba(255, 220, 0, 0.7) 10%, rgba(255, 220, 0, 0.5));
+  background-repeat: no-repeat;
+  background-size: 100% 40%;
+  background-position: 0 88%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+@media (max-width: 768px) {
+  /* Thumbnails become a swipeable strip */
+  .spot-rail {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin: 0.75rem -12px 0;
+    padding: 0 12px 6px;
+  }
+  .spot-rail::-webkit-scrollbar { display: none; }
+  .spot-thumb {
+    flex: 0 0 136px;
+    scroll-snap-align: start;
   }
 }
 
@@ -1675,12 +1817,8 @@ a.talk-entry-title:hover {
 
 .sc-stage::-webkit-scrollbar { display: none; }
 
-.showcase--feature .sc-stage {
+.spot .sc-stage {
   aspect-ratio: 16 / 10;
-}
-
-@media (min-width: 992px) {
-  .showcase--feature .sc-media { justify-content: center; }
 }
 
 .sc-slide {
@@ -1700,7 +1838,7 @@ a.talk-entry-title:hover {
 .sc-caption {
   position: absolute;
   left: 0.75rem;
-  bottom: 0.75rem;
+  top: 0.75rem;
   margin: 0;
   font-size: 0.7rem;
   line-height: 1.4;
@@ -1714,87 +1852,32 @@ a.talk-entry-title:hover {
 
 .sc-caption:empty { display: none; }
 
-.sc-nav {
+/* Image dots inside the spotlight (only when a project has 2+ images) */
+.sc-dots {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 0;
-  background: rgba(255, 255, 255, 0.9);
-  color: #111;
-  font-size: 0.95rem;
-  line-height: 1;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
-  opacity: 0;
-  transition: opacity 0.2s, color 0.2s;
-  cursor: pointer;
-}
-
-.sc-nav--prev { left: 0.6rem; }
-.sc-nav--next { right: 0.6rem; }
-.sc-nav:hover { color: #2d68f6; }
-
-.sc-frame:hover .sc-nav,
-.sc-nav:focus-visible { opacity: 1; }
-
-@media (hover: none) {
-  .sc-nav { display: none; }
-}
-
-.sc-thumbs {
+  left: 0;
+  right: 0;
+  bottom: 0.75rem;
   display: flex;
+  justify-content: center;
   gap: 6px;
-  padding: 0.6rem 0.75rem;
-  overflow-x: auto;
-  scrollbar-width: none;
+  pointer-events: none;
 }
 
-.sc-thumb {
-  flex: 0 0 auto;
-  width: 52px;
-  height: 34px;
+.sc-dot {
+  width: 8px;
+  height: 8px;
   padding: 0;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #fff;
-  opacity: 0.55;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
   cursor: pointer;
-  position: relative;
-  transition: opacity 0.2s, border-color 0.2s;
+  pointer-events: auto;
+  transition: background 0.2s;
 }
 
-.sc-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.sc-thumb:hover { opacity: 0.85; }
-
-.sc-thumb.is-active {
-  opacity: 1;
-  border-color: #111;
-}
-
-.sc-thumb--blank {
-  font-size: 0.8rem;
-  color: #999;
-}
-
-.sc-thumb--video::after {
-  content: "▶";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-size: 0.6rem;
-  color: #fff;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-}
+.sc-dot.is-active { background: #fff; }
 
 /* Fallback covers (no imagery yet) */
 .sc-cover {

@@ -1,50 +1,38 @@
 /*
- * Showcase galleries (index.html, "Built at Volograms" and "Built hands-on").
+ * Work sections on index.html ("Built at Volograms", "Built hands-on").
  *
- * Markup: <div class="sc-media" data-gallery><div class="sc-stage"> slides </div></div>
- * Slides are any .sc-slide element: <img>, <video> or a <div> (cover/placeholder).
- *  - Images that fail to load are removed, so a slide can point at a file
- *    that doesn't exist yet.
- *  - Slides hidden by CSS (e.g. .todo outside ?draft) are skipped.
- *  - A .sc-cover slide is a fallback: it is dropped as soon as any real
- *    image or video slide is present.
- *  - The stage is a native scroll-snap strip, so swipe works on touch.
- *    Thumbnails + arrows are added when there is more than one slide.
- *  - Videos only play while they are the active slide and on screen.
+ * 1. Galleries  [data-gallery]
+ *    Any .sc-slide inside .sc-stage: <img>, <video> or a <div>.
+ *    - Images that fail to load are dropped, so a slide can point at a
+ *      file that doesn't exist yet.
+ *    - Slides hidden by CSS (.todo outside ?draft) are skipped.
+ *    - A .sc-cover slide is a fallback, dropped once a real image/video exists.
+ *    - Native scroll-snap strip (swipe on touch) + dots when 2+ slides.
+ *    - Videos only play while visible.
+ *
+ * 2. Spotlight  [data-spotlight]
+ *    Shows one <article class="spot"> at a time and builds a thumbnail
+ *    rail from all of them (first slide + kicker + name).
+ *    Deep link: #<article id> selects that project.
  */
 (function () {
-  var galleries = document.querySelectorAll('[data-gallery]');
-  if (!galleries.length) return;
-
   function isShown(el) {
     return el.isConnected && getComputedStyle(el).display !== 'none';
   }
 
-  function thumbFor(slide) {
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'sc-thumb';
-    btn.setAttribute('aria-label', slide.dataset.caption || slide.getAttribute('alt') || 'Show slide');
-    var src = slide.tagName === 'IMG' ? slide.currentSrc || slide.src
-            : slide.tagName === 'VIDEO' ? slide.getAttribute('poster') : null;
-    if (src) {
-      var im = document.createElement('img');
-      im.src = src;
-      im.alt = '';
-      btn.appendChild(im);
-      if (slide.tagName === 'VIDEO') btn.classList.add('sc-thumb--video');
-    } else {
-      btn.classList.add('sc-thumb--blank');
-      btn.textContent = slide.classList.contains('sc-cover') ? '◆' : '+';
-    }
-    return btn;
+  function visibleSlides(gallery) {
+    var stage = gallery.querySelector('.sc-stage');
+    return stage ? Array.prototype.filter.call(stage.children, function (s) {
+      return s.classList.contains('sc-slide') && isShown(s);
+    }) : [];
   }
 
-  function setup(gallery) {
+  /* ---------- Galleries ---------- */
+
+  function setupGallery(gallery) {
     var stage = gallery.querySelector('.sc-stage');
     if (!stage) return;
 
-    // Wrap the stage once so arrows can sit on top of it
     var frame = stage.parentElement;
     if (!frame.classList.contains('sc-frame')) {
       frame = document.createElement('div');
@@ -52,11 +40,11 @@
       stage.parentNode.insertBefore(frame, stage);
       frame.appendChild(stage);
     }
+    frame.querySelectorAll('.sc-dots, .sc-caption').forEach(function (n) { n.remove(); });
 
-    // Old UI bits (on rebuild)
-    gallery.querySelectorAll('.sc-thumbs, .sc-nav, .sc-caption').forEach(function (n) { n.remove(); });
-
-    var all = Array.prototype.slice.call(stage.querySelectorAll(':scope > .sc-slide'));
+    var all = Array.prototype.slice.call(stage.children).filter(function (s) {
+      return s.classList.contains('sc-slide');
+    });
     var hasReal = all.some(function (s) {
       return (s.tagName === 'IMG' || s.tagName === 'VIDEO') && !s.classList.contains('is-broken');
     });
@@ -64,80 +52,81 @@
       if (s.classList.contains('sc-cover')) s.classList.toggle('is-hidden', hasReal);
     });
     var slides = all.filter(isShown);
-    gallery.classList.toggle('is-multi', slides.length > 1);
 
     var caption = document.createElement('p');
     caption.className = 'sc-caption';
     frame.appendChild(caption);
 
-    var thumbs = [];
+    var dots = [];
     if (slides.length > 1) {
       var bar = document.createElement('div');
-      bar.className = 'sc-thumbs';
+      bar.className = 'sc-dots';
       slides.forEach(function (slide, i) {
-        var t = thumbFor(slide);
-        t.addEventListener('click', function () { go(i); });
-        bar.appendChild(t);
-        thumbs.push(t);
-      });
-      gallery.appendChild(bar);
-
-      ['prev', 'next'].forEach(function (dir) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'sc-nav sc-nav--' + dir;
-        b.setAttribute('aria-label', dir === 'prev' ? 'Previous' : 'Next');
-        b.innerHTML = dir === 'prev' ? '&#8592;' : '&#8594;';
-        b.addEventListener('click', function () {
-          go((current + (dir === 'prev' ? -1 : 1) + slides.length) % slides.length);
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'sc-dot';
+        d.setAttribute('aria-label', slide.dataset.caption || ('Image ' + (i + 1)));
+        d.addEventListener('click', function () {
+          stage.scrollTo({ left: slides[i].offsetLeft - stage.offsetLeft, behavior: 'smooth' });
         });
-        frame.appendChild(b);
+        bar.appendChild(d);
+        dots.push(d);
       });
+      frame.appendChild(bar);
     }
 
-    var current = 0;
-    var onScreen = false;
+    var g = gallery._g = { current: 0, slides: slides };
 
-    function go(i) {
-      stage.scrollTo({ left: slides[i].offsetLeft - stage.offsetLeft, behavior: 'smooth' });
-    }
-
-    function activate(i) {
-      current = i;
-      thumbs.forEach(function (t, j) { t.classList.toggle('is-active', j === i); });
+    g.activate = function (i) {
+      g.current = i;
+      dots.forEach(function (d, j) { d.classList.toggle('is-active', j === i); });
       caption.textContent = slides[i] ? (slides[i].dataset.caption || '') : '';
+      g.syncVideo();
+    };
+
+    g.syncVideo = function () {
+      var visible = gallery._onScreen && !gallery.closest('.spot:not(.is-active)');
       slides.forEach(function (s, j) {
         if (s.tagName !== 'VIDEO') return;
-        if (j === i && onScreen) { s.play().catch(function () {}); } else { s.pause(); }
+        if (j === g.current && visible) { s.play().catch(function () {}); } else { s.pause(); }
       });
+    };
+
+    g.reset = function () {
+      stage.scrollLeft = 0;
+      g.activate(0);
+    };
+
+    if (!stage._bound) {
+      stage._bound = true;
+      stage.addEventListener('scroll', function () {
+        var gg = gallery._g;
+        var i = Math.round(stage.scrollLeft / (stage.clientWidth || 1));
+        if (i !== gg.current && gg.slides[i]) gg.activate(i);
+      }, { passive: true });
     }
 
-    stage.addEventListener('scroll', function () {
-      var w = stage.clientWidth || 1;
-      var i = Math.round(stage.scrollLeft / w);
-      if (i !== current && slides[i]) activate(i);
-    }, { passive: true });
+    g.reset();
+    gallery.dispatchEvent(new CustomEvent('gallery:built', { bubbles: true }));
+  }
 
-    if ('IntersectionObserver' in window) {
-      if (gallery._io) gallery._io.disconnect();
-      gallery._io = new IntersectionObserver(function (entries) {
-        onScreen = entries[0].isIntersecting;
-        activate(current);
-      }, { threshold: 0.4 });
-      gallery._io.observe(gallery);
-    } else {
-      onScreen = true;
-    }
+  var galleries = document.querySelectorAll('[data-gallery]');
 
-    stage.scrollLeft = 0;
-    activate(0);
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.target._onScreen = e.isIntersecting;
+        if (e.target._g) e.target._g.syncVideo();
+      });
+    }, { threshold: 0.4 });
+    galleries.forEach(function (g) { io.observe(g); });
+  } else {
+    galleries.forEach(function (g) { g._onScreen = true; });
   }
 
   galleries.forEach(function (gallery) {
-    var rebuild = (function () {
-      var t;
-      return function () { clearTimeout(t); t = setTimeout(function () { setup(gallery); }, 30); };
-    })();
+    var t;
+    function rebuild() { clearTimeout(t); t = setTimeout(function () { setupGallery(gallery); }, 30); }
 
     gallery.querySelectorAll('img.sc-slide').forEach(function (img) {
       function broken() { img.classList.add('is-broken'); rebuild(); }
@@ -148,6 +137,129 @@
       v.addEventListener('error', function () { v.classList.add('is-broken'); rebuild(); }, true);
     });
 
-    setup(gallery);
+    setupGallery(gallery);
+  });
+
+  /* ---------- Spotlight ---------- */
+
+  function thumbMedia(spot) {
+    var gallery = spot.querySelector('[data-gallery]');
+    var first = gallery ? visibleSlides(gallery)[0] : null;
+    if (!first) return null;
+    if (first.tagName === 'IMG' || first.tagName === 'VIDEO') {
+      var src = first.tagName === 'IMG' ? (first.currentSrc || first.src) : first.getAttribute('poster');
+      if (!src) return null;
+      var im = document.createElement('img');
+      im.src = src;
+      im.alt = '';
+      im.loading = 'lazy';
+      return im;
+    }
+    if (first.classList.contains('sc-cover')) {
+      var c = first.cloneNode(true);
+      c.classList.remove('sc-slide');
+      c.removeAttribute('data-caption');
+      return c;
+    }
+    return null;
+  }
+
+  document.querySelectorAll('[data-spotlight]').forEach(function (root) {
+    var spots = Array.prototype.slice.call(root.querySelectorAll('.spot'));
+    if (spots.length < 2) return;
+
+    var rail = document.createElement('div');
+    rail.className = 'spot-rail';
+    rail.setAttribute('role', 'tablist');
+    rail.setAttribute('aria-label', root.getAttribute('aria-label') || 'Projects');
+    root.appendChild(rail);
+
+    var current = -1;
+
+    var thumbs = spots.map(function (spot, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'spot-thumb';
+      b.setAttribute('role', 'tab');
+      if (spot.id) b.setAttribute('aria-controls', spot.id);
+
+      var kicker = spot.querySelector('.sc-kicker');
+      var name = spot.querySelector('.sc-name');
+      b.innerHTML = '<span class="spot-thumb-img"></span><span><span class="spot-thumb-kicker"></span><span class="spot-thumb-name"></span></span>';
+      // The section title already says "Volograms" / "hands-on", so drop that prefix here
+      b.querySelector('.spot-thumb-kicker').textContent = kicker ? kicker.textContent.replace(/^(Volograms|Solo)\s*·\s*/, '') : '';
+      b.querySelector('.spot-thumb-name').textContent = name ? name.textContent.trim() : '';
+      b.addEventListener('click', function () { show(i, true); });
+      rail.appendChild(b);
+
+      // Prev / next + counter inside each spot
+      var step = document.createElement('div');
+      step.className = 'spot-step';
+      step.innerHTML = '<button type="button" aria-label="Previous project">&#8592;</button>' +
+                       '<button type="button" aria-label="Next project">&#8594;</button>' +
+                       '<span>' + (i + 1) + ' / ' + spots.length + '</span>';
+      step.children[0].addEventListener('click', function () { show((i - 1 + spots.length) % spots.length); });
+      step.children[1].addEventListener('click', function () { show((i + 1) % spots.length); });
+      var body = spot.querySelector('.sc-body');
+      if (body) body.appendChild(step);
+
+      return b;
+    });
+
+    function refreshThumb(i) {
+      var holder = thumbs[i].querySelector('.spot-thumb-img');
+      holder.innerHTML = '';
+      var m = thumbMedia(spots[i]);
+      if (m) holder.appendChild(m);
+    }
+
+    function show(i, fromRail) {
+      if (i === current) return;
+      current = i;
+      spots.forEach(function (s, j) {
+        var on = j === i;
+        s.classList.toggle('is-active', on);
+        s.setAttribute('aria-hidden', on ? 'false' : 'true');
+        if ('inert' in s) s.inert = !on;
+        var g = s.querySelector('[data-gallery]');
+        if (g && g._g) { if (on) g._g.reset(); else g._g.syncVideo(); }
+      });
+      thumbs.forEach(function (t, j) {
+        t.classList.toggle('is-active', j === i);
+        t.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      });
+      if (fromRail && window.matchMedia('(max-width: 768px)').matches) {
+        // On phones, bring the spotlight back into view after picking a thumbnail
+        var top = root.getBoundingClientRect().top;
+        if (top < 0) window.scrollBy({ top: top - 80, behavior: 'smooth' });
+      }
+      // Keep the active thumbnail visible in the swipe strip (phones)
+      if (rail.scrollWidth > rail.clientWidth) {
+        rail.scrollTo({ left: thumbs[i].offsetLeft - rail.offsetLeft - 16, behavior: 'smooth' });
+      }
+    }
+
+    spots.forEach(function (s, i) {
+      refreshThumb(i);
+      s.addEventListener('gallery:built', function () { refreshThumb(i); });
+    });
+
+    var start = 0;
+    if (location.hash) {
+      var idx = spots.findIndex(function (s) { return '#' + s.id === location.hash; });
+      if (idx > -1) start = idx;
+    }
+    root.classList.add('is-ready');
+    show(start);
+  });
+
+  // Deep links after load (e.g. a #dashpad link elsewhere on the page)
+  window.addEventListener('hashchange', function () {
+    var el = document.getElementById(location.hash.slice(1));
+    if (!el || !el.classList.contains('spot')) return;
+    var root = el.closest('[data-spotlight]');
+    var i = Array.prototype.indexOf.call(root.querySelectorAll('.spot'), el);
+    var thumb = root.querySelectorAll('.spot-thumb')[i];
+    if (thumb) thumb.click();
   });
 })();

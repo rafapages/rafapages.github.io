@@ -169,44 +169,44 @@
       </div>
     </div>
 
-    <!-- ── Volu (featured) ─────────────────────────────────────── -->
-    <article class="showcase showcase--feature">
-      <div class="sc-media" data-gallery>
-        <div class="sc-stage">
-          <img class="sc-slide" src="img/products/volu.jpg" alt="Volu app screenshots" data-caption="App Store screenshots">
-          <!-- Add more slides, e.g.:
-          <img class="sc-slide" src="img/products/volu-capture.jpg" alt="..." data-caption="Capture from a single phone camera">
-          <video class="sc-slide" src="vid/volu-demo.mp4" poster="img/products/volu-demo.jpg" muted loop playsinline preload="none" data-caption="Demo"></video>
-          -->
-          <div class="sc-slide sc-slide--todo todo">Capture flow screenshot<br><code>img/products/volu-capture.jpg</code></div>
-          <div class="sc-slide sc-slide--todo todo">Short demo video<br><code>vid/volu-demo.mp4</code></div>
-        </div>
-      </div>
-      <div class="sc-body">
-        <p class="sc-kicker">Volograms · Consumer app</p>
-        <h3 class="sc-name"><a href="https://volograms.com/volu" target="_blank">Volu</a></h3>
-        <p class="product-tags">
-          <span class="tag">iOS</span>
-          <span class="tag">B2C</span>
-          <span class="tag">Generative 3D</span>
-        </p>
-        <p class="sc-ai"><span class="sc-ai-label">The AI</span>Reconstructs a 3D person from a single phone camera.</p>
-        <p class="sc-desc">The first mobile app for volumetric video capture. Over 3M models processed. AWE Auggie Award for Best AI Product.</p>
-        <p class="sc-role"><span class="sc-role-label">My role</span>Took it from concept to the App Store.<span class="todo"> [Optional: how generative AI prototyping was used during development]</span></p>
-        <div class="sc-links">
-          <a href="https://volograms.com/volu" target="_blank">Website ↗</a>
-          <a href="#" class="todo" target="_blank">App Store ↗</a>
-          <a href="rafa.usdz" rel="ar" class="sc-link-ar">View a vologram in AR</a>
-          <a href="https://edition.cnn.com/2021/10/20/tech/volograms-volu-app-ireland-spc-intl/index.html" target="_blank">CNN ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <div class="row showcase-grid">
-
-      <!-- ── Vologram Messages ─────────────────────────────────── -->
-      <div class="col-md-6 showcase-col">
-        <article class="showcase">
+    <!-- Spotlight: one project large, every project as a thumbnail below.
+         Thumbnails are built by js/showcase.js from each <article>
+         (first image, kicker and name). Add a project = add an <article class="spot">.
+         Link straight to one with #id, e.g. rafapages.com/#dashpad -->
+    <div class="spotlight" data-spotlight aria-label="Volograms products">
+      <div class="spot-stage">
+        <article class="spot" id="volu">
+          <div class="sc-media" data-gallery>
+            <div class="sc-stage">
+              <img class="sc-slide" src="img/products/volu.jpg" alt="Volu app screenshots" data-caption="App Store screenshots">
+              <!-- Add more slides, e.g.:
+              <img class="sc-slide" src="img/products/volu-capture.jpg" alt="..." data-caption="Capture from a single phone camera">
+              <video class="sc-slide" src="vid/volu-demo.mp4" poster="img/products/volu-demo.jpg" muted loop playsinline preload="none" data-caption="Demo"></video>
+              -->
+              <div class="sc-slide sc-slide--todo todo">Capture flow screenshot<br><code>img/products/volu-capture.jpg</code></div>
+              <div class="sc-slide sc-slide--todo todo">Short demo video<br><code>vid/volu-demo.mp4</code></div>
+            </div>
+          </div>
+          <div class="sc-body">
+            <p class="sc-kicker">Volograms · Consumer app</p>
+            <h3 class="sc-name"><a href="https://volograms.com/volu" target="_blank">Volu</a></h3>
+            <p class="product-tags">
+              <span class="tag">iOS</span>
+              <span class="tag">B2C</span>
+              <span class="tag">Generative 3D</span>
+            </p>
+            <p class="sc-ai"><span class="sc-ai-label">The AI</span>Reconstructs a 3D person from a single phone camera.</p>
+            <p class="sc-desc">The first mobile app for volumetric video capture. Over 3M models processed. AWE Auggie Award for Best AI Product.</p>
+            <p class="sc-role"><span class="sc-role-label">My role</span>Took it from concept to the App Store.<span class="todo"> [Optional: how generative AI prototyping was used during development]</span></p>
+            <div class="sc-links">
+              <a href="https://volograms.com/volu" target="_blank">Website ↗</a>
+              <a href="#" class="todo" target="_blank">App Store ↗</a>
+              <a href="rafa.usdz" rel="ar" class="sc-link-ar">View a vologram in AR</a>
+              <a href="https://edition.cnn.com/2021/10/20/tech/volograms-volu-app-ireland-spc-intl/index.html" target="_blank">CNN ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="spot" id="vologram-messages">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
               <img class="sc-slide" src="img/products/vologram-messages.jpg" alt="Vologram Messages WebAR demo" data-caption="A hologram opened from a link">
@@ -231,11 +231,7 @@
             </div>
           </div>
         </article>
-      </div>
-
-      <!-- ── Vologram Studio ───────────────────────────────────── -->
-      <div class="col-md-6 showcase-col">
-        <article class="showcase">
+        <article class="spot" id="vologram-studio">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
               <img class="sc-slide" src="img/products/vologram-studio.jpg" alt="Vologram Studio multi-camera capture" data-caption="Multi-camera capture">
@@ -260,8 +256,8 @@
           </div>
         </article>
       </div>
-
     </div>
+
   </div>
 </section>
 
@@ -314,7 +310,7 @@
 
 <!-- ============================================================
      BUILT HANDS-ON  (AI as the workflow)
-     Same showcase cards as the Volograms section, on purpose:
+     Same spotlight component as the Volograms section, on purpose:
      solo builds get the same visual weight.
      ============================================================ -->
 <section id="making" class="content-section work-section">
@@ -343,49 +339,49 @@
       </div>
     </div>
 
-    <!-- ── MadiCam (featured) ───────────────────────────────── -->
-    <article class="showcase showcase--feature showcase--flip">
-      <div class="sc-media" data-gallery>
-        <div class="sc-stage">
-          <!-- Drop real screenshots in img/products/ and they appear automatically. -->
-          <img class="sc-slide" src="img/products/madicam-1.jpg" alt="MadiCam capture screen" data-caption="Capture screen">
-          <img class="sc-slide" src="img/products/madicam-2.jpg" alt="MadiCam in a dive housing" data-caption="In the housing, underwater">
-          <img class="sc-slide" src="img/products/madicam-3.jpg" alt="MadiCam settings" data-caption="Settings">
-          <!-- Fallback cover: shown while there are no screenshots. Delete once images exist. -->
-          <div class="sc-slide sc-cover sc-cover--sea" data-caption="MadiCam">
-            <span class="sc-cover-name">MadiCam</span>
-            <span class="sc-cover-sub">Underwater Camera</span>
+    <!-- Spotlight: one project large, every project as a thumbnail below.
+         Thumbnails are built by js/showcase.js from each <article>
+         (first image, kicker and name). Add a project = add an <article class="spot">.
+         Link straight to one with #id, e.g. rafapages.com/#dashpad -->
+    <div class="spotlight" data-spotlight aria-label="Hands-on projects">
+      <div class="spot-stage">
+        <article class="spot" id="madicam">
+          <div class="sc-media" data-gallery>
+            <div class="sc-stage">
+              <!-- Drop real screenshots in img/products/ and they appear automatically. -->
+              <img class="sc-slide" src="img/products/madicam-1.jpg" alt="MadiCam capture screen" data-caption="Capture screen">
+              <img class="sc-slide" src="img/products/madicam-2.jpg" alt="MadiCam in a dive housing" data-caption="In the housing, underwater">
+              <img class="sc-slide" src="img/products/madicam-3.jpg" alt="MadiCam settings" data-caption="Settings">
+              <!-- Fallback cover: shown while there are no screenshots. Delete once images exist. -->
+              <div class="sc-slide sc-cover sc-cover--sea">
+                <span class="sc-cover-name">MadiCam</span>
+                <span class="sc-cover-sub">Underwater Camera</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="sc-body">
-        <p class="sc-kicker">Solo · New · October 2026</p>
-        <h3 class="sc-name"><a href="#" target="_blank">MadiCam Underwater Camera</a></h3>
-        <p class="product-tags">
-          <span class="tag">iOS</span>
-          <span class="tag">B2C</span>
-          <span class="tag">Native SwiftUI</span>
-        </p>
-        <p class="sc-desc">An iPhone camera for touchscreen dive housings. Oversized controls you can hit with gloves on, haptic feedback, and photo and video on separate buttons. Built on native iOS components.</p>
-        <p class="sc-ai todo"><span class="sc-ai-label">AI did</span>[e.g. wrote most of the SwiftUI and AVFoundation code from my spec]</p>
-        <p class="sc-role todo"><span class="sc-role-label">Timeline</span>Idea to App Store in [X weeks], on my own.</p>
-        <div class="sc-links">
-          <a href="#" class="todo" target="_blank">App Store ↗</a>
-          <a href="#" class="todo" target="_blank">Website ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <div class="row showcase-grid">
-
-      <!-- ── Let's Crush It ────────────────────────────────── -->
-      <div class="col-md-6 showcase-col">
-        <article class="showcase">
+          <div class="sc-body">
+            <p class="sc-kicker">Solo · New · October 2026</p>
+            <h3 class="sc-name"><a href="#" target="_blank">MadiCam Underwater Camera</a></h3>
+            <p class="product-tags">
+              <span class="tag">iOS</span>
+              <span class="tag">B2C</span>
+              <span class="tag">Native SwiftUI</span>
+            </p>
+            <p class="sc-desc">An iPhone camera for touchscreen dive housings. Oversized controls you can hit with gloves on, haptic feedback, and photo and video on separate buttons. Built on native iOS components.</p>
+            <p class="sc-ai todo"><span class="sc-ai-label">AI did</span>[e.g. wrote most of the SwiftUI and AVFoundation code from my spec]</p>
+            <p class="sc-role todo"><span class="sc-role-label">Timeline</span>Idea to App Store in [X weeks], on my own.</p>
+            <div class="sc-links">
+              <a href="#" class="todo" target="_blank">App Store ↗</a>
+              <a href="#" class="todo" target="_blank">Website ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="spot" id="lets-crush-it">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
               <img class="sc-slide" src="img/products/lci-1.jpg" alt="Let's Crush It goals screen" data-caption="Goals">
               <img class="sc-slide" src="img/products/lci-2.jpg" alt="Let's Crush It habits screen" data-caption="Habits">
-              <div class="sc-slide sc-cover sc-cover--logo" data-caption="Let's Crush It">
+              <div class="sc-slide sc-cover sc-cover--logo">
                 <img src="img/logos/LCI-logo-sm.png" alt="" class="sc-cover-logo">
               </div>
             </div>
@@ -406,11 +402,7 @@
             </div>
           </div>
         </article>
-      </div>
-
-      <!-- ── DashPad ───────────────────────────────────────── -->
-      <div class="col-md-6 showcase-col">
-        <article class="showcase">
+        <article class="spot" id="dashpad">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
               <video class="sc-slide" src="dashpad/uploads/videos/dashpad.mp4" poster="dashpad/uploads/videos/dashpad-poster.jpg" muted loop playsinline preload="none" aria-label="DashPad in use" data-caption="Wakes when you walk up"></video>
@@ -436,11 +428,7 @@
             </div>
           </div>
         </article>
-      </div>
-
-      <!-- ── AI School Lunch Tracker ───────────────────────── -->
-      <div class="col-md-6 showcase-col">
-        <article class="showcase">
+        <article class="spot" id="lunch-tracker">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
               <img class="sc-slide" src="blog/lunch-tracker/img/widget.jpg" alt="Lunch widget on the Home Assistant dashboard" data-caption="Dashboard widget">
@@ -462,11 +450,7 @@
             </div>
           </div>
         </article>
-      </div>
-
-      <!-- ── Home lab ──────────────────────────────────────── -->
-      <div class="col-md-6 showcase-col">
-        <article class="showcase">
+        <article class="spot" id="home-lab">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
               <img class="sc-slide" src="blog/you-might-already-own-a-homepad/img/dashboard.jpeg" alt="Home Assistant dashboard on an iPad" data-caption="Wall dashboard">
@@ -490,7 +474,6 @@
           </div>
         </article>
       </div>
-
     </div>
 
     <!-- ── How I build (WEB-04). Hidden until the placeholders are filled: remove "todo". ── -->
