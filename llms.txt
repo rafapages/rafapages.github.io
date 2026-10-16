@@ -16,6 +16,7 @@
 ## DashPad
 
 - [DashPad](https://www.rafapages.com/dashpad/): full-screen kiosk browser for iPad that wakes when someone walks in and rests when the room is empty; presence detection runs on-device
+- [Changelog](https://www.rafapages.com/dashpad/changelog/): every DashPad release, newest first, with new features, supported iPads and fixes
 - [Privacy policy](https://www.rafapages.com/dashpad/privacy.html): no data collection, no analytics, no third-party services
 - [Source code](https://github.com/rafapages/dashpad)
 
