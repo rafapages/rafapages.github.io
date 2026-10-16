@@ -11,6 +11,7 @@
 
 <title>DashPad — The iPad dashboard that's there when you are</title>
 <link rel="canonical" href="https://www.rafapages.com/dashpad/">
+<link rel="alternate" type="application/rss+xml" title="DashPad releases" href="https://www.rafapages.com/dashpad/changelog/feed.xml">
 
 <!-- Open Graph -->
 <meta property="og:title" content="DashPad — The iPad dashboard that's there when you are" />
@@ -309,6 +310,23 @@
   </section>
 
 
+  <!-- ═══════════ WHAT'S NEW ═══════════ -->
+  <!-- Cards are filled from the latest releases on changelog/ (script below), so
+       entries are only ever written once. Without JS the link still works. -->
+  <section id="whats-new" class="dp-section--whatsnew">
+    <div class="dp-wrap">
+      <div class="dp-whatsnew__head" data-reveal>
+        <div>
+          <p class="dp-eyebrow">What's new</p>
+          <h2 class="dp-h2 dp-h2--sm">Still getting <span class="dp-gtext">better.</span></h2>
+        </div>
+        <a href="changelog/" class="dp-whatsnew__all">Full changelog →</a>
+      </div>
+      <div class="dp-whatsnew__grid" id="dp-whatsnew" data-reveal></div>
+    </div>
+  </section>
+
+
   <!-- ═══════════ CLOSING CTA ═══════════ -->
   <section class="dp-section--cta dp-bleed">
     <div class="dp-blob" data-blob></div>
@@ -335,6 +353,7 @@
       </div>
       <nav class="dp-footer__nav">
         <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener">GitHub</a>
+        <a href="changelog/">What's new</a>
         <a href="privacy.html">Privacy</a>
         <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank" rel="noopener">App Store</a>
       </nav>
@@ -354,6 +373,57 @@
     document.querySelectorAll('[data-blob]').forEach(function (slot) {
       slot.appendChild(tpl.content.cloneNode(true));
     });
+  })();
+</script>
+
+<!-- What's new: copy the three latest releases from the changelog page into cards -->
+<script>
+  (function () {
+    var grid = document.getElementById('dp-whatsnew');
+    if (!grid || !window.fetch || !window.DOMParser) return;
+
+    fetch('changelog/')
+      .then(function (res) { if (!res.ok) throw new Error(res.status); return res.text(); })
+      .then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var releases = doc.querySelectorAll('.dp-release');
+        for (var i = 0; i < releases.length && i < 3; i++) {
+          grid.appendChild(card(releases[i], i === 0));
+        }
+      })
+      .catch(function () { /* leave the grid empty; the changelog link still works */ });
+
+    function text(root, sel) {
+      var el = root.querySelector(sel);
+      return el ? el.textContent.trim() : '';
+    }
+
+    function el(tag, cls, content) {
+      var node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (content) node.textContent = content;
+      return node;
+    }
+
+    function card(release, isLatest) {
+      var a = el('a', 'dp-wcard');
+      a.href = 'changelog/#' + release.id;
+
+      var meta = el('div', 'dp-wcard__meta');
+      meta.appendChild(el('span', 'dp-release__version', text(release, '.dp-release__version')));
+      var time = release.querySelector('time');
+      if (time) {
+        var t = el('time', '', time.textContent.trim());
+        t.setAttribute('datetime', time.getAttribute('datetime'));
+        meta.appendChild(t);
+      }
+      if (isLatest) meta.appendChild(el('span', 'dp-wcard__new', 'Latest'));
+
+      a.appendChild(meta);
+      a.appendChild(el('h3', '', text(release, '.dp-release__title')));
+      a.appendChild(el('p', '', text(release, '.dp-release__summary')));
+      return a;
+    }
   })();
 </script>
 

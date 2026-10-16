@@ -19,6 +19,8 @@ Three main HTML pages:
 
 **Blog** (`blog/`): `blog/index.html` lists posts newest first; each post lives at `blog/<slug>/index.html` and uses the `cs-*` article styles from `css/project.css`. Adding a post means: the post page (with `BlogPosting` JSON-LD), an entry in `blog/index.html`, an `<item>` in `blog/feed.xml` (RSS, newest first; bump `lastBuildDate`), and a `<url>` in `sitemap.xml`. The "Elsewhere" section in `blog/index.html` links to older Medium posts (thumbnails in `blog/img/medium/`); those stay out of the feed and sitemap. Post URLs are permanent. `projects/lunch-tracker/` and `lunch-tracker.html` are redirect stubs to `blog/lunch-tracker/`; keep them.
 
+**DashPad changelog** (`dashpad/changelog/`): one `<article class="dp-release" id="vX-Y">` per release, newest first, written for users (the developer-facing history is `CHANGELOG.md` in the DashPad repo). The "What's new" strip on `dashpad/index.html` fetches this page at runtime and shows the first three releases, so entries are written once. Adding a release means: a new article at the top, `softwareVersion` in its JSON-LD, an `<item>` in `dashpad/changelog/feed.xml` (bump `lastBuildDate`), and the changelog `<lastmod>` in `sitemap.xml`. Releases that deserve a narrative get a blog post, linked from the entry with a `.dp-release__more` paragraph.
+
 **Styling:**
 - `css/main.css` — Primary custom styles (responsive breakpoint at 768px, card hover effects, video wrappers)
 - `css/stylesheet.css` — Research page styles (academic paper layout, link colors `#1772d0` → `#f09228`)
