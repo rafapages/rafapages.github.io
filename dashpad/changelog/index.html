@@ -21,6 +21,7 @@
 <meta property="og:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="DashPad, the iPad dashboard that's there when you are" />
 <meta property="og:url" content="https://www.rafapages.com/dashpad/changelog/" />
 
 <!-- Twitter -->
@@ -28,8 +29,10 @@
 <meta name="twitter:title" content="What's new in DashPad" />
 <meta name="twitter:description" content="Every DashPad release, newest first: new features, supported iPads and fixes." />
 <meta name="twitter:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
+<meta name="twitter:image:alt" content="DashPad, the iPad dashboard that's there when you are" />
 
-<!-- Structured Data: keep softwareVersion in sync with the newest release below -->
+<!-- Structured Data: keep softwareVersion in sync with the newest release below,
+     and in the SoftwareApplication JSON-LD on /dashpad/ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -45,6 +48,16 @@
     "name": "Rafael Pagés",
     "url": "https://www.rafapages.com"
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "DashPad", "item": "https://www.rafapages.com/dashpad/" },
+    { "@type": "ListItem", "position": 2, "name": "Changelog", "item": "https://www.rafapages.com/dashpad/changelog/" }
+  ]
 }
 </script>
 
