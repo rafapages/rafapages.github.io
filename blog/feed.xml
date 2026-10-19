@@ -6,7 +6,7 @@
     <atom:link href="https://www.rafapages.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>Notes on building things on the side, and what shipping them taught me.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 02 Oct 2026 10:53:30 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2026 12:00:00 GMT</lastBuildDate>
     <image>
       <url>https://www.rafapages.com/img/rafa_electro_new_logo.jpg</url>
       <title>Rafa Pagés</title>
@@ -16,12 +16,12 @@
     <!-- Newest first. Adding a post: copy an <item>, update lastBuildDate. -->
 
     <item>
-      <title>You Might Already Own a HomePad. Kind of.</title>
-      <link>https://www.rafapages.com/blog/you-might-already-own-a-homepad/</link>
+      <title>You Might Already Own a HomeView. Kind of.</title>
+      <link>https://www.rafapages.com/blog/you-might-already-own-a-homeview/</link>
       <guid isPermaLink="true">https://www.rafapages.com/blog/you-might-already-own-a-homepad/</guid>
       <pubDate>Fri, 02 Oct 2026 10:53:30 GMT</pubDate>
-      <description><![CDATA[<p><img src="https://www.rafapages.com/blog/you-might-already-own-a-homepad/img/social.jpg" alt="DashPad running on an iPad on a stand, showing a Home Assistant dashboard"></p><p>How a house renovation, an old iPad and a battery problem turned into DashPad, and why the hard part had nothing to do with code.</p>]]></description>
-      <enclosure url="https://www.rafapages.com/blog/you-might-already-own-a-homepad/img/social.jpg" length="71060" type="image/jpeg" />
+      <description><![CDATA[<p><img src="https://www.rafapages.com/blog/you-might-already-own-a-homeview/img/social.jpg" alt="DashPad running on an iPad on a stand, showing a Home Assistant dashboard"></p><p>How a house renovation, an old iPad and a battery problem turned into DashPad, and why the hard part had nothing to do with code.</p>]]></description>
+      <enclosure url="https://www.rafapages.com/blog/you-might-already-own-a-homeview/img/social.jpg" length="71060" type="image/jpeg" />
     </item>
 
     <item>

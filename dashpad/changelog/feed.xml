@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DashPad releases</title>
+    <link>https://www.rafapages.com/dashpad/changelog/</link>
+    <atom:link href="https://www.rafapages.com/dashpad/changelog/feed.xml" rel="self" type="application/rss+xml" />
+    <description>What's new in DashPad, the full-screen kiosk browser for iPad.</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 09 Oct 2026 12:00:00 GMT</lastBuildDate>
+    <image>
+      <url>https://www.rafapages.com/dashpad/social-preview.jpg</url>
+      <title>DashPad releases</title>
+      <link>https://www.rafapages.com/dashpad/changelog/</link>
+    </image>
+
+    <!-- Newest first. Adding a release: copy an <item>, update lastBuildDate.
+         Keep the text in step with the matching article in index.html. -->
+
+    <item>
+      <title>DashPad 1.4: Older iPads, a cleaner screen, no more blank pages</title>
+      <link>https://www.rafapages.com/dashpad/changelog/#v1-4</link>
+      <guid isPermaLink="true">https://www.rafapages.com/dashpad/changelog/#v1-4</guid>
+      <pubDate>Fri, 09 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>DashPad now runs on iPadOS 15, can hide the status bar, and tells you what went wrong when a dashboard won't load.</p><ul><li>iPadOS 15 support: the iPad Air 2 and iPad mini 4 can run DashPad now.</li><li>Hide Status Bar, a new switch in Settings → Dashboard.</li><li>Plain HTTP dashboards on local hostnames load again.</li><li>A clear "Can't reach dashboard" screen instead of a blank page, plus several loading fixes.</li></ul>]]></description>
+    </item>
+
+    <item>
+      <title>DashPad 1.3: A way to say thanks</title>
+      <link>https://www.rafapages.com/dashpad/changelog/#v1-3</link>
+      <guid isPermaLink="true">https://www.rafapages.com/dashpad/changelog/#v1-3</guid>
+      <pubDate>Tue, 15 Sep 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>A Rate DashPad row in Settings, for when you feel like it. The app never asks on its own.</p>]]></description>
+    </item>
+
+    <item>
+      <title>DashPad 1.2: Back to 2017 iPads, and a smoother setup</title>
+      <link>https://www.rafapages.com/dashpad/changelog/#v1-2</link>
+      <guid isPermaLink="true">https://www.rafapages.com/dashpad/changelog/#v1-2</guid>
+      <pubDate>Sat, 22 Aug 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Support for iPadOS 16 and a long list of fixes to the setup assistant, the camera permission and the PIN lock.</p><ul><li>Runs on iPads back to the 5th generation (2017) and the original iPad Pro.</li><li>Re-running the setup assistant keeps your settings, and can be closed at any step.</li><li>The camera no longer starts during setup.</li><li>PIN lock fixes, including after a reinstall.</li></ul>]]></description>
+    </item>
+
+    <item>
+      <title>DashPad 1.0: First release</title>
+      <link>https://www.rafapages.com/dashpad/changelog/#v1-0</link>
+      <guid isPermaLink="true">https://www.rafapages.com/dashpad/changelog/#v1-0</guid>
+      <pubDate>Mon, 29 Jun 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>A full-screen kiosk browser that shows your dashboard when someone's in the room and rests when it's empty. Three presence modes (Automatic, Schedule, Always Active), an idle screen, and an optional PIN lock.</p>]]></description>
+    </item>
+
+  </channel>
+</rss>

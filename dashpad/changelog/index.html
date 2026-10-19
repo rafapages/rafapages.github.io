@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="What's new in DashPad, the full-screen kiosk browser for iPad. Every release, newest first: new features, supported iPads and fixes.">
+<meta name="author" content="Rafa Pagés">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0e0f10">
+
+<title>What's New in DashPad | Changelog</title>
+<link rel="canonical" href="https://www.rafapages.com/dashpad/changelog/">
+<link rel="alternate" type="application/rss+xml" title="DashPad releases" href="https://www.rafapages.com/dashpad/changelog/feed.xml">
+
+<!-- Open Graph -->
+<meta property="og:title" content="What's new in DashPad" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="DashPad" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:description" content="Every DashPad release, newest first: new features, supported iPads and fixes." />
+<meta property="og:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="DashPad, the iPad dashboard that's there when you are" />
+<meta property="og:url" content="https://www.rafapages.com/dashpad/changelog/" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What's new in DashPad" />
+<meta name="twitter:description" content="Every DashPad release, newest first: new features, supported iPads and fixes." />
+<meta name="twitter:image" content="https://www.rafapages.com/dashpad/social-preview.jpg" />
+<meta name="twitter:image:alt" content="DashPad, the iPad dashboard that's there when you are" />
+
+<!-- Structured Data: keep softwareVersion in sync with the newest release below,
+     and in the SoftwareApplication JSON-LD on /dashpad/ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DashPad",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "iPadOS 15 or later",
+  "softwareVersion": "1.4",
+  "releaseNotes": "https://www.rafapages.com/dashpad/changelog/",
+  "url": "https://www.rafapages.com/dashpad/",
+  "author": {
+    "@type": "Person",
+    "name": "Rafael Pagés",
+    "url": "https://www.rafapages.com"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "DashPad", "item": "https://www.rafapages.com/dashpad/" },
+    { "@type": "ListItem", "position": 2, "name": "Changelog", "item": "https://www.rafapages.com/dashpad/changelog/" }
+  ]
+}
+</script>
+
+<link rel="icon" href="../uploads/dplogo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/dashpad.css">
+</head>
+
+<body>
+
+<div class="dp dp-page">
+
+  <nav class="dp-nav">
+    <div class="dp-nav__inner">
+      <a href="../" class="dp-nav__brand">
+        <img src="../uploads/dplogo.webp" alt="DashPad">
+        <span>DashPad</span>
+      </a>
+      <div class="dp-nav__links">
+        <a href="../privacy.html" class="dp-nav__link">Privacy</a>
+        <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener" class="dp-nav__link">GitHub</a>
+        <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank" rel="noopener" class="dp-btn-pill">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="dp-prose dp-guide dp-changelog">
+    <p class="dp-eyebrow">Changelog</p>
+    <h1 class="dp-prose__title">What's new in DashPad</h1>
+    <p class="dp-prose__lead">Every release, newest first. Updates arrive through the App Store; the code for each one is on <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener">GitHub</a>.</p>
+    <p class="dp-changelog__follow"><a href="feed.xml">Follow releases with RSS</a></p>
+
+    <!--
+      Adding a release: copy an <article class="dp-release"> to the top, then
+        1. set id="vX-Y" and the matching href on the version link,
+        2. fill in the <time datetime>, title, one-line summary and bullets,
+        3. bump softwareVersion in the JSON-LD above,
+        4. add an <item> to feed.xml (newest first) and bump its lastBuildDate,
+        5. bump <lastmod> for this page in /sitemap.xml.
+      The "What's new" strip on /dashpad/ reads the first three articles from
+      this page, using .dp-release__version, time, .dp-release__title and
+      .dp-release__summary. Keep those class names.
+    -->
+
+    <article class="dp-release" id="v1-4">
+      <header class="dp-release__head">
+        <a class="dp-release__version" href="#v1-4">1.4</a>
+        <time datetime="2026-10-09">Oct 9, 2026</time>
+      </header>
+      <h2 class="dp-release__title">Older iPads, a cleaner screen, no more blank pages</h2>
+      <p class="dp-release__summary">DashPad now runs on iPadOS 15, can hide the status bar, and tells you what went wrong when a dashboard won't load.</p>
+      <ul>
+        <li><strong>iPadOS 15 support.</strong> The iPad Air 2 and iPad mini 4 can run DashPad now.</li>
+        <li><strong>Hide Status Bar.</strong> A new switch in Settings → Dashboard hides the clock, date, battery and Wi-Fi icons over your dashboard. It's on by default, and the idle screen always hides them.</li>
+        <li><strong>Plain HTTP dashboards load again.</strong> Addresses like <code>http://ha.home.lan:8123</code> used to show a blank screen. They work now (<a href="https://github.com/rafapages/DashPad/issues/4" target="_blank" rel="noopener">#4</a>).</li>
+        <li><strong>Clear error screen.</strong> When the dashboard can't load, you see "Can't reach dashboard" with the address and the reason, while DashPad keeps retrying every 10 seconds. Passwords in the address are never shown.</li>
+        <li>A home address blocked by Allowed Domains now says so, and loads as soon as you change the list.</li>
+        <li>A link that fails to load no longer replaces your dashboard.</li>
+        <li>DashPad reloads the page by itself if iPadOS stops the web view in the background.</li>
+        <li>Tapping a link no longer jumps back to the home page 10 seconds later.</li>
+      </ul>
+    </article>
+
+    <article class="dp-release" id="v1-3">
+      <header class="dp-release__head">
+        <a class="dp-release__version" href="#v1-3">1.3</a>
+        <time datetime="2026-09-15">Sep 15, 2026</time>
+      </header>
+      <h2 class="dp-release__title">A way to say thanks</h2>
+      <p class="dp-release__summary">A Rate DashPad row in Settings, for when you feel like it. The app never asks on its own.</p>
+      <ul>
+        <li><strong>Rate DashPad.</strong> A new row in the settings sidebar opens the App Store review page. Nothing happens unless you tap it: DashPad never pops up a rating prompt.</li>
+      </ul>
+    </article>
+
+    <article class="dp-release" id="v1-2">
+      <header class="dp-release__head">
+        <a class="dp-release__version" href="#v1-2">1.2</a>
+        <time datetime="2026-08-22">Aug 22, 2026</time>
+      </header>
+      <h2 class="dp-release__title">Back to 2017 iPads, and a smoother setup</h2>
+      <p class="dp-release__summary">Support for iPadOS 16 and a long list of fixes to the setup assistant, the camera permission and the PIN lock.</p>
+      <ul>
+        <li><strong>iPadOS 16 support.</strong> DashPad now runs on iPads back to the 5th generation (2017) and the original iPad Pro.</li>
+        <li><strong>Setup assistant.</strong> Running it again from Settings keeps your dashboard address and presence mode instead of resetting them, and you can leave it with a Close button at any step.</li>
+        <li>Choosing a Custom URL for the idle screen during setup now asks for the address.</li>
+        <li>Address fields reject incomplete entries like <code>http://</code> on its own.</li>
+        <li><strong>Camera.</strong> The camera no longer starts while you're still in setup, so the permission prompt doesn't appear behind it and the screen doesn't dim mid-setup.</li>
+        <li>Declining camera access now really switches to Always Active, instead of the dashboard still dropping to the idle screen.</li>
+        <li>When camera access is off, DashPad explains why and where to change it, including when it's blocked by Screen Time or a management profile. The warning in Settings → Presence shows in every presence mode.</li>
+        <li><strong>PIN lock.</strong> The entry screen shows four dots to match the four-digit PIN.</li>
+        <li>Reinstalling DashPad no longer leaves it locked by a PIN from a previous install.</li>
+        <li>Re-entering the same PIN during setup no longer gets stuck on that step.</li>
+      </ul>
+    </article>
+
+    <article class="dp-release" id="v1-0">
+      <header class="dp-release__head">
+        <a class="dp-release__version" href="#v1-0">1.0</a>
+        <time datetime="2026-06-29">Jun 29, 2026</time>
+      </header>
+      <h2 class="dp-release__title">First release</h2>
+      <p class="dp-release__summary">A full-screen kiosk browser that shows your dashboard when someone's in the room and rests when it's empty.</p>
+      <ul>
+        <li><strong>Kiosk browser.</strong> Full-screen web view that reloads by itself when the connection drops, with an optional list of allowed domains.</li>
+        <li><strong>Three presence modes.</strong> Automatic uses the camera to detect someone in the room, entirely on-device. Schedule switches on and off at set times, with no camera at all. Always Active keeps the dashboard on.</li>
+        <li><strong>Idle screen.</strong> A digital or analogue clock, a blank screen, or a web page of your choice, with separate brightness for active and idle.</li>
+        <li><strong>Optional PIN lock</strong> for settings, with Face ID or device passcode as a fallback.</li>
+        <li>Settings open with a triple tap in the corner, and a setup assistant walks you through the first run.</li>
+      </ul>
+      <p class="dp-release__more"><a href="../../blog/you-might-already-own-a-homeview/">Read the story behind DashPad</a></p>
+    </article>
+
+    <hr class="dp-prose__divider">
+    <p class="dp-prose__foot">Found a bug or missing something? <a href="https://github.com/rafapages/dashpad/issues" target="_blank" rel="noopener">Open an issue on GitHub</a> or reach me at <a href="mailto:dashpad@rafapages.com">dashpad@rafapages.com</a>.</p>
+  </main>
+
+  <footer class="dp-footer">
+    <div class="dp-footer__bar">
+      <div class="dp-footer__brand">
+        <img src="../uploads/dplogo.webp" alt="DashPad">
+        <span>DashPad</span>
+      </div>
+      <nav class="dp-footer__nav">
+        <a href="https://github.com/rafapages/dashpad" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://x.com/dashpad_" target="_blank" rel="noopener">X</a>
+        <a href="./">What's new</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="https://apps.apple.com/us/app/dashpad-kiosk/id6766830819" target="_blank" rel="noopener">App Store</a>
+      </nav>
+    </div>
+    <div class="dp-footer__fine">
+      <p>Made with ☕️ by Rafa Pagés with Home Assistant in mind © 2026.</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- 100% privacy-first analytics; auto-events records outbound clicks (e.g. App Store) -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<script async src="https://scripts.simpleanalyticscdn.com/auto-events.js"></script>
+</body>
+</html>
