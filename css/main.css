@@ -1594,6 +1594,11 @@ a.talk-entry-title:hover {
   margin-bottom: 2.5rem;
 }
 
+/* Same gap when the stat row is left out. */
+.section-subtitle--lead + .spotlight {
+  margin-top: 2.5rem;
+}
+
 /* --- Spotlight ---------------------------------------------
    One project large (.spot-stage), all projects as thumbnails
    below (.spot-rail, built by js/showcase.js). Every .spot sits
@@ -1653,7 +1658,6 @@ a.talk-entry-title:hover {
     margin-bottom: 0.3rem;
   }
   .spot .product-tags { margin-bottom: 0.6rem; }
-  .spot .sc-ai { padding: 0.35rem 0.65rem; margin-bottom: 0.6rem; }
   .spot .sc-desc { margin-bottom: 0.5rem; line-height: 1.6; }
   .spot .sc-role { margin-bottom: 0.5rem; }
   .spot .sc-links { padding-top: 0.25rem; }
@@ -1702,7 +1706,7 @@ a.talk-entry-title:hover {
 /* Thumbnail rail */
 .spot-rail {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 0.75rem;
   margin-top: 0.9rem;
 }
@@ -1975,27 +1979,16 @@ a.talk-entry-title:hover {
   margin-bottom: 0.75rem;
 }
 
-/* "The AI" / "AI did" line: the AI thread inside each card */
-.sc-ai,
 .sc-role {
   font-size: 0.85rem;
   line-height: 1.55;
   margin-bottom: 0.75rem;
 }
 
-.sc-ai {
-  color: #111;
-  background: rgba(255, 220, 0, 0.12);
-  border-left: 3px solid rgba(255, 220, 0, 0.8);
-  border-radius: 0 6px 6px 0;
-  padding: 0.45rem 0.7rem;
-}
-
 .sc-role {
   color: #555;
 }
 
-.sc-ai-label,
 .sc-role-label {
   display: inline-block;
   font-size: 0.64rem;
