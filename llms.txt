@@ -1,11 +1,16 @@
 # Rafa Pagés
 
-> Personal site of Rafael (Rafa) Pagés: entrepreneur working on product, AI and spatial computing. Co-founder and CEO of Volograms, PhD in computer vision, with 25+ papers and patents in 3D reconstruction and volumetric capture. Also builds side projects, including the DashPad iPad app.
+> Personal site of Rafael (Rafa) Pagés: entrepreneur working on product, AI and spatial computing. Co-founder and CEO of Volograms, PhD in computer vision, with 25+ papers and patents in 3D reconstruction and volumetric capture. Also builds iOS apps on the side: MadiCam, DashPad and Let's Crush It.
 
 ## Main pages
 
 - [Home](https://www.rafapages.com/): bio, products, speaking, side projects and contact
 - [Research](https://www.rafapages.com/research.html): publications and patents in computer vision, 3D reconstruction and volumetric capture
+
+## Work
+
+- Built at Volograms: [Volu](https://volograms.com/volu) (iOS app that turns a single phone camera into volumetric video), [Vologram Messages](https://volograms.com/vologram-messages) (branded 3D holograms that open from a link) and Vologram Studio (multi-camera volumetric capture for XR, virtual production and sports)
+- Built hands-on: [MadiCam](https://madi.cam) (iPhone camera for touchscreen dive housings), [Let's Crush It](https://letscrush.it) (goals and habits app for iOS), [DashPad](https://www.rafapages.com/dashpad/) and the [AI school lunch tracker](https://www.rafapages.com/blog/lunch-tracker/)
 
 ## Blog
 

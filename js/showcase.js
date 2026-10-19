@@ -143,6 +143,14 @@
   /* ---------- Spotlight ---------- */
 
   function thumbMedia(spot) {
+    // data-thumb on the <article> overrides the first slide
+    if (spot.dataset.thumb) {
+      var t = document.createElement('img');
+      t.src = spot.dataset.thumb;
+      t.alt = '';
+      t.loading = 'lazy';
+      return t;
+    }
     var gallery = spot.querySelector('[data-gallery]');
     var first = gallery ? visibleSlides(gallery)[0] : null;
     if (!first) return null;

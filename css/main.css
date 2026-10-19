@@ -1851,6 +1851,12 @@ a.talk-entry-title:hover {
   display: block;
 }
 
+/* Wide images (e.g. a row of phone screenshots): show whole, never crop */
+.sc-slide--contain {
+  object-fit: contain;
+  background: #f5f5f5;
+}
+
 .sc-slide.is-broken,
 .sc-slide.is-hidden {
   display: none;
@@ -1872,6 +1878,9 @@ a.talk-entry-title:hover {
 }
 
 .sc-caption:empty { display: none; }
+
+/* No caption pill on the product spotlights; data-caption still labels the dots */
+.spot .sc-caption { display: none; }
 
 /* Image dots inside the spotlight (only when a project has 2+ images) */
 .sc-dots {

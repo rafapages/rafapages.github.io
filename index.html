@@ -5,46 +5,106 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="keywords" content="volumetric capture, volumetric video, AR, VR, hologram, photogrammetry, volograms, product management, entrepreneur" />
-  <meta name="description" content="Rafa Pages - Entrepreneur, Product, AI, Spatial Computing. Co-founder & CEO of Volograms.">
-  <meta name="author" content="Rafa Pages">
+  <meta name="keywords" content="Rafa Pagés, Volograms, volumetric video, generative 3D, AI products, product management, spatial computing, MadiCam, DashPad, entrepreneur" />
+  <meta name="description" content="Rafa Pagés, co-founder and CEO of Volograms and PhD in computer vision. AI and volumetric video products, plus apps I build myself: MadiCam, DashPad and Let's Crush It.">
+  <meta name="author" content="Rafa Pagés">
 
-  <title>Rafa Pages - Entrepreneur, Product, AI, Spatial Computing</title>
+  <title>Rafa Pagés - Entrepreneur, Product, AI, Spatial Computing</title>
   <link rel="canonical" href="https://www.rafapages.com/">
   <link rel="alternate" type="application/rss+xml" title="Rafa Pagés" href="https://www.rafapages.com/blog/feed.xml">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Rafa Pages - Entrepreneur, Product, AI, Spatial Computing" />
+  <meta property="og:title" content="Rafa Pagés - Entrepreneur, Product, AI, Spatial Computing" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="Co-founder & CEO of Volograms. PhD in computer vision. I build AI-powered products." />
+  <meta property="og:site_name" content="Rafa Pagés" />
+  <meta property="og:description" content="Co-founder & CEO of Volograms. PhD in computer vision. I build AI-powered products, from volumetric video to iOS apps." />
   <meta property="og:image" content="https://www.rafapages.com/img/rafa_electro_new_logo.jpg" />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
   <meta property="og:url" content="https://www.rafapages.com/" />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="https://www.rafapages.com/img/rafa_electro_new_logo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@rafamolone" />
+  <meta name="twitter:image" content="https://www.rafapages.com/img/rafa_electro_new_logo.jpg" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Rafael Pagés",
-    "alternateName": "Rafa Pagés",
-    "url": "https://www.rafapages.com",
-    "image": "https://www.rafapages.com/img/rafa_electro_new_logo.jpg",
-    "jobTitle": "Co-Founder & CEO",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Volograms",
-      "url": "https://volograms.com"
-    },
-    "description": "Product, AI, Spatial Computing, Entrepreneur. Co-founder & CEO of Volograms. PhD in computer vision. 13+ years in 3D reconstruction, 25+ papers and patents published.",
-    "sameAs": [
-      "https://twitter.com/rafamolone",
-      "https://linkedin.com/in/rafapages/en",
-      "https://rafapages.medium.com",
-      "https://github.com/rafapages",
-      "https://scholar.google.com/citations?user=V5G2vyIAAAAJ&hl=en&oi=ao",
-      "https://sketchfab.com/rafapages"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.rafapages.com/#person",
+        "name": "Rafael Pagés",
+        "alternateName": "Rafa Pagés",
+        "url": "https://www.rafapages.com",
+        "image": "https://www.rafapages.com/img/rafa_electro_new_logo.jpg",
+        "jobTitle": "Co-Founder & CEO",
+        "worksFor": { "@id": "https://volograms.com/#organization" },
+        "description": "Product, AI, Spatial Computing, Entrepreneur. Co-founder & CEO of Volograms. PhD in computer vision. 13+ years in 3D reconstruction, 25+ papers and patents published.",
+        "knowsAbout": ["Product management", "Generative AI", "Volumetric video", "3D reconstruction", "Computer vision", "Spatial computing", "iOS development"],
+        "sameAs": [
+          "https://twitter.com/rafamolone",
+          "https://linkedin.com/in/rafapages/en",
+          "https://rafapages.medium.com",
+          "https://github.com/rafapages",
+          "https://scholar.google.com/citations?user=V5G2vyIAAAAJ&hl=en&oi=ao",
+          "https://sketchfab.com/rafapages"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://volograms.com/#organization",
+        "name": "Volograms",
+        "url": "https://volograms.com",
+        "description": "3D generative AI company that turns ordinary video into volumetric video.",
+        "founder": { "@id": "https://www.rafapages.com/#person" }
+      },
+      {
+        "@type": "MobileApplication",
+        "name": "Volu",
+        "url": "https://volograms.com/volu",
+        "operatingSystem": "iOS",
+        "applicationCategory": "PhotographyApplication",
+        "description": "The first mobile app for volumetric video: AI rebuilds a person as a moving 3D model from a single phone camera.",
+        "publisher": { "@id": "https://volograms.com/#organization" }
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Vologram Messages",
+        "url": "https://volograms.com/vologram-messages",
+        "applicationCategory": "BusinessApplication",
+        "description": "3D holograms that open from a link, no app required, inside a brand experience with a configurable name, call to action and button.",
+        "publisher": { "@id": "https://volograms.com/#organization" }
+      },
+      {
+        "@type": "MobileApplication",
+        "name": "MadiCam Underwater Camera",
+        "url": "https://madi.cam",
+        "installUrl": "https://apps.apple.com/us/app/madicam-underwater-camera/id6796099966",
+        "operatingSystem": "iOS",
+        "applicationCategory": "PhotographyApplication",
+        "description": "An iPhone camera app for touchscreen dive housings, with oversized controls you can use with gloves on.",
+        "author": { "@id": "https://www.rafapages.com/#person" }
+      },
+      {
+        "@type": "MobileApplication",
+        "name": "DashPad",
+        "url": "https://www.rafapages.com/dashpad/",
+        "installUrl": "https://apps.apple.com/us/app/dashpad-kiosk/id6766830819",
+        "operatingSystem": "iPadOS",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "Turns an iPad into a smart dashboard that wakes when someone walks up. Presence detection runs on the device.",
+        "author": { "@id": "https://www.rafapages.com/#person" }
+      },
+      {
+        "@type": "MobileApplication",
+        "name": "Let's Crush It",
+        "url": "https://letscrush.it",
+        "operatingSystem": "iOS",
+        "applicationCategory": "LifestyleApplication",
+        "description": "An iOS app for turning goals into habits and following through.",
+        "author": { "@id": "https://www.rafapages.com/#person" }
+      }
     ]
   }
   </script>
@@ -140,7 +200,7 @@
   <div class="container">
     <h2 class="section-title">Built at Volograms</h2>
     <p class="section-subtitle section-subtitle--lead">
-      Four products built on one idea: AI that turns ordinary video into 3D people.
+      Products built on one idea: AI that turns ordinary video into 3D people.
       For consumers, creators, global brands and production studios. Each one started as an R&amp;D project.
     </p>
 
@@ -170,7 +230,7 @@
 
     <!-- Spotlight: one project large, every project as a thumbnail below.
          Thumbnails are built by js/showcase.js from each <article>
-         (first image, kicker and name). Add a project = add an <article class="spot">.
+         (first image, or data-thumb on the <article>, plus kicker and name). Add a project = add an <article class="spot">.
          Link straight to one with #id, e.g. rafapages.com/#dashpad -->
     <div class="spotlight" data-spotlight aria-label="Volograms products">
       <div class="spot-stage">
@@ -203,6 +263,7 @@
             </div>
           </div>
         </article>
+        <!-- Vologram Creator: hidden until there are assets. Uncomment to bring it back.
         <article class="spot" id="vologram-creator">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
@@ -225,6 +286,7 @@
             </div>
           </div>
         </article>
+        -->
         <article class="spot" id="vologram-messages">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
@@ -315,17 +377,15 @@
 
     <!-- Spotlight: one project large, every project as a thumbnail below.
          Thumbnails are built by js/showcase.js from each <article>
-         (first image, kicker and name). Add a project = add an <article class="spot">.
+         (first image, or data-thumb on the <article>, plus kicker and name). Add a project = add an <article class="spot">.
          Link straight to one with #id, e.g. rafapages.com/#dashpad -->
     <div class="spotlight" data-spotlight aria-label="Hands-on projects">
       <div class="spot-stage">
         <article class="spot" id="madicam">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
-              <!-- Drop real screenshots in img/products/ and they appear automatically. -->
-              <img class="sc-slide" src="img/products/madicam-1.jpg" alt="MadiCam capture screen" data-caption="Capture screen">
-              <img class="sc-slide" src="img/products/madicam-2.jpg" alt="MadiCam in a dive housing" data-caption="In the housing, underwater">
-              <img class="sc-slide" src="img/products/madicam-3.jpg" alt="MadiCam settings" data-caption="Settings">
+              <video class="sc-slide" src="vid/madicam.mp4" poster="vid/madicam-poster.jpg" muted loop playsinline preload="none" aria-label="MadiCam in use" data-caption="Big controls, made for gloves"></video>
+              <!-- More slides, e.g. <img class="sc-slide" src="img/products/madicam-1.jpg" alt="..." data-caption="..."> -->
               <!-- Fallback cover: shown while there are no screenshots. Delete once images exist. -->
               <div class="sc-slide sc-cover sc-cover--sea">
                 <span class="sc-cover-name">MadiCam</span>
@@ -335,7 +395,7 @@
           </div>
           <div class="sc-body">
             <p class="sc-kicker">New · Oct 2026</p>
-            <h3 class="sc-name"><a href="#" target="_blank">MadiCam Underwater Camera</a></h3>
+            <h3 class="sc-name"><a href="https://madi.cam" target="_blank">MadiCam Underwater Camera</a></h3>
             <p class="product-tags">
               <span class="tag">iOS</span>
               <span class="tag">B2C</span>
@@ -344,16 +404,15 @@
             <p class="sc-desc">An iPhone camera app for touchscreen dive housings: oversized controls you can hit with gloves on, haptic feedback, and separate buttons for photo and video. Built on native iOS components.<span class="todo"> [how AI helped build it]</span></p>
             <p class="sc-role todo"><span class="sc-role-label">Timeline</span>Idea to App Store in [X weeks], on my own.</p>
             <div class="sc-links">
-              <a href="#" class="todo" target="_blank">App Store ↗</a>
-              <a href="#" class="todo" target="_blank">Website ↗</a>
+              <a href="https://madi.cam" target="_blank">Website ↗</a>
+              <a href="https://apps.apple.com/us/app/madicam-underwater-camera/id6796099966" target="_blank">App Store ↗</a>
             </div>
           </div>
         </article>
-        <article class="spot" id="lets-crush-it">
+        <article class="spot" id="lets-crush-it" data-thumb="img/products/lci-thumb.jpg">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
-              <img class="sc-slide" src="img/products/lci-1.jpg" alt="Let's Crush It goals screen" data-caption="Goals">
-              <img class="sc-slide" src="img/products/lci-2.jpg" alt="Let's Crush It habits screen" data-caption="Habits">
+              <img class="sc-slide sc-slide--contain" src="img/products/lci-banner.jpg" alt="Let's Crush It screens: boards, habits, stats, widgets and calendar" data-caption="Boards, habits, widgets and stats">
               <div class="sc-slide sc-cover sc-cover--logo">
                 <img src="img/logos/LCI-logo-sm.png" alt="" class="sc-cover-logo">
               </div>
@@ -366,11 +425,9 @@
               <span class="tag">iOS</span>
               <span class="tag">B2C</span>
             </p>
-            <!-- WEB-13: copy repeats "track" and echoes the app name. Rafa to rewrite. -->
             <p class="sc-desc">An iOS app for turning goals into habits. Track your progress, keep the momentum going, and actually follow through.<span class="todo"> [how AI helped build it]</span></p>
             <div class="sc-links">
               <a href="https://letscrush.it" target="_blank">Website ↗</a>
-              <a href="#" class="todo" target="_blank">App Store ↗</a>
             </div>
           </div>
         </article>
@@ -378,12 +435,10 @@
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
               <video class="sc-slide" src="dashpad/uploads/videos/dashpad.mp4" poster="dashpad/uploads/videos/dashpad-poster.jpg" muted loop playsinline preload="none" aria-label="DashPad in use" data-caption="Wakes when you walk up"></video>
-              <img class="sc-slide" src="dashpad/uploads/presence.jpeg" alt="DashPad presence settings" data-caption="On-device presence detection">
-              <img class="sc-slide" src="blog/you-might-already-own-a-homeview/vid/dashpad-website.jpg" alt="DashPad website" data-caption="Website">
             </div>
           </div>
           <div class="sc-body">
-            <p class="sc-kicker">Open source</p>
+            <p class="sc-kicker">Smart Home</p>
             <h3 class="sc-name"><a href="./dashpad/">DashPad</a></h3>
             <p class="product-tags">
               <span class="tag">iPadOS</span>
@@ -402,13 +457,11 @@
         <article class="spot" id="lunch-tracker">
           <div class="sc-media" data-gallery>
             <div class="sc-stage">
-              <img class="sc-slide" src="blog/lunch-tracker/img/widget.jpg" alt="Lunch widget on the Home Assistant dashboard" data-caption="Dashboard widget">
-              <img class="sc-slide" src="blog/lunch-tracker/img/menus.jpg" alt="School lunch menu PDFs" data-caption="Input: the school's PDF menus">
-              <img class="sc-slide" src="blog/lunch-tracker/img/calendar.jpg" alt="Lunch calendar web view" data-caption="Output: a web calendar">
+              <img class="sc-slide" src="blog/lunch-tracker/img/calendar.jpg" alt="Lunch calendar web view" data-caption="A month of school lunches, with dinner warnings">
             </div>
           </div>
           <div class="sc-body">
-            <p class="sc-kicker">Home</p>
+            <p class="sc-kicker">Smart Home</p>
             <h3 class="sc-name"><a href="./blog/lunch-tracker/">AI School Lunch Tracker</a></h3>
             <p class="product-tags">
               <span class="tag">Web</span>
@@ -546,7 +599,7 @@
       </div>
     
       <div class="timeline-item" data-year="2015"
-           data-lines='["Seamless Multi-Texturing of 3D Meshes at Computer Graphics Forum & Eurographicss", "3D splats at Web3D"]'>
+           data-lines='["Seamless Multi-Texturing of 3D Meshes at Computer Graphics Forum & Eurographics", "3D splats at Web3D"]'>
         <div class="timeline-dot timeline-dot--highlight"></div>
         <div class="timeline-year">2015</div>
         <div class="timeline-label">Computer Graphics Forum<br><span>Eurographics</span></div>
