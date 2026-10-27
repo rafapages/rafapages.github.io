@@ -15,7 +15,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="DashPad" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:description" content="DashPad does not collect, store, or transmit any personal data. No accounts, no analytics, and no third-party services." />
+<meta property="og:description" content="DashPad does not collect or transmit any personal data. No accounts, no analytics, and no third-party services." />
 <meta property="og:url" content="https://www.rafapages.com/dashpad/privacy.html" />
 
 <link rel="icon" href="uploads/dplogo.webp">
@@ -46,9 +46,9 @@
   <main class="dp-prose">
     <p class="dp-eyebrow">Privacy Policy</p>
     <h1 class="dp-prose__title">DashPad Privacy Policy</h1>
-    <p class="dp-prose__updated">Last updated: July 2, 2026</p>
+    <p class="dp-prose__updated">Last updated: October 27, 2026</p>
 
-    <p class="dp-prose__lead">DashPad does not collect, store, or transmit any personal data. There are no accounts, no analytics, and no third-party services. What happens on your iPad stays on your iPad.</p>
+    <p class="dp-prose__lead">DashPad does not collect or transmit any personal data. There are no accounts, no analytics, and no third-party services. What happens on your iPad stays on your iPad.</p>
 
     <h2>Camera</h2>
     <p>When presence detection is on, DashPad uses the front camera to notice whether someone is in the room. Every few seconds it wakes for a moment, captures a single frame, and analyzes it on the device using Apple's Vision framework. That frame is processed in memory and discarded immediately. It is never written to disk, never saved, and never sent anywhere. When the room is dark, the camera is skipped entirely. You can also run DashPad on a fixed schedule or always-on mode, with no camera use at all.</p>
@@ -57,10 +57,13 @@
     <p>DashPad makes no network requests of its own. The only network activity is the dashboard or website you choose to load, which behaves exactly as it would in any browser. DashPad does not add tracking, telemetry, or requests to those pages.</p>
 
     <h2>Data stored on your device</h2>
-    <p>Your settings, such as the home URL, favourites, and preferences, are stored locally on your iPad and are not synced to any cloud service. If you set an exit PIN, it is kept in the iOS Keychain and is never transmitted.</p>
+    <p>Your settings, such as the home URL, favourites, and preferences, are stored on your iPad using iOS's standard settings storage (UserDefaults). DashPad does not sync them to iCloud or send them anywhere. Like most app data, they are included in the iPad's own iCloud or computer backup if you have backups turned on. Photos are the exception: they are excluded from backups (see Photos). If you set an exit PIN, it is kept in the iOS Keychain and is never transmitted.</p>
+
+    <h2>Photos</h2>
+    <p>If you choose the Photos idle screen, you pick photos with the system photo picker. The picker runs outside DashPad and hands over only the photos you select, so DashPad does not ask for access to your photo library and cannot see the rest of it. Each selected photo is copied into DashPad's own storage on the iPad, reduced to screen size and re-encoded. The original's metadata, such as location, is not copied. DashPad's copies are excluded from iCloud and computer backups, and they are never uploaded or sent anywhere. Removing a photo in DashPad deletes DashPad's copy; the original in your photo library is untouched.</p>
 
     <h2>No tracking or third parties</h2>
-    <p>DashPad contains no analytics, no crash reporting, and no third-party SDKs or frameworks of any kind. Because the full source code is public, anyone can verify exactly how the app behaves.</p>
+    <p>DashPad contains no analytics, no crash reporting, and no third-party SDKs. It uses only Apple system frameworks: SwiftUI, AVFoundation, Vision, WebKit, LocalAuthentication, PhotosUI, ImageIO, Core Image and TipKit. TipKit shows an in-app tip and remembers on the iPad whether you have dismissed it; nothing is sent anywhere. Because the full source code is public, anyone can verify exactly how the app behaves.</p>
 
     <h2>Children</h2>
     <p>DashPad does not collect any data from anyone, including children.</p>
