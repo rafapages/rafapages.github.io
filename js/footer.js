@@ -37,7 +37,12 @@
           </a>
         </li>
       </ul>
-      <span class="footer-copy">© Rafael Pagés</span>
+      <div class="footer-meta">
+        <span class="footer-copy">© Rafael Pagés</span>
+        <a class="footer-sa" href="https://www.simpleanalytics.com?utm_source=www.rafapages.com&utm_content=badge" referrerpolicy="origin" target="_blank" rel="noopener">
+          <img src="https://simpleanalyticsbadges.com/www.rafapages.com?mode=light&counter=false" alt="Simple Analytics" loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous">
+        </a>
+      </div>
     </div>
   </div>
 </footer>`;
