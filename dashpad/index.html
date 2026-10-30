@@ -166,12 +166,12 @@
     <div class="dp-scrim dp-scrim--top"></div>
     <div class="dp-scrim dp-scrim--fade"></div>
 
-    <div style="position:relative;z-index:2;max-width:880px;margin:0 auto;text-align:center;">
-      <div style="display:inline-block;animation:floaty 5.5s ease-in-out infinite;margin-bottom:30px;">
+    <div style="position:relative;z-index:2;max-width:1060px;margin:0 auto;text-align:center;">
+      <div style="display:inline-block;animation:floaty 5.5s ease-in-out infinite;margin-bottom:24px;">
         <img src="uploads/dplogo.webp" alt="DashPad" style="width:104px;height:104px;border-radius:24px;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.14);">
       </div>
-      <h1 class="dp-display" style="font-size:clamp(40px,6.6vw,76px);margin-bottom:24px;">The iPad dashboard that's there when <span class="dp-gtext">you are.</span></h1>
-      <p style="font-size:clamp(17px,2.1vw,20px);line-height:1.6;color:rgba(255,255,255,.74);max-width:600px;margin:0 auto 38px;text-wrap:pretty;">A full-screen kiosk browser for iPad. It wakes when someone walks in, rests when the room is empty, and runs entirely on-device.
+      <h1 class="dp-display" style="font-size:clamp(40px,6.6vw,76px);margin-bottom:20px;">The iPad dashboard that's there when <span class="dp-gtext">you are.</span></h1>
+      <p style="font-size:clamp(17px,2.1vw,20px);line-height:1.6;color:rgba(255,255,255,.74);max-width:600px;margin:0 auto 32px;text-wrap:pretty;">A full-screen kiosk browser for iPad. It wakes when someone walks in, rests when the room is empty, and runs entirely on-device.
 
       </p>
       <div class="dp-badges">
@@ -184,15 +184,11 @@
       </div>
     </div>
 
-    <!-- Hero device -->
-    <div style="position:relative;z-index:4;max-width:840px;margin:70px auto 0;">
-      <div class="dp-glow" style="--glow-color:rgba(252,75,127,.45);inset:-4% 2% 14%;filter:blur(48px);"></div>
-      <div class="dp-device dp-device--hero" style="z-index:1;margin-top:96px;margin-bottom:96px;">
-        <div class="dp-device__notch"></div>
-        <div class="dp-device__screen">
-          <video src="uploads/videos/dashpad.mp4" autoplay muted loop playsinline preload="metadata" aria-label="DashPad in use"></video>
-        </div>
-      </div>
+    <!-- Hero video -->
+    <div style="position:relative;z-index:4;max-width:960px;margin:48px auto 96px;">
+      <div class="dp-glow" style="--glow-color:rgba(252,75,127,.4);inset:-4% 2% 14%;filter:blur(48px);"></div>
+      <video class="dp-hero-video" src="uploads/videos/dashpad_v2.mp4" poster="uploads/videos/dashpad_v2-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Someone walks past a wall-mounted iPad running DashPad; the dashboard wakes as they approach"></video>
+      <h2 class="dp-h2" style="position:relative;text-align:center;margin-top:56px;">Walk in, it wakes. <span class="dp-gtext">Walk away, it rests.</span></h2>
     </div>
   </section>
 
@@ -205,6 +201,10 @@
       <p class="dp-lead" style="max-width:660px;margin:0 auto 22px;">I had an old iPad lying around and wanted it as a wall dashboard for my smart home, which runs on Home Assistant. Screen on when I walk up, off when the room is empty. Nothing did just that, <b>so I made my own.</b></p>
       <p class="dp-lead" style="max-width:660px;margin:0 auto;">I figured others might find it useful too. But I get that turning on the camera is a dealbreaker for many, given how much data gets quietly taken these days. So <b>I open sourced it</b>: you can check that the camera images are never sent or stored, or just build it yourself.
       </p>
+      <div style="position:relative;max-width:560px;margin:64px auto 0;">
+        <div class="dp-glow" style="--glow-color:rgba(252,75,127,.3);inset:4%;"></div>
+        <img src="uploads/ipad2.webp" alt="An iPad running DashPad with a Home Assistant dashboard: weather, lights, climate, cameras and music" width="1600" height="1227" loading="lazy" style="position:relative;z-index:1;display:block;width:100%;height:auto;">
+      </div>
     </div>
   </section>
 
@@ -257,6 +257,69 @@
             <img src="uploads/presence.jpeg" alt="DashPad presence settings showing on-device person detection" style="display:block;width:100%;height:auto;border-radius:18px;">
           </div>
           <p class="dp-caption">person detection · in Settings</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ CLOCK FACES ═══════════ -->
+  <section id="clock" class="dp-section">
+    <div class="dp-wrap">
+      <div style="max-width:720px;margin:0 auto;text-align:center;" data-reveal-stagger>
+        <h2 class="dp-h2" style="margin-bottom:20px;">When the room's empty, <span class="dp-gtext">it becomes a clock.</span></h2>
+        <p class="dp-lead" style="max-width:600px;margin:0 auto;">Pick a face. Some are dark enough for the bedroom, some are just fun.</p>
+      </div>
+
+      <div class="dp-faces" style="margin-top:64px;" data-reveal-stagger>
+        <figure class="dp-face">
+          <img src="uploads/01-digital.jpeg" alt="Digital clock face: thin white time and date on black" width="2752" height="2064" loading="lazy">
+          <figcaption class="dp-caption">digital</figcaption>
+        </figure>
+        <figure class="dp-face">
+          <img src="uploads/02-analog.jpeg" alt="Analog clock face: a small, thin-lined dial on black" width="2752" height="2064" loading="lazy">
+          <figcaption class="dp-caption">analog</figcaption>
+        </figure>
+        <figure class="dp-face">
+          <img src="uploads/03-numerals.jpeg" alt="Numerals clock face: oversized 12, 3, 6 and 9 with white hands on green" width="2752" height="2064" loading="lazy">
+          <figcaption class="dp-caption">numerals</figcaption>
+        </figure>
+        <figure class="dp-face">
+          <img src="uploads/04-tiles.jpeg" alt="Tiles clock face: flip-clock digits with the minutes in orange" width="2752" height="2064" loading="lazy">
+          <figcaption class="dp-caption">tiles</figcaption>
+        </figure>
+        <figure class="dp-face">
+          <img src="uploads/05-words.jpeg" alt="Words clock face: &quot;It's almost ten past ten.&quot; set in serif on orange" width="2752" height="2064" loading="lazy">
+          <figcaption class="dp-caption">words</figcaption>
+        </figure>
+        <figure class="dp-face">
+          <img src="uploads/06-halves.jpeg" alt="Halves clock face: huge digits spanning a navy and light blue split" width="2752" height="2064" loading="lazy">
+          <figcaption class="dp-caption">halves</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ PHOTOS ═══════════ -->
+  <section id="photos" class="dp-section" style="padding-top:0;">
+    <div class="dp-wrap">
+      <div style="max-width:720px;margin:0 auto;text-align:center;" data-reveal-stagger>
+        <h2 class="dp-h2" style="margin-bottom:20px;">Or let it rest on <span class="dp-gtext">your photos.</span></h2>
+        <p class="dp-lead" style="max-width:600px;margin:0 auto;">Pick a few favorites. It slowly fades between them, with the time in the corner.</p>
+      </div>
+
+      <div style="position:relative;max-width:620px;margin:64px auto 0;" data-reveal>
+        <div class="dp-glow" style="--glow-color:rgba(245,138,75,.35);"></div>
+        <div class="dp-device" style="z-index:1;">
+          <div class="dp-device__notch"></div>
+          <div class="dp-device__screen">
+            <img src="uploads/family.jpeg" alt="DashPad showing a family selfie in a park as its idle screen" width="1600" height="1200" loading="lazy">
+            <div class="dp-photo-clock" aria-hidden="true">
+              <span class="dp-photo-clock__time">10:09</span>
+              <span class="dp-photo-clock__date">Tuesday 20 October</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

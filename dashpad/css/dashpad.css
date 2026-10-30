@@ -89,7 +89,7 @@ body {
 .dp-wrap { max-width: 1140px; margin: 0 auto; }
 
 .dp-section { padding: 120px 24px; }
-.dp-section--hero       { position: relative; overflow: hidden; padding: 150px 24px 0; background: var(--bg); }
+.dp-section--hero       { position: relative; overflow: hidden; padding: 120px 24px 0; background: var(--bg); }
 .dp-section--pitch      { padding: 130px 24px 110px; }
 .dp-section--band {            /* presence */
   padding: 100px 24px;
@@ -125,6 +125,17 @@ body {
 .dp-bento { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .dp-bento .b2 { grid-column: span 2; }
 .dp-bento .b4 { grid-column: span 4; }
+
+.dp-faces { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 22px; }
+.dp-face { margin: 0; }
+.dp-face img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 24px 48px -24px rgba(0,0,0,.6);
+}
+.dp-face .dp-caption { margin-top: 12px; }
 
 .dp-privacy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 720px; margin-left: auto; margin-right: auto; }
 
@@ -318,7 +329,46 @@ body {
   background: var(--device-screen);
 }
 .dp-device--hero .dp-device__screen { border-radius: 19px; }
-.dp-device__screen video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.dp-device__screen video,
+.dp-device__screen img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Time + date overlaid on the photo idle screen, with a scrim for legibility */
+.dp-photo-clock {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 18% 5% 4.5%;
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0,0,0,.35);
+  pointer-events: none;
+}
+.dp-photo-clock__time {
+  font-size: clamp(26px, 5vw, 46px);
+  font-weight: 300;
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.dp-photo-clock__date {
+  margin-top: .5em;
+  font-size: clamp(11px, 1.3vw, 13px);
+  font-weight: 500;
+  color: rgba(255,255,255,.85);
+}
+
+/* Unframed hero video */
+.dp-hero-video {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1920 / 1076;
+  border-radius: 20px;
+  background: var(--device-screen);
+  box-shadow: 0 50px 100px -28px rgba(0, 0, 0, .7);
+}
 
 /* Soft radial glow placed behind a device. Tint via --glow-color. */
 .dp-glow {
@@ -600,8 +650,10 @@ body {
   .dp-bento .b2, .dp-bento .b4 { grid-column: span 2; }
   .dp-split, .dp-split--reverse { grid-template-columns: 1fr; gap: 40px; }
   .dp-privacy-grid { grid-template-columns: 1fr; gap: 26px; }
+  .dp-faces { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
+  .dp-faces { grid-template-columns: 1fr; }
   .dp-bento { grid-template-columns: 1fr; }
   .dp-bento .b2, .dp-bento .b4 { grid-column: span 1; }
 }
