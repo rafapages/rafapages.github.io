@@ -6,7 +6,7 @@
     <atom:link href="https://www.rafapages.com/dashpad/changelog/feed.xml" rel="self" type="application/rss+xml" />
     <description>What's new in DashPad, the full-screen kiosk browser for iPad.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 09 Oct 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 28 Oct 2026 12:00:00 GMT</lastBuildDate>
     <image>
       <url>https://www.rafapages.com/dashpad/social-preview.jpg</url>
       <title>DashPad releases</title>
@@ -15,6 +15,14 @@
 
     <!-- Newest first. Adding a release: copy an <item>, update lastBuildDate.
          Keep the text in step with the matching article in index.html. -->
+
+    <item>
+      <title>DashPad 1.5: An idle screen worth looking at</title>
+      <link>https://www.rafapages.com/dashpad/changelog/#v1-5</link>
+      <guid isPermaLink="true">https://www.rafapages.com/dashpad/changelog/#v1-5</guid>
+      <pubDate>Wed, 28 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Six new clock faces, your photos as a slideshow, and a Custom URL idle screen you can rely on. When nobody's around, your iPad no longer has to look switched off.</p><ul><li>Six new clock faces, each in seven colour themes.</li><li>Photos: a slideshow of up to 50 photos, with no access to your photo library needed.</li><li>The Custom URL idle screen is now display-only and retries when it can't load.</li><li>Prevent Auto-Lock and a 12 or 24-hour time setting.</li></ul><p>The story behind this release: <a href="https://www.rafapages.com/blog/what-happens-when-you-walk-out/">What Happens When You Walk Out</a>.</p>]]></description>
+    </item>
 
     <item>
       <title>DashPad 1.4: Older iPads, a cleaner screen, no more blank pages</title>

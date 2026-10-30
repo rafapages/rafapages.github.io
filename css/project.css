@@ -458,3 +458,29 @@ body > main {
     grid-template-columns: 1fr;
   }
 }
+
+/* Image grid: wide breakout, 3 columns (2 on phones) with small labels */
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem 1rem;
+  margin-bottom: 0;
+}
+.cs-grid figure {
+  margin: 0;
+}
+.cs-grid img {
+  height: auto;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+}
+.cs-grid figcaption {
+  font-size: 0.75rem;
+  color: #999;
+  text-align: center;
+  margin-top: 0.4rem;
+}
+@media (max-width: 576px) {
+  .cs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

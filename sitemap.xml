@@ -26,7 +26,11 @@
   <!-- Blog -->
   <url>
     <loc>https://www.rafapages.com/blog/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rafapages.com/blog/what-happens-when-you-walk-out/</loc>
+    <lastmod>2026-10-28</lastmod>
   </url>
   <url>
     <loc>https://www.rafapages.com/blog/you-might-already-own-a-homeview/</loc>
@@ -46,7 +50,7 @@
   </url>
   <url>
     <loc>https://www.rafapages.com/dashpad/changelog/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-28</lastmod>
   </url>
 
   <!-- DashPad guides (add as they ship)

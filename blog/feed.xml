@@ -6,7 +6,7 @@
     <atom:link href="https://www.rafapages.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>Notes on building things on the side, and what shipping them taught me.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 16 Oct 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 28 Oct 2026 10:00:00 GMT</lastBuildDate>
     <image>
       <url>https://www.rafapages.com/img/rafa_electro_new_logo.jpg</url>
       <title>Rafa Pagés</title>
@@ -14,6 +14,15 @@
     </image>
 
     <!-- Newest first. Adding a post: copy an <item>, update lastBuildDate. -->
+
+    <item>
+      <title>What Happens When You Walk Out</title>
+      <link>https://www.rafapages.com/blog/what-happens-when-you-walk-out/</link>
+      <guid isPermaLink="true">https://www.rafapages.com/blog/what-happens-when-you-walk-out/</guid>
+      <pubDate>Wed, 28 Oct 2026 10:00:00 GMT</pubDate>
+      <description><![CDATA[<p><img src="https://www.rafapages.com/blog/what-happens-when-you-walk-out/img/social.jpg" alt="Six DashPad clock faces in different colours"></p><p>Your wall iPad doesn't have to look switched off. In DashPad 1.5 the idle screen becomes the fun part: clock faces, your photos, or a dashboard of your own.</p>]]></description>
+      <enclosure url="https://www.rafapages.com/blog/what-happens-when-you-walk-out/img/social.jpg" length="54202" type="image/jpeg" />
+    </item>
 
     <item>
       <title>You Might Already Own a HomeView. Kind of.</title>
