@@ -73,13 +73,11 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  max-width: 1600px;
-  margin: 0 auto;
 }
 
 /* ── 3. Layout primitives ────────────────────────────────────────────────── */
 
-/* Break out of the centered .dp wrapper to span the full viewport width */
+/* Span the full viewport width */
 .dp-bleed {
   width: 100vw;
   margin-left: calc(50% - 50vw);
